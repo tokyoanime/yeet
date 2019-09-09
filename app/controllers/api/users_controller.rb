@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  before_action: require_login
+  before_action :require_login, only: [:show, :update]
 
   def show
     @user = User.find_by(id: params[:id])
