@@ -1,10 +1,6 @@
 class Api::SessionsController < ApplicationController
   before_action: require_login, only: [:destroy]
 
-  def new
-    render "/signin"
-  end
-
   def create
     @user = User.find_user(
       params[:user][:username],
