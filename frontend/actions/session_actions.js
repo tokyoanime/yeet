@@ -1,7 +1,4 @@
-import {
-  postSession,
-  deleteSession
-} from '../util/session_api_util';
+import * as SessionUtil from '../util/session_util';
 import {receiveUser} from './user_actions';
 
 export const LOGOUT_USER = "LOGOUT_USER";
@@ -16,11 +13,11 @@ const receiveSessionErrors = (err) => ({
   err
 });
 
-export const loginUser = (user) => (dispatch) => postSession(user)
+export const login = (user) => (dispatch) => SessionUtil.postSession(user)
   .then( (user) => dispatch(receiveUser(user)))
   .catch( (err) => dispatch(receiveSessionErrors(err)));
 
-export const logoutUser = () => (dispatch) => deleteSession()
+export const logout = () => (dispatch) => SessionUtil.deleteSession()
   .then( () => dispatch(logoutUser()))
   .catch( (err) => dispatch(receiveSessionErrors(err)));
 

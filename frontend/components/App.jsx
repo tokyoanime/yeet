@@ -5,9 +5,9 @@ const App = () => (
   <div>
     <h2>Yeet!</h2>
     <Switch>
-      <AuthRoute exact path="/login" component={} />
-      <AuthRoute exact path="/signup" component={} />
-      <Route exact path="/" component={} />
+      {/* <AuthRoute exact path="/login" component={} />
+      <AuthRoute exact path="/signup" component={} /> */}
+      {/* <Route exact path="/" component={} /> */}
     </Switch>
   </div>
 );
