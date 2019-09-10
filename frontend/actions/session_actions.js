@@ -14,10 +14,15 @@ const receiveSessionErrors = (err) => ({
 });
 
 export const login = (user) => (dispatch) => SessionUtil.postSession(user)
-  .then( (user) => dispatch(receiveUser(user)))
-  .catch( (err) => dispatch(receiveSessionErrors(err)));
+  .then(
+    (user) => dispatch(receiveUser(user)),
+    (err) => dispatch(receiveSessionErrors(err))
+    );
 
 export const logout = () => (dispatch) => SessionUtil.deleteSession()
-  .then( () => dispatch(logoutUser()))
-  .catch( (err) => dispatch(receiveSessionErrors(err)));
+  .then( 
+    () => dispatch(logoutUser()),
+    (err) => dispatch(receiveSessionErrors(err))
+    );
+
 

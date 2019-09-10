@@ -16,7 +16,7 @@ class UserForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.processForm(this.state)
+    this.props.login(this.state)
       .then( () => this.props.history.push('/'));
   }
 
@@ -31,15 +31,6 @@ class UserForm extends React.Component {
               value={this.state.username}
               onChange={this.updateField('username')}
               />
-          </label>
-          <br/>
-
-          <label>Email:
-            <input
-              type="text"
-              value={this.state.email}
-              onChange={this.updateField('email')}
-            />
           </label>
           <br/>
 
