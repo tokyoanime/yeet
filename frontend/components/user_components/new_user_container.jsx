@@ -7,7 +7,7 @@ const defaultUser = {username: "", email: "", password: ""}
 
 const mstp = (state, ownProps) => ({
   formType: "Sign Up",
-  err: state.errors.userErrors,
+  errors: state.errors.userErrors,
   user: defaultUser
 });
 

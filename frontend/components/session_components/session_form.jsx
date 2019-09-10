@@ -20,10 +20,23 @@ class UserForm extends React.Component {
       .then( () => this.props.history.push('/'));
   }
 
+  renderErrors() {
+    return (
+      <ul>
+        {this.props.errors.map((err, i) => (
+          <li key={`error-${i}`}>
+            {err}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
   render() {
     return(
       <div>
         <h2>{this.props.formType}</h2>
+        {this.renderErrors()}
         <form onSubmit={this.handleSubmit}>
           <label>Username:
             <input

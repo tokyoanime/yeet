@@ -14,13 +14,19 @@ const receiveUserErrors = (err) => ({
 });
 
 export const createUser = (user) => (dispatch) => UserUtil.createUser(user)
-  .then( (user) => dispatch(receiveUser(user)))
-  .catch( (err) => dispatch(receiveError(err)));
+  .then(
+    (user) => dispatch(receiveUser(user)),
+    (err) => dispatch(receiveUserErrors(err))
+  );
 
 export const getUser = (id) => (dispatch) => UserUtil.getUser(id)
-  .then( (user) => dispatch(receiveUser(user)))
-  .catch( (err) => dispatch(receiveError(err)));
+  .then(
+    (user) => dispatch(receiveUser(user)),
+    (err) => dispatch(receiveUserErrors(err))
+  )
 
 export const updateUser = (user) => (dispatch) => UserUtil.updateUser(user)
-  .then( (user) => dispatch(receiveUser(user)))
-  .catch( (err) => dispatch(receiveUserErrors(err)));
+  .then(
+      (user) => dispatch(receiveUser(user)),
+      (err) => dispatch(receiveUserErrors(err))
+    )

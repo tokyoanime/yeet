@@ -21,37 +21,60 @@ class UserForm extends React.Component {
   }
 
   render() {
+    let usernameError = [];
+    let emailError = [];
+    let passwordError = [];
+    const errors = this.props.errors;
+
+    for (let i = 0; i < errors.length; i++) {
+      if (errors[i].includes("Username")) {
+        usernameError.push(errors[i])
+      } else if (errors[i].includes("Email")) {
+        emailError.push(errors[i])
+      } else {
+        passwordError.push(errors[i])
+      }
+    }
+
     return(
       <div>
         <h2>{this.props.formType}</h2>
         <form onSubmit={this.handleSubmit}>
-          <label>Username:
-            <input
-              type="text"
-              value={this.state.username}
-              onChange={this.updateField('username')}
+          <fieldset>
+            <label>
+              <input
+                type="text"
+                placeholder="Username"
+                value={this.state.username}
+                onChange={this.updateField('username')}
+                />
+            </label>
+            <br/>
+            {(usernameError.length > 0) ? <div id="form-error">{usernameError}</div> : ""}
+
+            <label>
+              <input
+                type="text"
+                placeholder="Email"
+                value={this.state.email}
+                onChange={this.updateField('email')}
               />
-          </label>
-          <br/>
+            </label>
+            <br/>
+            {(emailError.length > 0) ? <div id="form-error">{emailError}</div> : ""}
 
-          <label>Email:
-            <input
-              type="text"
-              value={this.state.email}
-              onChange={this.updateField('email')}
-            />
-          </label>
-          <br/>
+            <label>
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={this.updateField('password')}
+              />
+            </label>
+            <br/>
+            {(passwordError.length > 0) ? <div id="form-error">{passwordError}</div> : ""}
 
-          <label>Password:
-            <input
-              type="password"
-              onChange={this.updateField('password')}
-            />
-          </label>
-          <br/>
-
-          <input type="submit" value={this.props.formType}/>
+            <input type="submit" value={this.props.formType}/>
+          </fieldset>
         </form>
       </div>
     )

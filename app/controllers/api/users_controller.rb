@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
     if @user
       render "/users/#{@user.id}"
     else
-      render json: ["Invalid User"]
+      render json: ["Invalid User"], status: 401
     end
   end
 
@@ -18,7 +18,7 @@ class Api::UsersController < ApplicationController
       login(@user)
       render "/login"
     else
-      render json: @user.errors.full_messages
+      render json: @user.errors.full_messages, status: 401
     end
   end
 
@@ -28,7 +28,7 @@ class Api::UsersController < ApplicationController
     if @user.update_attributes(user_params)
       render "/users/#{@user.id}"
     else
-      render json: @user.errors.full_messages
+      render json: @user.errors.full_messages, status: 401
     end
   end
 
