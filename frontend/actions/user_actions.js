@@ -5,15 +5,15 @@ import {
 } from '../util/user_util';
 
 export const RECEIVE_USER = "RECEIVE_USER";
-export const RECEIVE_ERROR = "RECEIVE_ERROR";
+export const RECEIVE_USER_ERRORS = "RECEIVE_USER_ERRORS";
 
-const receiveUser = (user) => ({
+export const receiveUser = (user) => ({
   type: RECEIVE_USER,
   user
 });
 
-const receiveError = (err) => ({
-  type: RECEIVE_ERROR,
+const receiveUserErrors = (err) => ({
+  type: RECEIVE_USER_ERRORS,
   err
 });
 
@@ -27,4 +27,4 @@ export const getUser = (id) => (dispatch) => getUser(id)
 
 export const updateUser = (user) => (dispatch) => updateUser(user)
   .then( (user) => dispatch(receiveUser(user)))
-  .catch( (err) => dispatch(receiveError(err)));
+  .catch( (err) => dispatch(receiveUserErrors(err)));
