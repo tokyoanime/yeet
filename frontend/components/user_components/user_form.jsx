@@ -46,32 +46,35 @@ class UserForm extends React.Component {
                 type="text"
                 placeholder="Username"
                 value={this.state.username}
+                required="required"
                 onChange={this.updateField('username')}
                 />
             </label>
             <br/>
-            {(usernameError.length > 0) ? <div id="form-error">{usernameError}</div> : ""}
+            {(usernameError.length > 0) ? <div id="newuser-error">{usernameError}</div> : ""}
 
             <label>
               <input
                 type="text"
                 placeholder="Email"
                 value={this.state.email}
+                required="required"
                 onChange={this.updateField('email')}
               />
             </label>
             <br/>
-            {(emailError.length > 0) ? <div id="form-error">{emailError}</div> : ""}
+            {(emailError.length > 0) ? <div id="newuser-error">{emailError}</div> : ""}
 
             <label>
               <input
                 type="password"
                 placeholder="Password"
+                required="required"
                 onChange={this.updateField('password')}
               />
             </label>
             <br/>
-            {(passwordError.length > 0) ? <div id="form-error">{passwordError}</div> : ""}
+            {(passwordError.length > 0) ? <div id="newuser-error">{passwordError}</div> : ""}
 
             <input type="submit" value={this.props.formType}/>
           </fieldset>

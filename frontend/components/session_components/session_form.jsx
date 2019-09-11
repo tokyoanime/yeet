@@ -20,43 +20,39 @@ class UserForm extends React.Component {
       .then( () => this.props.history.push('/'));
   }
 
-  renderErrors() {
-    return (
-      <ul>
-        {this.props.errors.map((err, i) => (
-          <li key={`error-${i}`}>
-            {err}
-          </li>
-        ))}
-      </ul>
-    )
-  }
-
   render() {
+    const errors = this.props.errors;
+
     return(
       <div>
-        <h2>{this.props.formType}</h2>
-        {this.renderErrors()}
-        <form onSubmit={this.handleSubmit}>
-          <label>Username:
-            <input
-              type="text"
-              value={this.state.username}
-              onChange={this.updateField('username')}
+        <div id="form-header">{this.props.formType}</div>
+        <fieldset>
+          {(errors.length > 0) ? <div id="login-error">{errors}</div> : ""}
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              <input
+                type="text"
+                placeholder="Username"
+                value={this.state.username}
+                required="required"
+                onChange={this.updateField('username')}
+                />
+            </label>
+            <br/>
+
+            <label>
+              <input
+                type="password"
+                placeholder="Password"
+                required="required"
+                onChange={this.updateField('password')}
               />
-          </label>
-          <br/>
+            </label>
+            <br/>
 
-          <label>Password:
-            <input
-              type="password"
-              onChange={this.updateField('password')}
-            />
-          </label>
-          <br/>
-
-          <input type="submit" value={this.props.formType}/>
-        </form>
+            <input type="submit" value={this.props.formType}/>
+          </form>
+        </fieldset>
       </div>
     )
   }
