@@ -10,21 +10,21 @@ class YeetHome extends React.Component {
     const currentUser = this.props.currentUser;
     const logout = this.props.logout;
     const display = currentUser ? (
-      <div>
+      <div className="nav-top">
         <p>Hello, {currentUser.username}</p>
         <button onClick={logout}>Log Out</button>
       </div>
     ) : (
-        <div>
-          <Link className="btn" to="/newuser">Sign Up</Link>
-          <Link className="btn" to="/login">Log In</Link>
+        <div className="nav-top">
+          <Link className="btn-login" to="/login">Log In</Link>
+          <Link className="btn-signup" to="/newuser">Sign Up</Link>
         </div>
       );
 
     return(
-      <div>
-        <h2>Welcome to Yeet!</h2>
+      <div className="nav-main">
         {display}
+        <div className="nav-logo"><h2>Welcome to Yeet!</h2></div>
       </div>
     )
   }
