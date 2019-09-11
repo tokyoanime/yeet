@@ -5,7 +5,7 @@ class Api::UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
 
     if @user
-      render "/users/#{@user.id}"
+      render 'api/users/show'
     else
       render json: ["Invalid User"], status: 401
     end
@@ -16,7 +16,7 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       login(@user)
-      render "/login"
+      render 'api/users/show'
     else
       render json: @user.errors.full_messages, status: 401
     end

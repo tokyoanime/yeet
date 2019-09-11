@@ -37,48 +37,57 @@ class UserForm extends React.Component {
     }
 
     return(
-      <div>
-        <h2>{this.props.formType}</h2>
-        <form onSubmit={this.handleSubmit}>
-          <fieldset>
-            <label>
-              <input
-                type="text"
-                placeholder="Username"
-                value={this.state.username}
-                required="required"
-                onChange={this.updateField('username')}
+      <div className="login-form">
+        <div className="nav-login-top">
+          <div className="login-form-logo"><Link to="/">Logo Here</Link></div>
+        </div>
+        <div className="login-form-container">
+          <div className="login-form-subcontainer">
+            <div className="login-form-header">Sign Up for Yeet</div>
+            <div className="login-form-subheader">Already on Yeet? <Link className="btn-login-signup" to="/login">Log In</Link></div>
+
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                <input
+                  type="text"
+                  placeholder="Username"
+                  value={this.state.username}
+                  required="required"
+                  onChange={this.updateField('username')}
                 />
-            </label>
-            <br/>
-            {(usernameError.length > 0) ? <div id="newuser-error">{usernameError}</div> : ""}
+              </label>
+              <br />
+              {(usernameError.length > 0) ? <div id="newuser-error">{usernameError}</div> : ""}
 
-            <label>
-              <input
-                type="email"
-                placeholder="Email"
-                value={this.state.email}
-                required="required"
-                onChange={this.updateField('email')}
-              />
-            </label>
-            <br/>
-            {(emailError.length > 0) ? <div id="newuser-error">{emailError}</div> : ""}
+              <label>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={this.state.email}
+                  required="required"
+                  onChange={this.updateField('email')}
+                />
+              </label>
+              <br />
+              {(emailError.length > 0) ? <div id="newuser-error">{emailError}</div> : ""}
 
-            <label>
-              <input
-                type="password"
-                placeholder="Password"
-                required="required"
-                onChange={this.updateField('password')}
-              />
-            </label>
-            <br/>
-            {(passwordError.length > 0) ? <div id="newuser-error">{passwordError}</div> : ""}
+              <label>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  required="required"
+                  onChange={this.updateField('password')}
+                />
+              </label>
+              <br />
+              {(passwordError.length > 0) ? <div id="newuser-error">{passwordError}</div> : ""}
 
-            <input type="submit" value={this.props.formType}/>
-          </fieldset>
-        </form>
+              <button className="btn-session-login">Sign Up</button>
+            </form>
+          </div>
+        </div>
+        <div className="welcome-illustration-container">
+        </div>
       </div>
     )
   }

@@ -24,17 +24,22 @@ class UserForm extends React.Component {
     const errors = this.props.errors;
 
     return(
-      <div className="session-form">
-        <div className="login-form-header">{this.props.formType}</div>
-        <div className="login-form">
-          <fieldset className="login-form-fieldset">
+      <div className="login-form">
+        <div className="nav-login-top">
+          <div className="login-form-logo"><Link to="/">Logo Here</Link></div>
+        </div>
+        <div className="login-form-container">
+          <div className="login-form-subcontainer">
+            <div className="login-form-header">Log In to Yeet</div>
+            <div className="login-form-subheader">New to Yeet? <Link className="btn-login-signup" to="/newuser">Sign Up</Link></div>
+            
             {(errors.length > 0) ? <div className="login-error">{errors}</div> : ""}
             <form onSubmit={this.handleSubmit}>
               <label>
                 <input
                   type="text"
                   placeholder="Username"
-                  value={this.state.username}i
+                  value={this.state.username}
                   required="required"
                   onChange={this.updateField('username')}
                   />
@@ -50,10 +55,11 @@ class UserForm extends React.Component {
                 />
               </label>
               <br/>
-
-              <input type="submit" value={this.props.formType}/>
+              <button className="btn-session-login">Log In</button>
             </form>
-          </fieldset>
+          </div>
+        </div>
+        <div className="welcome-illustration-container">
         </div>
       </div>
     )

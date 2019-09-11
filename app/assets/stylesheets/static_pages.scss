@@ -6,7 +6,7 @@
   font-family: Arial, Helvetica, sans-serif
 }
 
-.nav-main {
+.nav-home-main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -15,26 +15,35 @@
   background-color: skyblue;
 }
 
-.nav-top {
+.nav-home-top {
   display: flex;
   justify-content: flex-end;
   // align-items: center;
   margin-top: 20px;
   width: 80%;
   height: 40px;
-  background-color: #416eb6;
+  // background-color: rgb(212, 52, 52);
 }
 
-.nav-logo {
+.nav-home-logo {
   display: flex;
   width: 80%;
-  height: 300px;
+  height: 200px;
   justify-content: center;
   align-items: center;
-  background-color: aquamarine;
+  // background-color: aquamarine;
 }
 
-.btn-login {
+.nav-home-search {
+  display: flex;
+  width: 80%;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+  // background-color: greenyellow;
+}
+
+.btn-home-login {
   margin-right: 10px;
   padding: 7px 10px;
   text-decoration: none;
@@ -42,11 +51,11 @@
   font-weight: bold;
 }
 
-.btn-login:hover {
+.btn-home-login:hover {
   border-bottom: 3px solid white;
 }
 
-.btn-signup {
+.btn-home-signup {
   padding: 7px 30px;
   border: 3px solid white;
   border-radius: 5px;
@@ -55,7 +64,41 @@
   font-weight: bold;
 }
 
-.btn-signup:hover {
+.btn-home-signup:hover {
   background-color: white;
   color: black;
+}
+
+.btn-home-logout {
+  padding: 7px 30px;
+  border: 3px solid white;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-home-logout:hover {
+  background-color: white;
+  color: black;
+}
+
+.nav-home-greeting {
+  display: flex;
+  color: white;
+  margin-right: 10px;
+  align-items: center;
+}
+
+#newuser-error {
+  display: flex;
+  align-items: center;
+  color: rgb(212, 52, 52);
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+
+.welcome-illustration-container {
+  background-image: url(yelp_pics/yelp_signup_illustration.png)
 }

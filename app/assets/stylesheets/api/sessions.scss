@@ -2,22 +2,115 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.session-form {
+
+.nav-login-top {
   width: 100%;
+  height: 50px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  background-color: rgb(212, 52, 52);
+}
+
+.login-form-container {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
   flex-wrap: wrap;
-  background-color: antiquewhite;
+  // background-color: black;
+}
+
+.login-form-subcontainer {
+  width: 300px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  // background-color: rgb(4, 141, 141);
 }
 
 .login-form-header {
   width: 100%;
   display: flex;
+  margin-top: 200px;
   justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.login-form-subheader {
+  width: 100%;
+  display: flex;
+  margin-bottom: 30px;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.blahform {
+  width: 100%;
 }
 
 .login-form {
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+
+}
+
+input {
+  width: 278px;
+  height: 20px;
+  padding: 5px 9px;
+  margin-bottom: 7px;
+  border-radius: 5px;
+}
+
+.btn-session-login{
+  width: 100%;
+  height: 30px;
+  background-color: rgb(212, 52, 52);
+  border: 0px;
+}
+
+.btn-session-login:hover {
+  background-color: rgb(230, 115, 115);
+  color: white;
+}
+
+.btn-login-signup {
+  margin-left: 5px;
+  text-decoration: none;
+  color: rgb(105, 59, 212);
+  font-weight: bold;
+}
+
+.btn-login-signup:hover {
+  text-decoration: underline;
+}
+
+.welcome-illustration-container {
+  // background-color: aqua;
+  width: 400px;
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  margin-bottom: 7px;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: rgb(212, 52, 52);
+  font-size: 13px;
+  font-weight: bold;
 }
