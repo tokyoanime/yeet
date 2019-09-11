@@ -24,7 +24,7 @@ class YeetHome extends React.Component {
     return(
       <div className="nav-main">
         {display}
-        <div className="nav-logo"><h2>Welcome to Yeet!</h2></div>
+        <div className="nav-logo"></div>
       </div>
     )
   }

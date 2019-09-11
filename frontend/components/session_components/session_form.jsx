@@ -24,35 +24,37 @@ class UserForm extends React.Component {
     const errors = this.props.errors;
 
     return(
-      <div>
-        <div id="form-header">{this.props.formType}</div>
-        <fieldset>
-          {(errors.length > 0) ? <div id="login-error">{errors}</div> : ""}
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              <input
-                type="text"
-                placeholder="Username"
-                value={this.state.username}
-                required="required"
-                onChange={this.updateField('username')}
+      <div className="session-form">
+        <div className="login-form-header">{this.props.formType}</div>
+        <div className="login-form">
+          <fieldset className="login-form-fieldset">
+            {(errors.length > 0) ? <div className="login-error">{errors}</div> : ""}
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                <input
+                  type="text"
+                  placeholder="Username"
+                  value={this.state.username}i
+                  required="required"
+                  onChange={this.updateField('username')}
+                  />
+              </label>
+              <br/>
+
+              <label>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  required="required"
+                  onChange={this.updateField('password')}
                 />
-            </label>
-            <br/>
+              </label>
+              <br/>
 
-            <label>
-              <input
-                type="password"
-                placeholder="Password"
-                required="required"
-                onChange={this.updateField('password')}
-              />
-            </label>
-            <br/>
-
-            <input type="submit" value={this.props.formType}/>
-          </form>
-        </fieldset>
+              <input type="submit" value={this.props.formType}/>
+            </form>
+          </fieldset>
+        </div>
       </div>
     )
   }

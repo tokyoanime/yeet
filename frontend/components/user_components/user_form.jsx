@@ -55,7 +55,7 @@ class UserForm extends React.Component {
 
             <label>
               <input
-                type="text"
+                type="email"
                 placeholder="Email"
                 value={this.state.email}
                 required="required"
