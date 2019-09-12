@@ -104,16 +104,17 @@ input {
   text-decoration: underline;
 }
 
-.welcome-illustration-container {
-  background-color: aqua;
-  width: 400px;
-  padding-top: 200px;
-  margin-left: 50px;
-  display: flex;
-  justify-content: center;
-  // align-items: center;
-  // background-image: url(yelp_pics/yelp_signup_illustration.png)
-}
+// .welcome-illustration-container {
+//   background-color: aqua;
+//   width: 400px;
+//   padding-top: 200px;
+//   margin-left: 50px;
+//   display: flex;
+//   justify-content: center;
+//   content: url(../../images/yelp.png);
+//   // background-image: url(../../images/yelp_signup_illustration.png);
+
+// }
 
 .login-error {
   display: flex;
@@ -130,9 +131,15 @@ input {
 }
 
 .wrapper-line {
+  width: 100%;
   border: none;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid transparent;
   text-align: center;
   margin: 20px 0px;
+}
+
+.wrapper-line legend {
+  padding: 0 15px;
+  margin: 0 auto;
 }

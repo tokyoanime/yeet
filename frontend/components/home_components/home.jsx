@@ -17,7 +17,7 @@ class YeetHome extends React.Component {
 
     const display = (currentUser !== undefined) ? (
       <div className="nav-home-top">
-        <div className="nav-home-greeting">Hello, {currentUser.username}</div>
+        <div className="nav-home-greeting">Hello, {currentUser.fname}</div>
         <button id="btn-home-logout" onClick={logout}>Log Out</button>
       </div>
       ) : (

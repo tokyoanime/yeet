@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ .welcome-illustration-container {
+  /* background-color: aqua; */
+  width: 400px;
+  padding-top: 200px;
+  margin-left: 50px;
+  display: flex;
+  justify-content: center;
+  content: url(yelp.png);
+}

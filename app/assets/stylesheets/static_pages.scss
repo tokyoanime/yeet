@@ -11,18 +11,20 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  // height: 800px;
-  background-color: skyblue;
+  min-width: 1020px;
+  height: 570px;
+  padding-top: 30px;
+  background-image: url(burger.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
 }
 
 .nav-home-top {
   display: flex;
   justify-content: flex-end;
-  // align-items: center;
-  margin-top: 20px;
   width: 80%;
   height: 40px;
-  // background-color: rgb(212, 52, 52);
 }
 
 .nav-home-logo {
@@ -31,6 +33,7 @@
   height: 200px;
   justify-content: center;
   align-items: center;
+  color: white;
   // background-color: aquamarine;
 }
 
@@ -40,6 +43,7 @@
   height: 80px;
   justify-content: center;
   align-items: center;
+  color: white;
   // background-color: greenyellow;
 }
 

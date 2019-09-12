@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 class UserForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", email: "", password: "" };
+    this.state = { username: "", email: "", password: "", fname: "", lname: "" };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -13,8 +13,19 @@ class UserForm extends React.Component {
   }
 
   updateField(field) {
+    let that = this.state
     return (e) => {
-      this.setState({ [field]: e.target.value });
+      let temp = that[field];
+      if (field === "fname" || field === "lname") {
+        if (temp.length > 0) {
+          temp = e.target.value[0].toUpperCase() + e.target.value.slice(1);
+        } else {
+          temp = e.target.value.toUpperCase();
+        }
+      } else {
+        temp = e.target.value;
+      }
+      this.setState({ [field]: temp });
     };
   }
 
@@ -51,6 +62,30 @@ class UserForm extends React.Component {
             <div className="login-form-subheader">Already on Yeet? <Link id="btn-login-signup" to="/login">Log In</Link></div>
 
             <form onSubmit={this.handleSubmit}>
+              <label>
+                <input
+                  type="text"
+                  className="input-field-fname"
+                  placeholder="First Name"
+                  value={this.state.fname}
+                  required="required"
+                  onChange={this.updateField('fname')}
+                />
+              </label>
+              <br />
+
+              <label>
+                <input
+                  type="text"
+                  className="input-field-lname"
+                  placeholder="Last Name"
+                  value={this.state.lname}
+                  required="required"
+                  onChange={this.updateField('lname')}
+                />
+              </label>
+              <br />
+
               <label>
                 <input
                   type="text"

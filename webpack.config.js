@@ -11,6 +11,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '*']
   },
   module: {
+
     rules: [
       {
         test: /\.jsx?$/,

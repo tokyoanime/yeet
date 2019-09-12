@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+// import WelcomeIllustration from '../../images/yelp_pics/yelp_signup_illustration.png'
 
 class UserForm extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class UserForm extends React.Component {
     let passTimer = 0;
     this.setState({ username: '', password: '' });
     document.getElementById('btn-demo-login').setAttribute('disabled','true');
-
+    document.getElementById('btn-session-login').setAttribute('disabled','true');
 
     const typeUsername = (i) => {
       let uName = this.state.username + i;
@@ -81,7 +82,9 @@ class UserForm extends React.Component {
 
             <button id="btn-demo-login" onClick={this.handleDemoLogin}>Log In As Demo User</button>
 
-            <fieldset className="wrapper-line">OR</fieldset>
+            <fieldset className="wrapper-line">
+              <legend>OR</legend>
+            </fieldset>
             
             {(errors.length > 0) ? <div className="login-error">{errors}</div> : ""}
             <form onSubmit={this.handleSubmit}>
@@ -111,7 +114,7 @@ class UserForm extends React.Component {
               <button id="btn-session-login">Log In</button>
             </form>
           </div>
-          <div className="welcome-illustration-container">Pic Here!</div>
+          <div className="welcome-illustration-container"></div>
         </div>
       </div>
     )
