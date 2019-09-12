@@ -9,11 +9,13 @@
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  fname           :string           not null
+#  lname           :string           not null
 #
 
 class User < ApplicationRecord
   validates :username, :email, :session_token, presence: true, uniqueness: true
-  validates :password_digest, presence: true
+  validates :password_digest, :fname, :lname, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
 
   attr_reader :password
