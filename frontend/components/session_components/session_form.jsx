@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 class UserForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "" };
+    this.state = this.props.user;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDemoLogin = this.handleDemoLogin.bind(this);
   }
@@ -21,37 +21,65 @@ class UserForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    document.getElementById('btn-session-login').setAttribute('disabled', 'true');
     this.props.login(this.state)
       .then( () => this.props.history.push('/'));
   }
 
   handleDemoLogin() {
-    let demoUserName = "demoUser".split('');
+    let demoUsername = "demoUser".split('');
     let demoPassword = "password".split('');
+    let userTimer = 0;
+    let passTimer = 0;
+    this.setState({ username: '', password: '' });
+    document.getElementById('btn-demo-login').setAttribute('disabled','true');
 
-    for (let i = 0; i < demoUserName.length; i++) {
-      
+
+    const typeUsername = (i) => {
+      let uName = this.state.username + i;
+      this.setState({username: uName})
+    }
+
+    const typePassword = (j) => {
+      let uPass = this.state.password + j;
+      this.setState({password: uPass})
+    }
+
+    for (let i = 0; i < demoUsername.length; i++) {
+      userTimer += 50;
+      setTimeout(() => typeUsername(demoUsername[i]), userTimer);
     }
 
     for (let j = 0; j < demoPassword.length; j++) {
-      
+      passTimer += 50;
+      setTimeout(() => typePassword(demoPassword[j]), passTimer);
     }
+
+    const loginUser = () => {
+      if (this.state.username === "demoUser" && this.state.password === "password") {
+        clearInterval(test);
+        this.props.login(this.state)
+          .then(() => this.props.history.push('/'));
+      }
+    }
+
+    const test = setInterval(loginUser, 500);
   }
 
   render() {
     const errors = this.props.errors;
 
     return(
-      <div className="login-form">
+      <div className="login-page">
         <div className="nav-login-top">
           <div className="login-form-logo"><Link to="/">Logo Here</Link></div>
         </div>
         <div className="login-form-container">
           <div className="login-form-subcontainer">
             <div className="login-form-header">Log In to Yeet</div>
-            <div className="login-form-subheader">New to Yeet? <Link className="btn-login-signup" to="/newuser">Sign Up</Link></div>
+            <div className="login-form-subheader">New to Yeet? <Link id="btn-login-signup" to="/newuser">Sign Up</Link></div>
 
-            <button className="btn-demo-login" onClick={this.handleDemoLogin}>Log In As Demo User</button>
+            <button id="btn-demo-login" onClick={this.handleDemoLogin}>Log In As Demo User</button>
 
             <fieldset className="wrapper-line">OR</fieldset>
             
@@ -60,7 +88,7 @@ class UserForm extends React.Component {
               <label>
                 <input
                   type="text"
-                  className="username"
+                  id="username"
                   placeholder="Username"
                   value={this.state.username}
                   required="required"
@@ -72,18 +100,18 @@ class UserForm extends React.Component {
               <label>
                 <input
                   type="password"
-                  className="password"
+                  id="password"
                   placeholder="Password"
+                  value={this.state.password}
                   required="required"
                   onChange={this.updateField('password')}
                 />
               </label>
               <br/>
-              <button className="btn-session-login">Log In</button>
+              <button id="btn-session-login">Log In</button>
             </form>
           </div>
-        </div>
-        <div className="welcome-illustration-container">
+          <div className="welcome-illustration-container">Pic Here!</div>
         </div>
       </div>
     )

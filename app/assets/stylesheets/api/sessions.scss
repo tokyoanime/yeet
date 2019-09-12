@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.login-page {
+  width: 100%;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 .nav-login-top {
   width: 100%;
@@ -12,9 +19,9 @@
   background-color: rgb(212, 52, 52);
 }
 
+
 .login-form-container {
-  width: 400px;
-  height: 400px;
+  width: 800px;
   display: flex;
   justify-content: center;
   align-content: flex-start;
@@ -24,7 +31,7 @@
 
 .login-form-subcontainer {
   width: 300px;
-  height: 400px;
+
   display: flex;
   justify-content: center;
   align-content: flex-start;
@@ -49,18 +56,6 @@
   font-size: 15px;
 }
 
-.blahform {
-  width: 100%;
-}
-
-.login-form {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-}
-
 input {
   width: 278px;
   height: 20px;
@@ -69,50 +64,54 @@ input {
   border-radius: 5px;
 }
 
-.btn-session-login{
+#btn-session-login{
   width: 100%;
   height: 30px;
   background-color: rgb(212, 52, 52);
   border: 0px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-.btn-session-login:hover {
+#btn-session-login:hover {
   background-color: rgb(230, 115, 115);
   color: white;
 }
 
-.btn-demo-login{
+#btn-demo-login{
   width: 100%;
   height: 30px;
   background-color: rgb(212, 52, 52);
   border: 0px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-.btn-demo-login:hover {
+#btn-demo-login:hover {
   background-color: rgb(230, 115, 115);
   color: white;
 }
 
-.btn-login-signup {
+#btn-login-signup {
   margin-left: 5px;
   text-decoration: none;
   color: rgb(105, 59, 212);
   font-weight: bold;
+  cursor: pointer;
 }
 
-.btn-login-signup:hover {
+#btn-login-signup:hover {
   text-decoration: underline;
 }
 
 .welcome-illustration-container {
-  // background-color: aqua;
+  background-color: aqua;
   width: 400px;
-  padding-top: 50px;
+  padding-top: 200px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  // align-items: center;
+  // background-image: url(yelp_pics/yelp_signup_illustration.png)
 }
 
 .login-error {

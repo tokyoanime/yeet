@@ -18,12 +18,12 @@ class YeetHome extends React.Component {
     const display = (currentUser !== undefined) ? (
       <div className="nav-home-top">
         <div className="nav-home-greeting">Hello, {currentUser.username}</div>
-        <button className="btn-home-logout" onClick={logout}>Log Out</button>
+        <button id="btn-home-logout" onClick={logout}>Log Out</button>
       </div>
       ) : (
         <div className="nav-home-top">
-          <Link className="btn-home-login" to="/login">Log In</Link>
-          <Link className="btn-home-signup" to="/newuser">Sign Up</Link>
+          <Link id="btn-home-login" to="/login">Log In</Link>
+          <Link id="btn-home-signup" to="/newuser">Sign Up</Link>
         </div>
       );
 

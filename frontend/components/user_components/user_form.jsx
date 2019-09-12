@@ -41,14 +41,14 @@ class UserForm extends React.Component {
     }
 
     return(
-      <div className="login-form">
+      <div className="login-page">
         <div className="nav-login-top">
           <div className="login-form-logo"><Link to="/">Logo Here</Link></div>
         </div>
         <div className="login-form-container">
           <div className="login-form-subcontainer">
             <div className="login-form-header">Sign Up for Yeet</div>
-            <div className="login-form-subheader">Already on Yeet? <Link className="btn-login-signup" to="/login">Log In</Link></div>
+            <div className="login-form-subheader">Already on Yeet? <Link id="btn-login-signup" to="/login">Log In</Link></div>
 
             <form onSubmit={this.handleSubmit}>
               <label>
@@ -86,11 +86,10 @@ class UserForm extends React.Component {
               <br />
               {(passwordError.length > 0) ? <div id="newuser-error">{passwordError}</div> : ""}
 
-              <button className="btn-session-login">Sign Up</button>
+              <button id="btn-session-login">Sign Up</button>
             </form>
           </div>
-        </div>
-        <div className="welcome-illustration-container">
+          <div className="welcome-illustration-container">Pic Here!</div>
         </div>
       </div>
     )
