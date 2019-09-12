@@ -74,9 +74,23 @@ input {
   height: 30px;
   background-color: rgb(212, 52, 52);
   border: 0px;
+  border-radius: 5px;
 }
 
 .btn-session-login:hover {
+  background-color: rgb(230, 115, 115);
+  color: white;
+}
+
+.btn-demo-login{
+  width: 100%;
+  height: 30px;
+  background-color: rgb(212, 52, 52);
+  border: 0px;
+  border-radius: 5px;
+}
+
+.btn-demo-login:hover {
   background-color: rgb(230, 115, 115);
   color: white;
 }
@@ -113,4 +127,12 @@ input {
   color: rgb(212, 52, 52);
   font-size: 13px;
   font-weight: bold;
+}
+
+.wrapper-line {
+  border: none;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid transparent;
+  text-align: center;
+  margin: 20px 0px;
 }

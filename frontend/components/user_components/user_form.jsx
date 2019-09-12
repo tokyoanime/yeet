@@ -4,8 +4,12 @@ import { Link, withRouter } from 'react-router-dom';
 class UserForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = props.user;
+    this.state = { username: "", email: "", password: "" };
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.clearErrors();
   }
 
   updateField(field) {
