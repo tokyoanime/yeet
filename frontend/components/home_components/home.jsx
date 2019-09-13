@@ -15,6 +15,10 @@ class YeetHome extends React.Component {
     const currentUser = this.props.currentUser;
     const logout = this.props.logout;
 
+    // const sectionStyle = {
+    //   background: "url(" + { window.burgerURL } + ")"
+    // }
+
     const display = (currentUser !== undefined) ? (
       <div className="nav-home-top">
         <div className="nav-home-greeting">Hello, {currentUser.fname}</div>
@@ -29,8 +33,9 @@ class YeetHome extends React.Component {
 
     return(
       <div className="nav-home-main">
+        {/* <img className="home-image" src={window.burgerURL} /> */}
         {display}
-        <div className="nav-home-logo">Logo Here</div>
+        <div className="nav-home-logo"><img src={window.yelpLogoURL} /></div>
         <div className="nav-home-search">Search Bar Here</div>
       </div>
     )
