@@ -8,4 +8,4 @@
 
 User.destroy_all
 
-User.create({id: 2, username: "demoUser", email: "demo@demouser.com", fname: "Demo User", lname: "Demo"});
+User.create({id: 1, username: "demoUser", email: "demo@demouser.com", fname: "Demo User", lname: "Demo", password: "password"});
