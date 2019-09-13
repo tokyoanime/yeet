@@ -20,16 +20,14 @@ class User < ApplicationRecord
 
   attr_reader :password
   after_initialize :ensure_token
+
+  has_one_attached :profilePic
   
   def self.find_user(username, password)
     user = User.find_by(username: username)
     return nil unless user && user.valid_password?(password)
     user
   end
-
-  # def self.find_user(username, password)
-  #   user = User.find_by(username: username)
-  # end
 
   def password=(password)
     @password = password
