@@ -51,10 +51,22 @@ class UserForm extends React.Component {
       }
     }
 
+    if (usernameError.length > 0) {
+      document.getElementsByClassName('username')[0].className += ' form-error'
+    }
+
+    if (emailError.length > 0) {
+      document.getElementsByClassName('email')[0].className += ' form-error'
+    }
+
+    if (passwordError.length > 0) {
+      document.getElementsByClassName('password')[0].className += ' form-error'
+    }
+
     return(
       <div className="login-page">
         <div className="nav-login-top">
-          <div className="login-form-logo"><Link to="/">Logo Here</Link></div>
+          <div><Link to="/"><img className="login-form-logo" src={window.yelpLogoURL} /></Link></div>
         </div>
         <div className="login-form-container">
           <div className="login-form-subcontainer">
@@ -65,7 +77,7 @@ class UserForm extends React.Component {
               <label>
                 <input
                   type="text"
-                  className="input-field-fname"
+                  className="fname"
                   placeholder="First Name"
                   value={this.state.fname}
                   required="required"
@@ -77,7 +89,7 @@ class UserForm extends React.Component {
               <label>
                 <input
                   type="text"
-                  className="input-field-lname"
+                  className="lname"
                   placeholder="Last Name"
                   value={this.state.lname}
                   required="required"
@@ -89,6 +101,7 @@ class UserForm extends React.Component {
               <label>
                 <input
                   type="text"
+                  className="username"
                   placeholder="Username"
                   value={this.state.username}
                   required="required"
@@ -101,6 +114,7 @@ class UserForm extends React.Component {
               <label>
                 <input
                   type="email"
+                  className="email"
                   placeholder="Email"
                   value={this.state.email}
                   required="required"
@@ -113,6 +127,7 @@ class UserForm extends React.Component {
               <label>
                 <input
                   type="password"
+                  className="password"
                   placeholder="Password"
                   required="required"
                   onChange={this.updateField('password')}

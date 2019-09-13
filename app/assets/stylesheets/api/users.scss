@@ -2,3 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.username, .password, .fname, .lname, .email {
+  width: 278px;
+  height: 20px;
+  padding: 5px 9px;
+  margin-bottom: 7px;
+  border-radius: 5px;
+  border: 2px solid #6b6b6b;
+  font-size: 14px;
+}
+
+.form-error {
+  border: 2px solid red;
+  box-shadow: 1px 2px;
+}

@@ -4,7 +4,6 @@ import { Link, withRouter } from 'react-router-dom';
 class YeetHome extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   componentDidMount() {
@@ -33,7 +32,6 @@ class YeetHome extends React.Component {
 
     return(
       <div className="nav-home-main">
-        {/* <img className="home-image" src={window.burgerURL} /> */}
         {display}
         <div className="nav-home-logo"><img src={window.yelpLogoURL} /></div>
         <div className="nav-home-search">Search Bar Here</div>

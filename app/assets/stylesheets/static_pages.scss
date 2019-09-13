@@ -3,7 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #root {
-  font-family: Arial, Helvetica, sans-serif
+  // font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+a:visted {
+  text-decoration: none;
 }
 
 .nav-home-main {
@@ -48,13 +53,14 @@
   // background-color: greenyellow;
 }
 
-
 #btn-home-login {
   margin-right: 10px;
   padding: 7px 10px;
   text-decoration: none;
   color: white;
   font-weight: bold;
+  font-size: 18px;
+  transition-duration: 0.4s;
   cursor: pointer;
 }
 
@@ -63,12 +69,17 @@
 }
 
 #btn-home-signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 7px 30px;
   border: 3px solid white;
   border-radius: 5px;
   text-decoration: none;
   color: white;
   font-weight: bold;
+  font-size: 16px;
+  transition-duration: 0.4s;
   cursor: pointer;
 }
 
@@ -78,12 +89,18 @@
 }
 
 #btn-home-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 7px 30px;
   border: 3px solid white;
+  background-color: transparent;
   border-radius: 5px;
   text-decoration: none;
   color: white;
   font-weight: bold;
+  font-size: 16px;
+  transition-duration: 0.4s;
   cursor: pointer;
 }
 
@@ -110,4 +127,8 @@
 
 .home-image {
   width: 80%;
+}
+
+.login-form-logo {
+  width: 80px;
 }

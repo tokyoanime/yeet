@@ -31,7 +31,6 @@
 
 .login-form-subcontainer {
   width: 300px;
-
   display: flex;
   justify-content: center;
   align-content: flex-start;
@@ -57,19 +56,22 @@
 }
 
 input {
-  width: 278px;
-  height: 20px;
-  padding: 5px 9px;
-  margin-bottom: 7px;
-  border-radius: 5px;
+
 }
 
 #btn-session-login{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 30px;
+  height: 40px;
   background-color: rgb(212, 52, 52);
   border: 0px;
   border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  transition-duration: 0.4s;
   cursor: pointer;
 }
 
@@ -79,11 +81,18 @@ input {
 }
 
 #btn-demo-login{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 30px;
+  height: 40px;
   background-color: rgb(212, 52, 52);
   border: 0px;
   border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  transition-duration: 0.4s;
   cursor: pointer;
 }
 
@@ -130,4 +139,18 @@ input {
 .wrapper-line legend {
   padding: 0 15px;
   margin: 0 auto;
+}
+
+#username, #password {
+  width: 278px;
+  height: 20px;
+  padding: 5px 9px;
+  margin-bottom: 7px;
+  border: 1px solid #6b6b6b;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+input:focus {
+  box-shadow: 2px 4px;
 }

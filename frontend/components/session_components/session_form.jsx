@@ -22,7 +22,6 @@ class UserForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    document.getElementById('btn-session-login').setAttribute('disabled', 'true');
     this.props.login(this.state)
       .then( () => this.props.history.push('/'));
   }
@@ -73,7 +72,7 @@ class UserForm extends React.Component {
     return(
       <div className="login-page">
         <div className="nav-login-top">
-          <div className="login-form-logo"><Link to="/">Logo Here</Link></div>
+          <div><Link to="/"><img className="login-form-logo" src={window.yelpLogoURL} /></Link></div>
         </div>
         <div className="login-form-container">
           <div className="login-form-subcontainer">
