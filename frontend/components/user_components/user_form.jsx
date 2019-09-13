@@ -124,7 +124,7 @@ class UserForm extends React.Component {
               <button id="btn-session-login">Sign Up</button>
             </form>
           </div>
-          <div className="welcome-illustration-container">Pic Here!</div>
+          <div className="welcome-illustration-container"><img src={window.yelpWelcomeURL} /></div>
         </div>
       </div>
     )
