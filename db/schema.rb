@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_13_153656) do
+ActiveRecord::Schema.define(version: 2019_09_14_221900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,46 @@ ActiveRecord::Schema.define(version: 2019_09_13_153656) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "businesses", force: :cascade do |t|
+    t.string "biz_name", null: false
+    t.string "biz_address", null: false
+    t.string "biz_city", null: false
+    t.string "biz_state", null: false
+    t.integer "biz_zipcode", null: false
+    t.float "biz_lat", null: false
+    t.float "biz_lng", null: false
+    t.string "biz_phone", null: false
+    t.string "biz_url"
+    t.string "biz_price_range"
+    t.boolean "biz_parking", default: false, null: false
+    t.boolean "biz_delivery", default: false, null: false
+    t.boolean "biz_takeout", default: false, null: false
+    t.boolean "biz_reservations", default: false, null: false
+    t.string "biz_first_cat", null: false
+    t.string "biz_second_cat"
+    t.string "biz_third_cat"
+    t.string "biz_mo_hrs"
+    t.string "biz_tu_hrs"
+    t.string "biz_we_hrs"
+    t.string "biz_th_hrs"
+    t.string "biz_fr_hrs"
+    t.string "biz_sa_hrs"
+    t.string "biz_su_hrs"
+    t.integer "biz_owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["biz_city"], name: "index_businesses_on_biz_city"
+    t.index ["biz_delivery"], name: "index_businesses_on_biz_delivery"
+    t.index ["biz_first_cat"], name: "index_businesses_on_biz_first_cat"
+    t.index ["biz_lat"], name: "index_businesses_on_biz_lat"
+    t.index ["biz_lng"], name: "index_businesses_on_biz_lng"
+    t.index ["biz_name", "biz_address", "biz_zipcode"], name: "index_businesses_on_biz_name_and_biz_address_and_biz_zipcode", unique: true
+    t.index ["biz_parking"], name: "index_businesses_on_biz_parking"
+    t.index ["biz_price_range"], name: "index_businesses_on_biz_price_range"
+    t.index ["biz_reservations"], name: "index_businesses_on_biz_reservations"
+    t.index ["biz_takeout"], name: "index_businesses_on_biz_takeout"
   end
 
   create_table "users", force: :cascade do |t|
