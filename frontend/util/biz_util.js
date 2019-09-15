@@ -19,4 +19,4 @@ export const updateBiz = (biz) => (
     method: 'PATCH',
     data: {biz}
   })
-);+
+);
