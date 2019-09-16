@@ -1,7 +1,7 @@
 import {RECEIVE_BIZ} from '../../actions/biz_actions';
 
 const bizReducer = (state = {}, action) => {
-  Object.freeze(biz);
+  Object.freeze(state);
 
   switch (action.type) {
     case RECEIVE_BIZ:

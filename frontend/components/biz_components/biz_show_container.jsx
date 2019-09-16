@@ -6,7 +6,7 @@ import BizShow from './biz_show';
 
 const mstp = (state, ownProps) => ({
   err: state.errors.bizErrors,
-  biz: state.entities.biz[ownProps.match.props.bizId]
+  biz: state.entities.biz[ownProps.match.props.id]
 });
 
 const mdtp = () => (dispatch) => ({
