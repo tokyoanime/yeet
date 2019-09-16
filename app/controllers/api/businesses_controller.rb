@@ -1,5 +1,5 @@
 class Api::BusinessesController < ApplicationController
-  before_action :require_login, only: [:create, :update]
+  # before_action :require_login, only: [:create, :update]
 
   def show
     @biz = Business.find_by(id: params[:id])

@@ -22,7 +22,7 @@ class User < ApplicationRecord
   after_initialize :ensure_token
 
   has_one_attached :avatar
-  has_many :businesses
+  # has_many :businesses
   
   def self.find_user(username, password)
     user = User.find_by(username: username)

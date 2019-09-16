@@ -9,3 +9,5 @@
 User.destroy_all
 
 User.create({id: 1, username: "demoUser", email: "demo@demouser.com", fname: "Demo User", lname: "Demo", password: "password"});
+
+# sack of potatoes in fremont, ca (seed this biz)

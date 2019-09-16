@@ -15,10 +15,10 @@ const defaultBiz = {
   biz_phone: "",
   biz_url: "",
   biz_price_rang: "",
-  biz_parking: "false",
-  biz_delivery: "false",
-  biz_takeout: "false",
-  biz_reservations: "false",
+  biz_parking: "no",
+  biz_delivery: "no",
+  biz_takeout: "no",
+  biz_reservations: "no",
   biz_first_cat: "",
   biz_second_cat: "",
   biz_third_cat: "",
@@ -40,7 +40,7 @@ const mstp = (state, ownProps) => ({
 
 const mdtp = () => (dispatch) => ({
   clearErrors: () => dispatch(clearErrors()),
-  createBiz: (biz) => dispatch(createBiz(biz)),
+  processForm: (biz) => dispatch(createBiz(biz)),
   getBiz: (id) => dispatch(getBiz(id))
 })
 

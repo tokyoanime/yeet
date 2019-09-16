@@ -13,10 +13,6 @@
 #  biz_phone        :string           not null
 #  biz_url          :string
 #  biz_price_range  :string
-#  biz_parking      :boolean          default(FALSE), not null
-#  biz_delivery     :boolean          default(FALSE), not null
-#  biz_takeout      :boolean          default(FALSE), not null
-#  biz_reservations :boolean          default(FALSE), not null
 #  biz_first_cat    :string           not null
 #  biz_second_cat   :string
 #  biz_third_cat    :string
@@ -30,6 +26,10 @@
 #  biz_owner_id     :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  biz_parking      :string
+#  biz_delivery     :string
+#  biz_takeout      :string
+#  biz_reservations :string
 #
 
 require 'test_helper'

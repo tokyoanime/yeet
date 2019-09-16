@@ -14,8 +14,8 @@ const App = () => (
       <AuthRoute exact path="/newuser" component={newUserContainer} />
       <AuthRoute exact path="/updateUser" component={updateUserContainer} />
       <AuthRoute exact path="/login" component={newSessionContainer} />
-      <AuthRoute exact path="/biz/new" component={newBizContainer} />
-      <AuthRoute exact path="/biz/:id" component={bizShowContainer} />
+      <Route exact path="/biz/new" component={newBizContainer} />
+      <Route exact path="/biz/:id" component={bizShowContainer} />
       <Route path="/" component={YeetHome} />
     </Switch>
   </div>
