@@ -10,16 +10,6 @@
   flex-wrap: wrap;
 }
 
-.nav-login-top {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(212, 52, 52);
-}
-
-
 .login-form-container {
   width: 800px;
   display: flex;
@@ -53,10 +43,6 @@
   margin-bottom: 30px;
   justify-content: center;
   font-size: 15px;
-}
-
-input {
-
 }
 
 #btn-session-login{

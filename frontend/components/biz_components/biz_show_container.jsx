@@ -5,7 +5,6 @@ import { clearErrors } from '../../actions/user_actions';
 import BizShow from './biz_show';
 
 const mstp = (state, ownProps) => {
-  // debugger
   return {
   err: state.errors.bizErrors,
   biz: state.entities.biz[ownProps.match.params.bizId]

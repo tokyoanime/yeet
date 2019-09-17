@@ -1,3 +1,37 @@
 // Place all the styles related to the api/businesses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.nav-bar-menu {
+  height: 40px;
+  background-color: #dddddd;
+}
+
+.biz-carousel {
+  height: 170px;
+  background-color: antiquewhite;
+}
+
+.biz-info-container {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  max-width: 960px;
+  font-size: 14px;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  text-decoration: none;
+}
+
+.biz-sub-left {
+  width: 66.66%;
+  margin-left: 15px;
+  padding: 15px;
+  background-color: aqua;
+}
+
+.biz-sub-right {
+  width: 33.33%;
+  margin-right: 15px;
+  padding: 15px;
+  background-color: azure;
+}

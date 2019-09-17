@@ -1,0 +1,86 @@
+//css for top nav bar
+
+.nav-top-container {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  margin: auto;
+  background-color: rgb(212, 52, 52);
+  font-weight: bold;
+  font-size: 13px;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-top-left {
+  width: 33.33%;
+  justify-content: flex-start;
+  margin-left: 10px;
+}
+
+.nav-top-mid {
+  width: 33.33%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.nav-top-right {
+  width: 33.33%;
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.session-menu-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+
+.nav-top-greeting {
+  margin-right: 5px;
+}
+
+#btn-top-login {
+  padding: 12px;
+  margin-right: 5px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#btn-top-login:hover {
+  border-bottom: 2px solid white;
+}
+
+#btn-top-signup {
+  padding: 12px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#btn-top-signup:hover {
+  background-color: white;
+  color: black;
+}
+
+#btn-top-logout {
+  padding: 12px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#btn-top-logout:hover {
+  background-color: white;
+  color: black;
+}
