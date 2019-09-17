@@ -46,7 +46,6 @@ class BizForm extends React.Component {
 
     this.state.biz_lat = 5;
     this.state.biz_lng = 5;
-    this.state.biz_owner_id = 1;
 
     this.props.processForm(this.state)
       .then(() => this.props.history.push('/'));
@@ -171,7 +170,6 @@ class BizForm extends React.Component {
       </div>
     );
 
-    // defaultValue = { 'DEFAULT'}
     const bizHrs = (val) => (
       <select className={`${val}`} defaultValue={(`${val}` === "bizHrStart") ? "9:00 am" : "8:00 pm"}>
         <option value="12:00 am">12:00 am (midnight)</option>
@@ -225,6 +223,11 @@ class BizForm extends React.Component {
       </select>
     )
 
+    let bizNameError = [];
+    let bizAddressError = [];
+    let bizCityError = [];
+    let bizStateError = [];
+    
     return (
       <div>
         {this.props.formType}

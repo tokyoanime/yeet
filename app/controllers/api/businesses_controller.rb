@@ -1,8 +1,9 @@
 class Api::BusinessesController < ApplicationController
-  # before_action :require_login, only: [:create, :update]
+  before_action :require_login, only: [:create, :update]
 
   def show
     @biz = Business.find_by(id: params[:id])
+    render :show
   end
 
   def create
@@ -11,7 +12,7 @@ class Api::BusinessesController < ApplicationController
     if @biz.save
       render 'api/businesses/show'
     else
-      render json: @biz.errors.full_messages, status: 401
+      render json: @biz.errors, status: 401
     end
   end
 
