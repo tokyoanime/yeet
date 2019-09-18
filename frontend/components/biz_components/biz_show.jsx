@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+// import GoogleMapReact from 'google-maps-react';
 import TopNavContainer from '../nav_components/top_nav_container';
+
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class BizShow extends React.Component {
   constructor(props) {
@@ -11,15 +15,20 @@ class BizShow extends React.Component {
     this.props.getBiz(this.props.match.params.bizId);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    debugger;
+    if (prevProps.match.params.bizId != this.props.match.params.bizId) {
+      this.props.getBiz(this.props.match.params.bizId);
+    }
   }
 
+  
+
   render() {
-    if (!this.props.biz) {
+    const { biz } = this.props;
+    if (!biz) {
       return null
     }
-
-    const {biz} = this.props
 
     const cityStateZip = `${biz.biz_city}, ${biz.biz_state} ${biz.biz_zipcode}`
     const bizUrl = (biz.biz_url !== "") ? (
@@ -45,6 +54,11 @@ class BizShow extends React.Component {
         </form>
       </div>
     ) : ("");
+
+    const mapStyles = {
+      width: '100%vh',
+      height: '100%vh',
+    };
 
     return(
 
@@ -73,17 +87,17 @@ class BizShow extends React.Component {
               <div className="biz-social-bar">
                 <div className="btn-write-review">
                   <button className="btn-biz-show">
-                    <i class="material-icons">star</i>Write a Review
+                    <i className="material-icons">star</i>Write a Review
                   </button>
                 </div>
                 <div className="btn-add-photo">
                   <button className="btn-biz-show">
-                    <i class="material-icons">add_a_photo</i>Add Photo
+                    <i className="material-icons">add_a_photo</i>Add Photo
                   </button>
                 </div>
                 <div className="btn-share">
                   <button className="btn-biz-show">
-                    <i class="material-icons">share</i>Share
+                    <i className="material-icons">share</i>Share
                   </button>
                 </div>
                 <div className="btn-save">
@@ -99,8 +113,26 @@ class BizShow extends React.Component {
             <div className="biz-loc-hrs-container">           
               <div className="biz-loc-container">
                 
-                <div className="biz-map">
-                  Map Here
+                <div className="biz-map" id="googleMap">
+                  {/* <div style={{ height: '100vh', width: '100%' }}>
+                    <GoogleMapReact
+                      bootstrapURLKeys={{ key: 'AIzaSyD9Ef-amJ3Cvg1T8w5yb15HPz8MMF47b6Q' }}
+                      defaultCenter={this.props.center}
+                      defaultZoom={this.props.zoom}
+                    >
+                      <AnyReactComponent
+                        lat={59.955413}
+                        lng={30.337844}
+                        text="My Marker"
+                      />
+                    </GoogleMapReact>
+                  </div> */}
+                  <Map
+                    google={this.props.google}
+                    zoom={8}
+                    style={mapStyles}
+                    initialCenter={{ lat: 47.444, lng: -122.176 }}
+                  />
                 </div>
                 <div className="biz-address">
                   <div>{biz.biz_address}</div>
@@ -197,4 +229,7 @@ class BizShow extends React.Component {
   }
 }
 
-export default BizShow;
+// export default BizShow;
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyD9Ef-amJ3Cvg1T8w5yb15HPz8MMF47b6Q'
+})(BizShow);
