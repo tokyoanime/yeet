@@ -4,7 +4,6 @@ export const RECEIVE_BIZ = "RECEIVE_BIZ";
 export const RECEIVE_BIZ_ERRORS = "RECEIVE_BIZ_ERRORS";
 
 const receiveBiz = (biz) => {
-  // debugger
   return {
   type: RECEIVE_BIZ,
   biz
@@ -23,7 +22,6 @@ export const createBiz = (biz) => (dispatch) => BizUtil.createBiz(biz)
   );
 
 export const getBiz = (id) => (dispatch) => {
-  // debugger
   return (BizUtil.getBiz(id)
   .then(
     (biz) => dispatch(receiveBiz(biz)),

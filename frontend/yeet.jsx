@@ -22,10 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // for testing
-  console.log(store)
   window.getState = store.getState;
   window.getBiz = getBiz;
   window.dispatch = store.dispatch;
+  // delete above before final submission
+
   ReactDOM.render(<Root store={store} />, root);
   
 });

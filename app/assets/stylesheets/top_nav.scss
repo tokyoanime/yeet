@@ -1,6 +1,8 @@
 //css for top nav bar
 
 .nav-top-container {
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 50px;
   display: flex;

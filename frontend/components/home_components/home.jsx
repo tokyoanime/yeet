@@ -7,7 +7,6 @@ class YeetHome extends React.Component {
   }
 
   componentDidMount() {
-    // debugger
   }
 
   render() {

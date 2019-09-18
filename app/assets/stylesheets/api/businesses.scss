@@ -2,36 +2,254 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+////////////////////
+// CSS for nav bar//
+///////////////////
+
 .nav-bar-menu {
   height: 40px;
   background-color: #dddddd;
 }
 
+
+//css for carousel
+// 
 .biz-carousel {
   height: 170px;
   background-color: antiquewhite;
 }
 
+///////////////////////////////////
+//css for main content container//
+///////////////////////////////////
+
 .biz-info-container {
   display: flex;
   margin: auto;
-  justify-content: center;
   max-width: 960px;
   font-size: 14px;
   font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
   text-decoration: none;
 }
 
+.biz-info-container i {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  color: #707070;
+}
+
+//////////////////////////////////
+//css for left content container//
+//////////////////////////////////
+
 .biz-sub-left {
   width: 66.66%;
+  min-width: 440px;
   margin-left: 15px;
   padding: 15px;
-  background-color: aqua;
 }
+
+.biz-quick-info {
+  border-bottom: 1px solid #dddddd;
+
+  div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .biz-name {
+    font-size: 30px;
+    font-weight: bold;
+  }
+  
+  .biz-rating-container {
+    display: flex;
+    flex-direction: row;
+
+    .biz-star-rating {
+      margin-right: 5px;
+    }
+  }
+  
+  .biz-general-info {
+    display: flex;
+    flex-direction: row;
+
+    div {
+      margin-right: 10px;
+    }
+  }
+
+  .biz-social-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    div {
+      margin-right: 10px;
+    }
+  }
+}
+
+.biz-loc-hrs-header {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.biz-loc-hrs-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dddddd;
+
+  .biz-loc-container {
+    width: 60%;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+
+    .biz-map {
+      height: 150px;
+      background-color: green; 
+    }
+
+    .biz-address {
+      padding: 10px;
+    }
+  }
+
+  .biz-hrs-container {
+    width: 40%;
+    padding-left: 10px;
+  }
+}
+
+.startReviewSection {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.biz-comments-container {
+  height: 200px;
+
+  .biz-comment-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dddddd;
+
+    .biz-comment-user {
+      width: 30%;
+      background-color: bisque;
+      margin-left: 5px;
+    }
+
+    .biz-comment-body-container {
+      width: 70%;
+      padding-left: 10px;
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(164, 238, 183);
+
+        div {
+          margin: 6px 0px 6px 0px;
+          background-color: rgb(243, 141, 189);
+          border: 1px solid;
+        }
+    }
+  }
+}
+
+///////////////////////////////////
+//css for right content container//
+///////////////////////////////////
 
 .biz-sub-right {
   width: 33.33%;
+  min-width: 245px;
   margin-right: 15px;
   padding: 15px;
-  background-color: azure;
 }
+
+.biz-static-info-container {
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  padding: 6px;
+
+  div {
+    display: flex;
+    align-items: center;
+    
+    div {
+      display: flex;
+      align-items: flex-start;
+    }
+  }
+
+  .biz-address {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .biz-url-container, .biz-phone-container, .biz-address-container, .biz-known-for-container {
+    border-bottom: 1px solid #dddddd;
+    padding: 14px 11px 11px 11px;
+  }
+
+  #biz-known-for-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: none;
+
+    div {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+//////////////////////////////////
+//css for biz show page buttons //
+//////////////////////////////////
+
+.btn-biz-show {
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  
+  i {
+    width: 18px;
+    height: 18px;
+    margin: 0px 5px 0px 0px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.btn-biz-show:hover {
+  background-color: #ebebeb;
+}
+
+.btn-write-review {
+  color: red;
+
+  i {
+    color: red;
+  }
+}
+
+
