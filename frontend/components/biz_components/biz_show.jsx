@@ -37,6 +37,15 @@ class BizShow extends React.Component {
       bizCat = `${bizCat}, ${biz.biz_third_cat}`
     }
 
+    const currentUser = this.props.currentUser;
+    const reviewForm = (currentUser !== undefined) ? (
+      <div className="biz-review-form">
+        <form>
+          <textarea cols="100%" rows="10"></textarea>
+        </form>
+      </div>
+    ) : ("");
+
     return(
 
       <div>
@@ -79,7 +88,7 @@ class BizShow extends React.Component {
                 </div>
                 <div className="btn-save">
                   <button className="btn-biz-show">
-                    <i class="material-icons">bookmark</i>Save
+                    <i className="material-icons">bookmark</i>Save
                   </button>
                 </div>
               </div>

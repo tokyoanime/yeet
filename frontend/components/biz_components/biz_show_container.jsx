@@ -6,6 +6,7 @@ import BizShow from './biz_show';
 
 const mstp = (state, ownProps) => {
   return {
+  currentUser: state.entities.users[state.session.currentUserId],
   err: state.errors.bizErrors,
   biz: state.entities.biz[ownProps.match.params.bizId]
   }
