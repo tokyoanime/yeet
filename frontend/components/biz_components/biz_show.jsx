@@ -153,12 +153,7 @@ class BizShow extends React.Component {
               <div className="biz-loc-container">
                 
                 <div className="biz-map" id="googleMap" style={mapStyles}>
-                  {/* <Map
-                    google={this.props.google}
-                    zoom={8}
-                    style={mapStyles}
-                    initialCenter={{ lat: 47.444, lng: -122.176 }}
-                  /> */}
+
                 </div>
                 <div className="biz-address">
                   <div>{biz.biz_address}</div>

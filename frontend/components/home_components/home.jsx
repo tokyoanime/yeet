@@ -18,20 +18,20 @@ class YeetHome extends React.Component {
     // }
 
     const display = (currentUser !== undefined) ? (
-      <div>
-        <div className="nav-home-greeting">Hello, {currentUser.fname}</div>
-        <div><button id="btn-home-logout" onClick={logout}>Log Out</button></div>
+      <div className="session-menu-container">
+        <div className="nav-top-greeting">Hello, {currentUser.fname}</div>
+        <div><button id="btn-top-logout" onClick={logout}>Log Out</button></div>
       </div>
-      ) : (
-      <div>
-        <div><Link id="btn-home-login" to="/login">Log In</Link></div>
-        <div><Link id="btn-home-signup" to="/newuser">Sign Up</Link></div>
-      </div>
+    ) : (
+        <div className="session-menu-container">
+          <div><Link id="btn-top-login" to="/login">Log In</Link></div>
+          <div><Link id="btn-top-signup" to="/newuser">Sign Up</Link></div>
+        </div>
       );
 
     return(
       <div className="nav-home-main">
-        {display}
+        <div className="nav-home-top">{display}</div>
         <div className="nav-home-logo"><img src={window.yelpLogoURL} /></div>
         <div className="nav-home-search">Search Bar Here</div>
       </div>

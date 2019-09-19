@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import TopNav from '../nav_components/top_nav';
 
 class UserForm extends React.Component {
   constructor(props) {
@@ -65,9 +66,7 @@ class UserForm extends React.Component {
 
     return(
       <div className="login-page">
-        <div className="nav-login-top">
-          <div><Link to="/"><img className="login-form-logo" src={window.yelpLogoURL} /></Link></div>
-        </div>
+        <TopNav />
         <div className="login-form-container">
           <div className="login-form-subcontainer">
             <div className="login-form-header">Sign Up for Yeet</div>
