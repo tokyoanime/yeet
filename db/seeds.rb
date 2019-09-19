@@ -9,9 +9,9 @@
 require 'faker'
 require 'open-uri'
 
-User.destroy_all
-Business.destroy_all
-Review.destroy_all
+# User.destroy_all
+# Business.destroy_all
+# Review.destroy_all
 
 b1 = Business.create({
   biz_name: 'A Sack of Potatoes',
