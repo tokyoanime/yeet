@@ -81,6 +81,19 @@ class BizShow extends React.Component {
       return (<img src={url} key={`pic${i}`} />)
     })
 
+    const reviews = biz.reviews.map( (review, i) => {
+      return (
+        <div className="biz-comment-container">
+          <div className="biz-comment-user">User Info Here</div>
+          <div className="biz-comment-body-container">
+            <div className="biz-comment-rating">{review.review_rating}</div>
+            <div className="biz-comment-text">{review.review_body}</div>
+            <div className="biz-comment-pics">Pic Here</div>
+          </div>
+        </div>
+      )
+    })
+
     return(
 
       <div>
@@ -166,8 +179,9 @@ class BizShow extends React.Component {
             <div className="startReviewSection">
               Reviews
             </div>
-
+                   
             <div className="biz-comments-container">
+              {reviews}
               <div className="biz-comment-container">
                 <div className="biz-comment-user">User Info Here</div>
                 <div className="biz-comment-body-container">

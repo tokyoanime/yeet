@@ -8,9 +8,7 @@ const mstp = (state, ownProps) => {
   return {
   currentUser: state.entities.users[state.session.currentUserId],
   err: state.errors.bizErrors,
-  biz: state.entities.biz[ownProps.match.params.bizId],
-  center: { lat: 59.95, lng: 30.33 },
-  zoom: 11
+  biz: state.entities.biz[ownProps.match.params.bizId]
   }
 };
 

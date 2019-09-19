@@ -4,6 +4,7 @@ class Api::ReviewsController < ApplicationController
   def index
     biz = Business.find_by(id: params[:id])
     @reviews = biz.reviews
+    debugger;
     render 'api/reviews/index'
   end
 
