@@ -105,6 +105,8 @@ GEM
     duktape (2.3.0.0)
     erubi (1.8.0)
     execjs (2.7.0)
+    faker (2.3.0)
+      i18n (~> 1.6.0)
     ffi (1.11.1-x64-mingw32)
     font-awesome-sass (5.9.0)
       sassc (>= 1.11)
@@ -237,6 +239,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   duktape
+  faker
   font-awesome-sass
   jbuilder (~> 2.5)
   jquery-rails

@@ -1,4 +1,4 @@
-import * as ReviewUtil from '../util/biz_util';
+import * as ReviewUtil from '../util/review_util';
 
 export const RECEIVE_ALL_REVIEWS = 'RECEIVE_ALL_REVIEWS';
 export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
@@ -20,7 +20,7 @@ const receiveReviewErrors = (err) => ({
   err
 });
 
-const deleteReview = (reviewId) => ({
+const destroyReview = (reviewId) => ({
   type: DELETE_REVIEW,
   reviewId
 });
@@ -51,6 +51,6 @@ export const updateReview = (review) => (dispatch) => ReviewUtil.updateReview(re
 
 export const deleteReview = (id) => (dispatch) => ReviewUtil.deleteReview(id)
   .then(
-    (id) => dispatch(deleteReview(id)),
+    (id) => dispatch(destroyReview(id)),
     (err) => dispatch(receiveReviewErrors(err))
   );

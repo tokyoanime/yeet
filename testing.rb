@@ -22,7 +22,7 @@ b1 = Business.create({
   biz_lat: 37.5603146,
   biz_lng: -122.0127191,
   biz_phone: '510-896-8070',
-  biz_url: 'asackofpotatoes.com/',
+  biz_url: 'http://www.https://www.asackofpotatoes.com/',
   biz_price_range: '',
   biz_first_cat: 'Pasta Shops',
   biz_second_cat: 'Cafes',

@@ -35,9 +35,7 @@
 class Business < ApplicationRecord
   validates :biz_name, :biz_address, :biz_city, :biz_state, :biz_zipcode, :biz_lat, :biz_lng, presence: true
   validates :biz_phone, :biz_first_cat, presence: true
-  validates_inclusion_of :biz_parking, :biz_delivery, :biz_takeout, :biz_reservations, :in => %w(yes no)
   validates :biz_name, uniqueness: { scope: [:biz_address, :biz_zipcode], message: 'Business already exists at this address' }
-
 
   has_many_attached :pics
   has_many :reviews

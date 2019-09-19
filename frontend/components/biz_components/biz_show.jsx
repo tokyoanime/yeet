@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+// import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 // import GoogleMapReact from 'google-maps-react';
 import TopNavContainer from '../nav_components/top_nav_container';
 
@@ -77,6 +77,10 @@ class BizShow extends React.Component {
       height: '150px',
     };
 
+    const bizPics = biz.picUrls.map( (url, i) => {
+      return (<img src={url} key={`pic${i}`} />)
+    })
+
     return(
 
       <div>
@@ -89,12 +93,7 @@ class BizShow extends React.Component {
           <i id="prevBtn" className="material-icons" onClick={this.handlePrev}>keyboard_arrow_left</i>
           <i id="nextBtn" className="material-icons" onClick={this.handleNext}>keyboard_arrow_right</i>
           <div className="biz-carousel-slide">
-            <img src={window.bakeShackA} />
-            <img src={window.bakeShackB} />
-            <img src={window.bakeShackC} />
-            <img src={window.bakeShackD} />
-            <img src={window.bakeShackE} />
-            <img src={window.bakeShackF} />
+            {bizPics}
           </div>
         </div>
 
@@ -141,12 +140,12 @@ class BizShow extends React.Component {
               <div className="biz-loc-container">
                 
                 <div className="biz-map" id="googleMap" style={mapStyles}>
-                  <Map
+                  {/* <Map
                     google={this.props.google}
                     zoom={8}
                     style={mapStyles}
                     initialCenter={{ lat: 47.444, lng: -122.176 }}
-                  />
+                  /> */}
                 </div>
                 <div className="biz-address">
                   <div>{biz.biz_address}</div>
@@ -243,7 +242,7 @@ class BizShow extends React.Component {
   }
 }
 
-// export default BizShow;
-export default GoogleApiWrapper({
-  apiKey: 'AIzaSyD9Ef-amJ3Cvg1T8w5yb15HPz8MMF47b6Q'
-})(BizShow);
+export default BizShow;
+// export default GoogleApiWrapper({
+//   apiKey: 'AIzaSyD9Ef-amJ3Cvg1T8w5yb15HPz8MMF47b6Q'
+// })(BizShow);
