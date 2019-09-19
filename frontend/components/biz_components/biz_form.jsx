@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import TopNavContainer from '../nav_components/top_nav_container';
 
 class BizForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.biz;
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.addHours = this.addHours.bind(this);
   }
 
   componentDidMount() {
@@ -58,7 +58,6 @@ class BizForm extends React.Component {
   }
 
   addHours() {
-
     const weekDay = document.getElementsByClassName("weekDay")[0].value;
     const startHr = document.getElementsByClassName("bizHrStart")[0].value;
     const endHr = document.getElementsByClassName("bizHrEnd")[0].value;
@@ -230,6 +229,7 @@ class BizForm extends React.Component {
     
     return (
       <div>
+        <TopNavContainer />
         {this.props.formType}
         <form onSubmit={this.handleSubmit}>
           <label>Business Name: 

@@ -9,6 +9,8 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 class BizShow extends React.Component {
   constructor(props) {
     super(props);
+    this.handleNext = this.handleNext.bind(this);
+    this.handlePrev = this.handlePrev.bind(this);
   }
 
   componentDidMount() {
@@ -16,13 +18,28 @@ class BizShow extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    debugger;
     if (prevProps.match.params.bizId != this.props.match.params.bizId) {
       this.props.getBiz(this.props.match.params.bizId);
     }
   }
 
-  
+  handleNext() {
+    const carouselSlide = document.querySelector('.biz-carousel-slide');
+    const carouselImages = document.querySelectorAll('.biz-carousel-slide img');
+    const firstImg = carouselImages[0];
+
+    firstImg.remove();
+    carouselSlide.appendChild(firstImg);
+  }
+
+  handlePrev() {
+    const carouselSlide = document.querySelector('.biz-carousel-slide');
+    const carouselImages = document.querySelectorAll('.biz-carousel-slide img');
+    const lastImg = carouselImages[carouselImages.length - 1];
+
+    lastImg.remove();
+    carouselSlide.prepend(lastImg);
+  }
 
   render() {
     const { biz } = this.props;
@@ -56,8 +73,8 @@ class BizShow extends React.Component {
     ) : ("");
 
     const mapStyles = {
-      width: '100%vh',
-      height: '100%vh',
+      width: '250px',
+      height: '150px',
     };
 
     return(
@@ -68,9 +85,19 @@ class BizShow extends React.Component {
 
         </div>
 
-        <div className="biz-carousel">
-
+        <div className="biz-carousel-container">
+          <i id="prevBtn" className="material-icons" onClick={this.handlePrev}>keyboard_arrow_left</i>
+          <i id="nextBtn" className="material-icons" onClick={this.handleNext}>keyboard_arrow_right</i>
+          <div className="biz-carousel-slide">
+            <img src={window.bakeShackA} />
+            <img src={window.bakeShackB} />
+            <img src={window.bakeShackC} />
+            <img src={window.bakeShackD} />
+            <img src={window.bakeShackE} />
+            <img src={window.bakeShackF} />
+          </div>
         </div>
+
         <div className="biz-info-container">
           <div className="biz-sub-left">
             <div className="biz-quick-info">
@@ -113,20 +140,7 @@ class BizShow extends React.Component {
             <div className="biz-loc-hrs-container">           
               <div className="biz-loc-container">
                 
-                <div className="biz-map" id="googleMap">
-                  {/* <div style={{ height: '100vh', width: '100%' }}>
-                    <GoogleMapReact
-                      bootstrapURLKeys={{ key: 'AIzaSyD9Ef-amJ3Cvg1T8w5yb15HPz8MMF47b6Q' }}
-                      defaultCenter={this.props.center}
-                      defaultZoom={this.props.zoom}
-                    >
-                      <AnyReactComponent
-                        lat={59.955413}
-                        lng={30.337844}
-                        text="My Marker"
-                      />
-                    </GoogleMapReact>
-                  </div> */}
+                <div className="biz-map" id="googleMap" style={mapStyles}>
                   <Map
                     google={this.props.google}
                     zoom={8}
