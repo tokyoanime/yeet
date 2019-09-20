@@ -28,7 +28,7 @@ class TopNav extends React.Component {
 
     return (
       <div className="nav-top-container">
-        <div className="nav-top-left"><Link to="/"><img className="login-form-logo" src={window.yelpLogoURL} /></Link></div>
+        <div className="nav-top-left logo"><Link to="/">yeet!</Link></div>
         <div className="nav-top-mid">Search Bar Here</div>
         <div className="nav-top-right">{sessionMenu}</div>
       </div>

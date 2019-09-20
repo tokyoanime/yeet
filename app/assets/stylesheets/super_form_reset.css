@@ -28,7 +28,7 @@ textarea
 	
 	/* Browsers have different default form fonts */
 	font-size:13px;
-	font-family:Arial;
+	font-family: 'Varela Round',Helvetica,Arial,sans-serif;
 }
 
 /* Remove the stupid outer glow in Webkit */

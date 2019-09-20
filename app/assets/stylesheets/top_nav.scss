@@ -13,7 +13,6 @@
   background-color: rgb(212, 52, 52);
   font-weight: bold;
   font-size: 13px;
-  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
   text-decoration: none;
   color: white;
 }
@@ -22,6 +21,23 @@
   width: 33.33%;
   justify-content: flex-start;
   margin-left: 10px;
+
+  // a {
+  //   display: flex;
+  //   align-items: center;
+  //   align-content: center;
+  // }
+}
+
+.logo {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 30px;
+  color: white;
+  transform: translate(0, -15%);
+  text-shadow: 3px 3px rgb(167, 147, 147);
 }
 
 .nav-top-mid {

@@ -19,9 +19,8 @@
   // position: relative;
   display: flex;
   margin: auto;
-  max-width: 960px;
-  font-size: 14px;
-  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  max-width: 1000px;
+  font-size: 13px;
   text-decoration: none;
 }
 
@@ -99,19 +98,14 @@
   border-bottom: 1px solid #dddddd;
 
   .biz-loc-container {
-    width: 60%;
+    width: 55%;
     border: 1px solid #dddddd;
     border-radius: 5px;
 
     .biz-map {
+      width: auto;
       height: 150px;
       background-color: green; 
-    }
-
-    #googleMap[style]:first-child {
-      height: 150px !important;
-      width: 100%;
-      z-index: 0;
     }
 
     .biz-address {
@@ -120,8 +114,17 @@
   }
 
   .biz-hrs-container {
-    width: 40%;
+    width: 45%;
     padding-left: 10px;
+
+    div {
+      display: flex;
+
+      .biz-day {
+        min-width: 45px;
+        font-weight: bold;
+      }
+    }
   }
 }
 
@@ -132,7 +135,61 @@
 }
 
 .biz-comments-container {
-  height: 200px;
+
+  .biz-review-form {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+
+    a {
+      font-weight: bold;
+      transition-delay: .4s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      input[type="submit"] {
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid #dddddd;
+        border-radius: 5px;
+        transition-duration: 0.4s;
+        background-color: #de351b;
+        color: white;
+      }
+
+      input[type="submit"]:hover {
+        background-color: rgb(27, 233, 205);
+        color: black;
+      }
+
+      input:focus {
+        box-shadow: 0px 0px;
+      }
+
+    }
+
+    textarea {
+      resize: none;
+      width: 95%;
+      padding: 10px;
+      border: .5px solid #dddddd;
+      border-radius: 5px;
+    }
+
+  }
 
   .biz-comment-container {
     display: flex;
@@ -143,7 +200,7 @@
 
     .biz-comment-user {
       width: 30%;
-      background-color: bisque;
+      // background-color: bisque;
       margin-left: 5px;
     }
 
@@ -152,13 +209,27 @@
       padding-left: 10px;
       display: flex;
       flex-direction: column;
-      background-color: rgb(164, 238, 183);
 
         div {
           margin: 6px 0px 6px 0px;
-          background-color: rgb(243, 141, 189);
-          border: 1px solid;
         }
+
+        .review-star-rating {
+          align-items: flex-start;
+          margin: 0px;
+
+          i {
+          margin: 0px;
+          padding: 0px;
+          font-size: 18px;
+          color: #dddddd;
+          }
+
+          .checked {
+            color: orange;
+          }
+        }
+
     }
   }
 }
@@ -228,7 +299,6 @@
   justify-content: center;
   font-weight: bold;
   font-size: 12px;
-  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
   transition-duration: 0.4s;
   cursor: pointer;
   
@@ -253,9 +323,4 @@
   i {
     color: red;
   }
-}
-
-#googleMap:first-child {
-  width: inherit;
-  height: inherit;
 }

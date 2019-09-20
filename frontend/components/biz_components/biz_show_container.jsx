@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { getBiz } from '../../actions/biz_actions';
 import { clearErrors } from '../../actions/user_actions';
 import BizShow from './biz_show';
+import {createReview} from '../../actions/review_actions'
 
 const mstp = (state, ownProps) => {
   return {
@@ -14,7 +15,8 @@ const mstp = (state, ownProps) => {
 
 const mdtp = () => (dispatch) => ({
   clearErrors: () => dispatch(clearErrors()),
-  getBiz: (id) => dispatch(getBiz(id))
+  getBiz: (id) => dispatch(getBiz(id)),
+  createReview: (review) => dispatch(createReview(review))
 });
 
 export default connect(mstp, mdtp)(BizShow);

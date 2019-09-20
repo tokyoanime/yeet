@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-// import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-// import GoogleMapReact from 'google-maps-react';
 import TopNavContainer from '../nav_components/top_nav_container';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -9,8 +7,17 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 class BizShow extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      review_body: "",
+      review_rating: "",
+      user_id: "",
+      business_id: ""
+    }
     this.handleNext = this.handleNext.bind(this);
     this.handlePrev = this.handlePrev.bind(this);
+    this.ratingGen = this.ratingGen.bind(this);
+    this.handlePostReview = this.handlePostReview.bind(this);
+    this.updateRating = this.updateRating.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +28,30 @@ class BizShow extends React.Component {
     if (prevProps.match.params.bizId != this.props.match.params.bizId) {
       this.props.getBiz(this.props.match.params.bizId);
     }
+  }
+
+  updateField(field) {
+    return (e) => {
+      this.setState({ [field]: e.target.value })
+    }
+  }
+
+  updateRating(field) {
+    return (e) => {
+      this.setState({ [field]: e.target.value })
+      console.log(this.state.review_rating)
+    }
+    
+  }
+
+  handlePostReview(e) {
+
+    e.preventDefault();
+
+    this.state.user_id = this.props.currentUser.id;
+    this.state.business_id = this.props.biz.id;
+    this.props.createReview(this.state);
+    this.props.getBiz(this.props.match.params.bizId);
   }
 
   handleNext() {
@@ -41,6 +72,59 @@ class BizShow extends React.Component {
     carouselSlide.prepend(lastImg);
   }
 
+  ratingGen(rating) {
+    const checkedStars = [];
+    const uncheckStars = [];
+    const star = (<i className="material-icons checked">star</i>)
+    const noStar = (<i className="material-icons">star</i>)
+
+    for (let i = 0; i < rating; i++) {
+      checkedStars.push(star);
+    }
+
+    for (let i = 0; i < 5 - rating; i++) {
+      uncheckStars.push(noStar);
+    }
+
+    return (
+      <div className="review-star-rating">
+        {checkedStars}
+        {uncheckStars}
+      </div>
+    )
+  }
+
+  reviewForm() {
+    const userReviews = this.props.currentUser.reviews.map((review, i) => {
+      return (
+        <div className="biz-comment-container" key={`current-user-review-${i}`}>
+          <div className="biz-comment-body-container">
+            {this.ratingGen(review.review_rating)}
+            <div className="biz-comment-text">{review.review_body}</div>
+          </div>
+        </div>
+      )
+    })
+
+    const newForm = () => (
+      <div className="biz-review-form">
+        <form onSubmit={this.handlePostReview}>
+          <div className="star-rating-container">
+            <input type="radio" id="rating-5" name="rating" value="5" onClick={this.updateRating('review_rating')} /><label for="rating-5">5</label>
+            <input type="radio" id="rating-4" name="rating" value="4" onClick={this.updateRating('review_rating')} /><label for="rating-4">4</label>
+            <input type="radio" id="rating-3" name="rating" value="3" onClick={this.updateRating('review_rating')} /><label for="rating-3">3</label>
+            <input type="radio" id="rating-2" name="rating" value="2" onClick={this.updateRating('review_rating')} /><label for="rating-2">2</label>
+            <input type="radio" id="rating-1" name="rating" value="1" onClick={this.updateRating('review_rating')} /><label for="rating-1">1</label>
+          </div>
+          <textarea rows="10" placeholder="Write your review here." onChange={this.updateField('review_body')}></textarea>
+          <input type="submit" value="Post Review" />
+        </form>
+      </div>
+    )
+
+    return ((userReviews.length > 0) ? (<div>Your reviews: {userReviews}</div>) : newForm())
+  }
+
   render() {
     const { biz } = this.props;
     if (!biz) {
@@ -51,7 +135,7 @@ class BizShow extends React.Component {
     const bizUrl = (biz.biz_url !== "") ? (
       <div className="biz-url-container">
         <div><i className="material-icons">language</i></div>
-        <div>{biz.biz_url}</div>
+        <div><a href={`www.${biz.biz_url}`}>{biz.biz_url}</a></div>
       </div>
       ) : "";
 
@@ -65,17 +149,12 @@ class BizShow extends React.Component {
 
     const currentUser = this.props.currentUser;
     const reviewForm = (currentUser !== undefined) ? (
+      this.reviewForm()
+    ) : (
       <div className="biz-review-form">
-        <form>
-          <textarea cols="100%" rows="10"></textarea>
-        </form>
+          Please <Link to="/login">Log In</Link> to post a review.
       </div>
-    ) : ("");
-
-    const mapStyles = {
-      width: '250px',
-      height: '150px',
-    };
+    );
 
     const bizPics = biz.picUrls.map( (url, i) => {
       return (<img src={url} key={`pic${i}`} />)
@@ -83,10 +162,10 @@ class BizShow extends React.Component {
 
     const reviews = biz.reviews.map( (review, i) => {
       return (
-        <div className="biz-comment-container">
+        <div className="biz-comment-container" key={`review-${i}`}>
           <div className="biz-comment-user">User Info Here</div>
           <div className="biz-comment-body-container">
-            <div className="biz-comment-rating">{review.review_rating}</div>
+            {this.ratingGen(review.review_rating)}
             <div className="biz-comment-text">{review.review_body}</div>
             <div className="biz-comment-pics">Pic Here</div>
           </div>
@@ -98,9 +177,9 @@ class BizShow extends React.Component {
 
       <div>
         <TopNavContainer />
-        <div className="nav-bar-menu">
+        {/* <div className="nav-bar-menu">
 
-        </div>
+        </div> */}
 
         <div className="biz-carousel-container">
           <i id="prevBtn" className="material-icons" onClick={this.handlePrev}>keyboard_arrow_left</i>
@@ -151,8 +230,7 @@ class BizShow extends React.Component {
             
             <div className="biz-loc-hrs-container">           
               <div className="biz-loc-container">
-                
-                <div className="biz-map" id="googleMap" style={mapStyles}>
+                <div className="biz-map" id="googleMap">
 
                 </div>
                 <div className="biz-address">
@@ -161,13 +239,35 @@ class BizShow extends React.Component {
                 </div>
               </div>
               <div className="biz-hrs-container">
-                <div>{biz.biz_mo_hrs}</div>
-                <div>{biz.biz_tu_hrs}</div>
-                <div>{biz.biz_we_hrs}</div>
-                <div>{biz.biz_th_hrs}</div>
-                <div>{biz.biz_fr_hrs}</div>
-                <div>{biz.biz_sa_hrs}</div>
-                <div>{biz.biz_su_hrs}</div>
+                <div>
+                  <div className="biz-day">Mon</div>
+                  <div className="biz-hr">{biz.biz_mo_hrs}</div>
+                </div>
+                <div>
+                  <div className="biz-day">Tue</div>
+                  <div className="biz-hr">{biz.biz_tu_hrs}</div>
+                </div>
+                <div>
+                  <div className="biz-day">Wed</div>
+                  <div className="biz-hr">{biz.biz_we_hrs}</div>
+                </div>
+                <div>
+                  <div className="biz-day">Thu</div>
+                  <div className="biz-hr">{biz.biz_th_hrs}</div>
+                </div>
+                <div>
+                  <div className="biz-day">Fri</div>
+                  <div className="biz-hr">{biz.biz_fr_hrs}</div>
+                </div>
+                <div>
+                  <div className="biz-day">Sat</div>
+                  <div className="biz-hr">{biz.biz_sa_hrs}</div>
+                </div>
+                <div>
+                  <div className="biz-day">Sun</div>
+                  <div className="biz-hr">{biz.biz_su_hrs}</div>
+                </div>
+
               </div>
             </div>
 
@@ -176,34 +276,16 @@ class BizShow extends React.Component {
             </div>
                    
             <div className="biz-comments-container">
+              {reviewForm}
               {reviews}
-              <div className="biz-comment-container">
+              {/* <div className="biz-comment-container">
                 <div className="biz-comment-user">User Info Here</div>
                 <div className="biz-comment-body-container">
                   <div className="biz-comment-rating">Rating Here</div>
                   <div className="biz-comment-text">Comment Here</div>
                   <div className="biz-comment-pics">Pic Here</div>
                 </div>
-              </div>
-
-              <div className="biz-comment-container">
-                <div className="biz-comment-user">User Info Here</div>
-                <div className="biz-comment-body-container">
-                  <div className="biz-comment-rating">Rating Here</div>
-                  <div className="biz-comment-text">Comment Here</div>
-                  <div className="biz-comment-pics">Pic Here</div>
-                </div>
-              </div>
-
-              <div className="biz-comment-container">
-                <div className="biz-comment-user">User Info Here</div>
-                <div className="biz-comment-body-container">
-                  <div className="biz-comment-rating">Rating Here</div>
-                  <div className="biz-comment-text">Comment Here</div>
-                  <div className="biz-comment-pics">Pic Here</div>
-                </div>
-              </div>
-              
+              </div> */}
             </div>
           </div>
 

@@ -32,7 +32,8 @@ class YeetHome extends React.Component {
     return(
       <div className="nav-home-main">
         <div className="nav-home-top">{display}</div>
-        <div className="nav-home-logo"><img src={window.yelpLogoURL} /></div>
+        {/* <div className="nav-home-logo"><img src={window.yelpLogoURL} /></div> */}
+        <div className="nav-home-logo">yeet!</div>
         <div className="nav-home-search">Search Bar Here</div>
       </div>
     )
