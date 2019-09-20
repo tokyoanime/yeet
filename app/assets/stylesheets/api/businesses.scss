@@ -136,6 +136,21 @@
 
 .biz-comments-container {
 
+  .current-user-reviews {
+
+    button {
+      border: 1px solid #dddddd;
+      border-radius: 5px;
+      padding: 5px;
+      transition-duration: .4s;
+    }
+
+    button:hover {
+      background-color: #de351b;
+      color: white;
+    }
+  }
+
   .biz-review-form {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -161,18 +176,17 @@
       justify-content: center;
 
       input[type="submit"] {
-        margin: 5px;
+        margin-top: 5px;
         padding: 5px;
         border: 1px solid #dddddd;
         border-radius: 5px;
         transition-duration: 0.4s;
-        background-color: #de351b;
+        background-color: rgb(30, 8, 129);
         color: white;
       }
 
       input[type="submit"]:hover {
-        background-color: rgb(27, 233, 205);
-        color: black;
+        background-color: #3023eb;
       }
 
       input:focus {

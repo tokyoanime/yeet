@@ -17,6 +17,7 @@ class BizShow extends React.Component {
     this.handlePostReview = this.handlePostReview.bind(this);
     this.updateRating = this.updateRating.bind(this);
     this.reviewForm = this.reviewForm.bind(this);
+    this.handleDeleteReview = this.handleDeleteReview.bind(this);
   }
 
   componentDidMount() {
@@ -46,8 +47,17 @@ class BizShow extends React.Component {
     e.preventDefault();
     this.state.user_id = this.props.currentUser.id;
     this.state.business_id = this.props.biz.id;
-    this.props.createReview(this.state);
-    this.props.getBiz(this.props.match.params.bizId);
+
+    let temp = this.state;
+
+    // this.state.review_body = "";
+    // this.review_rating = "";
+
+    this.props.createReview(temp)
+      .then(() => window.location.reload())
+
+    // this.props.getBiz(this.props.match.params.bizId);
+    // this.setState({review_body: ""}, () => console.log(this.state));
 
   }
 
@@ -91,6 +101,11 @@ class BizShow extends React.Component {
     )
   }
 
+  handleDeleteReview(id) {
+    this.props.deleteReview(id)
+      .then(() => window.location.reload())
+  }
+
   reviewForm() {
     const errors = this.props.reviewErr.map((err) => {
       return (
@@ -98,8 +113,7 @@ class BizShow extends React.Component {
       )
     });
 
-
-    const userReviews = this.props.currentUser.reviews.map((review, i) => {
+    const userReviews = this.props.currentUser.reviews.reverse().map((review, i) => {
       if (this.props.biz.id === review.business_id) {
         return (
           <div className="biz-comment-container" key={`current-user-review-${i}`}>
@@ -108,7 +122,7 @@ class BizShow extends React.Component {
               <div className="biz-comment-text">{review.review_body}</div>
             </div>
             <div>
-              <button onClick={() => this.props.deleteReview(review.id)}>Delete Review</button>
+              <button onClick={() => this.handleDeleteReview(review.id)}>Delete Review</button>
             </div>
           </div>
         )
@@ -117,7 +131,7 @@ class BizShow extends React.Component {
 
     return (
       <div>
-        {(userReviews.length > 0) ? (<div>Your reviews: {userReviews}</div>) : null}
+        {(userReviews.length > 0) ? (<div className="current-user-reviews">Your reviews: {userReviews}</div>) : null}
         {(errors.length > 0) ? errors : ""}
         <div className="biz-review-form">
           <form onSubmit={this.handlePostReview}>
@@ -128,7 +142,7 @@ class BizShow extends React.Component {
               <input type="radio" id="rating-2" name="rating" value="2" onClick={this.updateRating('review_rating')} /><label>2</label>
               <input type="radio" id="rating-1" name="rating" value="1" onClick={this.updateRating('review_rating')} /><label>1</label>
             </div>
-            <textarea rows="10" placeholder="Write your review here." onChange={this.updateField('review_body')}></textarea>
+            <textarea rows="10" placeholder="Write your review here." onChange={this.updateField('review_body')}>{this.state.review_body}</textarea>
             <input type="submit" value="Post Review" />
           </form>
         </div>
@@ -171,7 +185,7 @@ class BizShow extends React.Component {
       return (<img src={url} key={`pic${i}`} />)
     })
 
-    const reviews = biz.reviews.map( (review, i) => {
+    const reviews = biz.reviews.reverse().map( (review, i) => {
       return (
         <div className="biz-comment-container" key={`review-${i}`}>
           <div className="biz-comment-user">User Info Here</div>
