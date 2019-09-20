@@ -6,6 +6,7 @@ import BizShow from './biz_show';
 import {createReview, deleteReview} from '../../actions/review_actions'
 
 const mstp = (state, ownProps) => {
+
   return {
   currentUser: state.entities.users[state.session.currentUserId],
   err: state.errors.bizErrors,
