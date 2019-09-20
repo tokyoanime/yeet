@@ -1,3 +1,11 @@
+export const fetchBiz = () => (
+  $.ajax({
+    method: 'GET',
+    url: `/api/businesses`
+  })
+)
+
+
 export const createBiz = (biz) => (
   $.ajax({
     url: '/api/businesses',

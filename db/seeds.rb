@@ -9,10 +9,6 @@
 require 'faker'
 require 'open-uri'
 
-# User.destroy_all
-# Business.destroy_all
-# Review.destroy_all
-
 b1 = Business.create({
   biz_name: 'A Sack of Potatoes',
   biz_address: '37100 Fremont Blvd, Ste C',
@@ -22,7 +18,7 @@ b1 = Business.create({
   biz_lat: 37.5603146,
   biz_lng: -122.0127191,
   biz_phone: '510-896-8070',
-  biz_url: 'asackofpotatoes.com/',
+  biz_url: 'asackofpotatoes.com',
   biz_price_range: '',
   biz_first_cat: 'Pasta Shops',
   biz_second_cat: 'Cafes',

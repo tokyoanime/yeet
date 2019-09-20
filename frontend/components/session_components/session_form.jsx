@@ -59,7 +59,7 @@ class UserForm extends React.Component {
       if (this.state.username === "demoUser" && this.state.password === "password") {
         clearInterval(test);
         this.props.login(this.state)
-          .then(() => this.props.history.push('/'));
+          .then(() => this.props.history.push('/biz'));
       }
     }
 

@@ -2,8 +2,6 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import TopNavContainer from '../nav_components/top_nav_container';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
 class BizShow extends React.Component {
   constructor(props) {
     super(props);
@@ -18,10 +16,12 @@ class BizShow extends React.Component {
     this.ratingGen = this.ratingGen.bind(this);
     this.handlePostReview = this.handlePostReview.bind(this);
     this.updateRating = this.updateRating.bind(this);
+    this.reviewForm = this.reviewForm.bind(this);
   }
 
   componentDidMount() {
     this.props.getBiz(this.props.match.params.bizId);
+    this.props.clearErrors();
   }
 
   componentDidUpdate(prevProps) {
@@ -39,19 +39,16 @@ class BizShow extends React.Component {
   updateRating(field) {
     return (e) => {
       this.setState({ [field]: e.target.value })
-      console.log(this.state.review_rating)
     }
-    
   }
 
   handlePostReview(e) {
-
     e.preventDefault();
-
     this.state.user_id = this.props.currentUser.id;
     this.state.business_id = this.props.biz.id;
     this.props.createReview(this.state);
     this.props.getBiz(this.props.match.params.bizId);
+
   }
 
   handleNext() {
@@ -95,34 +92,48 @@ class BizShow extends React.Component {
   }
 
   reviewForm() {
-    const userReviews = this.props.currentUser.reviews.map((review, i) => {
+    const errors = this.props.reviewErr.map((err) => {
       return (
-        <div className="biz-comment-container" key={`current-user-review-${i}`}>
-          <div className="biz-comment-body-container">
-            {this.ratingGen(review.review_rating)}
-            <div className="biz-comment-text">{review.review_body}</div>
-          </div>
-        </div>
+        <div className="login-error">{err}</div>
       )
+    });
+
+
+    const userReviews = this.props.currentUser.reviews.map((review, i) => {
+      if (this.props.biz.id === review.business_id) {
+        return (
+          <div className="biz-comment-container" key={`current-user-review-${i}`}>
+            <div className="biz-comment-body-container">
+              {this.ratingGen(review.review_rating)}
+              <div className="biz-comment-text">{review.review_body}</div>
+            </div>
+            <div>
+              <button onClick={() => this.props.deleteReview(review.id)}>Delete Review</button>
+            </div>
+          </div>
+        )
+      }
     })
 
-    const newForm = () => (
-      <div className="biz-review-form">
-        <form onSubmit={this.handlePostReview}>
-          <div className="star-rating-container">
-            <input type="radio" id="rating-5" name="rating" value="5" onClick={this.updateRating('review_rating')} /><label for="rating-5">5</label>
-            <input type="radio" id="rating-4" name="rating" value="4" onClick={this.updateRating('review_rating')} /><label for="rating-4">4</label>
-            <input type="radio" id="rating-3" name="rating" value="3" onClick={this.updateRating('review_rating')} /><label for="rating-3">3</label>
-            <input type="radio" id="rating-2" name="rating" value="2" onClick={this.updateRating('review_rating')} /><label for="rating-2">2</label>
-            <input type="radio" id="rating-1" name="rating" value="1" onClick={this.updateRating('review_rating')} /><label for="rating-1">1</label>
-          </div>
-          <textarea rows="10" placeholder="Write your review here." onChange={this.updateField('review_body')}></textarea>
-          <input type="submit" value="Post Review" />
-        </form>
+    return (
+      <div>
+        {(userReviews.length > 0) ? (<div>Your reviews: {userReviews}</div>) : null}
+        {(errors.length > 0) ? errors : ""}
+        <div className="biz-review-form">
+          <form onSubmit={this.handlePostReview}>
+            <div className="star-rating-container">
+              <input type="radio" id="rating-5" name="rating" value="5" onClick={this.updateRating('review_rating')} /><label>5</label>
+              <input type="radio" id="rating-4" name="rating" value="4" onClick={this.updateRating('review_rating')} /><label>4</label>
+              <input type="radio" id="rating-3" name="rating" value="3" onClick={this.updateRating('review_rating')} /><label>3</label>
+              <input type="radio" id="rating-2" name="rating" value="2" onClick={this.updateRating('review_rating')} /><label>2</label>
+              <input type="radio" id="rating-1" name="rating" value="1" onClick={this.updateRating('review_rating')} /><label>1</label>
+            </div>
+            <textarea rows="10" placeholder="Write your review here." onChange={this.updateField('review_body')}></textarea>
+            <input type="submit" value="Post Review" />
+          </form>
+        </div>
       </div>
     )
-
-    return ((userReviews.length > 0) ? (<div>Your reviews: {userReviews}</div>) : newForm())
   }
 
   render() {
@@ -135,7 +146,7 @@ class BizShow extends React.Component {
     const bizUrl = (biz.biz_url !== "") ? (
       <div className="biz-url-container">
         <div><i className="material-icons">language</i></div>
-        <div><a href={`www.${biz.biz_url}`}>{biz.biz_url}</a></div>
+        <div><a href={`http://www.${biz.biz_url}`}>{biz.biz_url}</a></div>
       </div>
       ) : "";
 
@@ -167,7 +178,7 @@ class BizShow extends React.Component {
           <div className="biz-comment-body-container">
             {this.ratingGen(review.review_rating)}
             <div className="biz-comment-text">{review.review_body}</div>
-            <div className="biz-comment-pics">Pic Here</div>
+            <div className="biz-comment-pics"></div>
           </div>
         </div>
       )

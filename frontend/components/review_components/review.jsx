@@ -1,19 +1,32 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { fetchReviews } from '../../util/review_util';
 
-// class Review extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-// }
+class Review extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-const Review = ({currentUser, bizId}) => {
-  let reviews = [];
-  fetchReviews(bizId).then( (result) => reviews = result)
+  componentDidMount() {
+    // debugger;
+    this.props.getReview(this.props.match.params.reviewId)
+  }
 
-  // debugger;
-  return ("testing");
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.reviewId != this.props.match.params.reviewId) {
+      this.props.getReview(this.props.match.params.reviewId);
+    }
+  }
+
+  render() {
+    const { review } = this.props;
+    if (!review) {
+      return null
+    }
+
+    <div>
+      {review}
+    </div>
+  }
 }
 
 export default Review;

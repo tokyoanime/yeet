@@ -1,16 +1,19 @@
-// import { connect } from 'react-redux';
-// import { withRouter } from 'react-router-dom';
-// import {fetchReviews} from '../../actions/review_actions';
-// import { clearErrors } from '../../actions/user_actions';
-// import Review from './review';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import {getReview} from '../../actions/review_actions';
+import { clearErrors } from '../../actions/user_actions';
+import Review from './review';
 
-// const mstp = () => ({
-//   reviews: 
-// })
+const mstp = (state, ownProps) => {
+  debugger;
+  return {
+  review: state.entities.reviews[ownProps.match.props.reviewId]
+  }
+}
 
-// const mdtp = () => (dispatch) => ({
-//   clearErrors: () => dispatch(clearErrors()),
-//   fetchReviews: (bizId) => dispatch(fetchReviews(bizId))
-// })
+const mdtp = () => (dispatch) => ({
+  clearErrors: () => dispatch(clearErrors()),
+  getReview: (id) => dispatch(getReview(id))
+})
 
-// export default connect(mstp, mdtp)(Review);
+export default connect(mstp, mdtp)(Review);

@@ -1,7 +1,13 @@
 import * as BizUtil from '../util/biz_util';
 
+export const RECEIVE_ALL_BIZ = "RECEIVE_ALL_BIZ";
 export const RECEIVE_BIZ = "RECEIVE_BIZ";
 export const RECEIVE_BIZ_ERRORS = "RECEIVE_BIZ_ERRORS";
+
+const receiveAllBiz = (biz) => ({
+  type: RECEIVE_ALL_BIZ,
+  biz
+})
 
 const receiveBiz = (biz) => {
   return {
@@ -14,6 +20,12 @@ const receiveBizErrors = (err) => ({
   type: RECEIVE_BIZ_ERRORS,
   err
 });
+
+export const fetchBiz = () => (dispatch) => BizUtil.fetchBiz()
+  .then(
+    (biz) => dispatch(receiveAllBiz(biz)),
+    (err) => dispatch(receiveBizErrors(err))
+  );
 
 export const createBiz = (biz) => (dispatch) => BizUtil.createBiz(biz)
   .then(
