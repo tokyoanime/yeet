@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Technologies:  
+<img src="https://img.shields.io/badge/Ruby-orange.svg"/>
+<img src="https://img.shields.io/badge/Rails-green.svg"/>
+<img src="https://img.shields.io/badge/React%2FRedux-informational.svg"/>
+<img src="https://img.shields.io/badge/PostgreSQL-yellow.svg"/>
+<img src="https://img.shields.io/badge/Ajax-inactive.svg"/>
 
-Things you may want to cover:
+# YEET
 
-* Ruby version
+Yeet is a full-stack web application similar to Yelp.com. Yeet allows user to search for local businesses and post review of them.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
