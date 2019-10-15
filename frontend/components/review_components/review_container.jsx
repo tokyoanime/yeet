@@ -5,7 +5,6 @@ import { clearErrors } from '../../actions/user_actions';
 import Review from './review';
 
 const mstp = (state, ownProps) => {
-  debugger;
   return {
   review: state.entities.reviews[ownProps.match.props.reviewId]
   }

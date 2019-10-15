@@ -34,7 +34,7 @@ class BizReviewForm extends React.Component {
     let temp = this.state;
 
     this.props.createReview(temp)
-      .then(() => window.location.reload())
+      .then(() => window.location.reload());
   }
 
   render() {

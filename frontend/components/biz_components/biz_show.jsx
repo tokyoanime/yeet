@@ -15,11 +15,6 @@ class BizShow extends React.Component {
     }
     this.handleNext = this.handleNext.bind(this);
     this.handlePrev = this.handlePrev.bind(this);
-    this.ratingGen = this.ratingGen.bind(this);
-    this.handlePostReview = this.handlePostReview.bind(this);
-    this.updateRating = this.updateRating.bind(this);
-    this.reviewForm = this.reviewForm.bind(this);
-    this.handleDeleteReview = this.handleDeleteReview.bind(this);
   }
 
   componentDidMount() {
@@ -37,24 +32,6 @@ class BizShow extends React.Component {
     return (e) => {
       this.setState({ [field]: e.currentTarget.value })
     }
-  }
-
-  updateRating(field) {
-    return (e) => {
-      this.setState({ [field]: e.currentTarget.value })
-    }
-  }
-
-  handlePostReview(e) {
-    e.preventDefault();
-    this.state.user_id = this.props.currentUser.id;
-    this.state.business_id = this.props.biz.id;
-
-    let temp = this.state;
-
-    this.props.createReview(temp)
-      .then(() => window.location.reload())
-
   }
 
   handleNext() {
@@ -75,65 +52,6 @@ class BizShow extends React.Component {
     carouselSlide.prepend(lastImg);
   }
 
-  ratingGen(rating) {
-    const checkedStars = [];
-    const uncheckStars = [];
-    const star = (<i className="material-icons checked">star</i>)
-    const noStar = (<i className="material-icons">star</i>)
-
-    for (let i = 0; i < rating; i++) {
-      checkedStars.push(star);
-    }
-
-    for (let i = 0; i < 5 - rating; i++) {
-      uncheckStars.push(noStar);
-    }
-
-    return (
-      <div className="review-star-rating">
-        {checkedStars}
-        {uncheckStars}
-      </div>
-    )
-  }
-
-  handleDeleteReview(id) {
-    this.props.deleteReview(id)
-      .then(() => window.location.reload())
-  }
-
-  reviewForm() {
-    const errors = this.props.reviewErr.map((err) => {
-      return (
-        <div className="login-error">{err}</div>
-      )
-    });
-
-    const userReviews = this.props.currentUser.reviews.map((review, i) => {
-      if (this.props.biz.id === review.business_id) {
-        return (
-          <div className="biz-comment-container" key={`current-user-review-${i}`}>
-            <div className="biz-comment-body-container">
-              {this.ratingGen(review.review_rating)}
-              <div className="biz-comment-text">{review.review_body}</div>
-            </div>
-            <div>
-              <button onClick={() => this.handleDeleteReview(review.id)}>Delete Review</button>
-            </div>
-          </div>
-        )
-      }
-    })
-
-    return (
-      <div>
-        {(userReviews.length > 0) ? (<div className="current-user-reviews">Your reviews: {userReviews}</div>) : null}
-        <BizReviewForm reviewErr={this.props.reviewErr} createReview={this.props.createReview}/>
-        
-      </div>
-    )
-  }
-
   render() {
     const { biz } = this.props;
     if (!biz) {
@@ -144,7 +62,7 @@ class BizShow extends React.Component {
     const bizUrl = (biz.biz_url !== "") ? (
       <div className="biz-url-container">
         <div><i className="material-icons">language</i></div>
-        <div><a href={`http://www.${biz.biz_url}`}>{biz.biz_url}</a></div>
+        <div><a href={`http://www.${biz.biz_url}`} target="_blank">{biz.biz_url}</a></div>
       </div>
       ) : "";
 
@@ -156,30 +74,8 @@ class BizShow extends React.Component {
       bizCat = `${bizCat}, ${biz.biz_third_cat}`
     }
 
-    const currentUser = this.props.currentUser;
-    const reviewForm = (currentUser !== undefined) ? (
-      this.reviewForm()
-    ) : (
-      <div className="biz-review-form">
-          Please <Link to="/login">Log In</Link> to post a review.
-      </div>
-    );
-
     const bizPics = biz.picUrls.map( (url, i) => {
       return (<img src={url} key={`pic${i}`} />)
-    })
-
-    const reviews = biz.reviews.map( (review, i) => {
-      return (
-        <div className="biz-comment-container" key={`review-${i}`}>
-          <div className="biz-comment-user">User Info Here</div>
-          <div className="biz-comment-body-container">
-            {this.ratingGen(review.review_rating)}
-            <div className="biz-comment-text">{review.review_body}</div>
-            <div className="biz-comment-pics"></div>
-          </div>
-        </div>
-      )
     })
 
     return(
@@ -285,16 +181,8 @@ class BizShow extends React.Component {
             </div>
                    
             <div className="biz-comments-container">
-              {reviewForm}
+              <BizReviewForm biz={biz} reviewErr={this.props.reviewErr} currentUser={this.props.currentUser} createReview={this.props.createReview} />
               <BizReviewIndex reviews={biz.reviews} />
-              {/* <div className="biz-comment-container">
-                <div className="biz-comment-user">User Info Here</div>
-                <div className="biz-comment-body-container">
-                  <div className="biz-comment-rating">Rating Here</div>
-                  <div className="biz-comment-text">Comment Here</div>
-                  <div className="biz-comment-pics">Pic Here</div>
-                </div>
-              </div> */}
             </div>
           </div>
 

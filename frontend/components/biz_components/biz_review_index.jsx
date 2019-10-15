@@ -4,14 +4,14 @@ const BizReviewIndex = ({reviews}) => {
   const ratingGen = (rating) => {
     const checkedStars = [];
     const uncheckStars = [];
-    const star = (<i className="material-icons checked">star</i>)
-    const noStar = (<i className="material-icons">star</i>)
 
     for (let i = 0; i < rating; i++) {
+      const star = (<i className="material-icons checked" key={`star-${i}`}>star</i>);
       checkedStars.push(star);
     }
 
     for (let i = 0; i < 5 - rating; i++) {
+      const noStar = (<i className="material-icons" key={`nostar-${i}`}>star</i>)
       uncheckStars.push(noStar);
     }
 
