@@ -1,6 +1,6 @@
 import React from 'react';
 
-class BizReviewForm extends React.Component {
+class ReviewForm extends React.Component {
   constructor(props) {
     super(props);
     this.handlePostReview = this.handlePostReview.bind(this);
@@ -67,4 +67,4 @@ class BizReviewForm extends React.Component {
   
 }
 
-export default BizReviewForm;
+export default ReviewForm;

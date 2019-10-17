@@ -7,7 +7,7 @@ import bizIndexContainer from './biz_components/biz_index_container';
 import newSessionContainer from './session_components/new_session_container';
 import bizShowContainer from './biz_components/biz_show_container';
 import newBizContainer from './biz_components/new_biz_container';
-import reviewContainer from './review_components/review_container';
+import reviewIndexContainer from './review_components/review_index_container';
 import AuthRoute from '../util/route_util';
 
 const App = () => (
@@ -19,7 +19,7 @@ const App = () => (
       <Route exact path="/biz" component={bizIndexContainer} />
       <Route exact path="/biz/new" component={newBizContainer} />
       <Route exact path="/biz/:bizId" component={bizShowContainer} />
-      <Route exact path="/reviews/:reviewId" component={reviewContainer} />
+      <Route exact path="/reviews/:reviewId" component={reviewIndexContainer} />
       <Route path="/" component={YeetHome} />
     </Switch>
   </div>

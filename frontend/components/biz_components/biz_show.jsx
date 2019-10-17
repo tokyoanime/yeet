@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import TopNavContainer from '../nav_components/top_nav_container';
 import BizReviewIndex from './biz_review_index';
-import BizReviewForm from './biz_review_form';
+import BizReviewForm from '../review_components/review_form';
 
 class BizShow extends React.Component {
   constructor(props) {
