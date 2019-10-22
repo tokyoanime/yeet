@@ -34,18 +34,20 @@ class Api::ReviewsController < ApplicationController
     @review = Review.find_by(id: params[:id])
 
     if @review.update_attributes(review_params)
-      render "api/reviews/show"
+      render :index
     else
       render json: @review.errors.full_messages, status: 401
     end
   end
 
   def destroy
-    @review = Review.find_by(id: params[:id])
-    if @review.destroy
-      render "api/reviews/show"
+    review = Review.find_by(id: params[:id])
+    if review.destroy
+      biz = review.business
+      @reviews = biz.reviews
+      render :index
     else
-      render json: @review.errors.full_messages, status: 401
+      render json: review.errors.full_messages, status: 401
     end
   end
 

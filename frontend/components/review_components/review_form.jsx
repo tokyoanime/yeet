@@ -76,7 +76,7 @@ class ReviewForm extends React.Component {
     
     if (this.state.review_posted) {
       return(
-        <div>
+        <div className="biz-review-form">
           Your review has been posted.
         </div>
       )
