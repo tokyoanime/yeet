@@ -6,8 +6,7 @@ import Review from './review_index';
 
 const mstp = (state) => ({
   currentUser: state.entities.users[state.session.currentUserId],
-  reviews: Object.values(state.entities.reviews),
-  reviewErr: state.errors.reviewErrors
+  reviews: Object.values(state.entities.reviews)
 });
 
 const mdtp = () => (dispatch) => ({
