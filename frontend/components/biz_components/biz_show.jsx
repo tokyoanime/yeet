@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
 import TopNavContainer from '../nav_components/top_nav_container';
 import BizReviewIndex from './biz_review_index';
-import BizReviewForm from '../review_components/review_form';
-
+import BizReviewFormContainer from '../review_components/review_form_container';
+import BizReviewIndexContainer from '../review_components/review_index_container';
 class BizShow extends React.Component {
   constructor(props) {
     super(props);
@@ -181,8 +180,8 @@ class BizShow extends React.Component {
             </div>
                    
             <div className="biz-comments-container">
-              <BizReviewForm biz={biz} reviewErr={this.props.reviewErr} currentUser={this.props.currentUser} createReview={this.props.createReview} />
-              <BizReviewIndex reviews={biz.reviews} />
+              <BizReviewFormContainer />
+              <BizReviewIndexContainer /> 
             </div>
           </div>
 

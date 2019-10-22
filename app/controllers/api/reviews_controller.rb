@@ -1,39 +1,30 @@
 class Api::ReviewsController < ApplicationController
   before_action :require_login, only: [:create, :update, :destroy]
 
-  # def index
-  #   biz = Business.find_by(id: params[:id])
-  #   @reviews = biz.reviews
-  #   debugger;
-  #   render 'api/reviews/index'
-  # end
+  def index
+    review = Review.find_by_business_id(params[:business_id])
+    biz = review.business
+    @reviews = biz.reviews
 
-  # def show
-  #   biz = Business.find_by(id: params[:id])
-  #   @review = biz.reviews.find_by(business_id: biz.id)
-
-  #   if @review
-  #     render 'api/reviews/show'
-  #   else
-  #     render json: ["Invalid Review"], status: 404
-  #   end
-  # end
-
-  def show
-    @review = Review.find_by_id(params[:id])
-
-    if @review
-      render :show
+    if @reviews
+      render :index
     else
       render json: ["Invalid Review"], status: 404
     end
+  end
+
+  def show
+
   end
 
   def create
     @review = Review.new(review_params)
 
     if @review.save
-      render 'api/reviews/show'
+      biz = @review.business
+      @reviews = biz.reviews
+
+      render :index
     else
       render json: @review.errors.full_messages, status: 401
     end

@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import {getReview} from '../../actions/review_actions';
+import {fetchReviews, deleteReview} from '../../actions/review_actions';
 import { clearErrors } from '../../actions/user_actions';
 import Review from './review_index';
 
-const mstp = (state, ownProps) => {
-  return {
-  review: state.entities.reviews[ownProps.match.props.reviewId]
-  }
-}
+const mstp = (state, ownProps) => ({
+  currentUser: state.entities.users[state.session.currentUserId],
+  reviews: Object.values(state.entities.reviews)
+});
 
 const mdtp = () => (dispatch) => ({
   clearErrors: () => dispatch(clearErrors()),
-  getReview: (id) => dispatch(getReview(id))
-})
+  deleteReview: (id) => dispatch(deleteReview(id)),
+  fetchReviews: (bizId) => dispatch(fetchReviews(bizId))
+});
 
-export default connect(mstp, mdtp)(Review);
+export default withRouter(connect(mstp, mdtp)(Review));
