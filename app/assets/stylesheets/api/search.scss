@@ -1,0 +1,45 @@
+.search-form-container {
+  width: 60vw;
+  border: 1px solid white;
+
+  display: flex;
+  flex-direction: row;
+
+  .search-fields {
+    width: 80%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    .search-title {
+      color: #666666;
+      font-weight: bold;
+      margin: 10px;
+    }
+
+    .search-holder {
+      color: black;
+      font-size: 20px;
+      
+    }
+
+    input[type="text"] {
+      width: 50%;
+      background-color: aquamarine;
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 0px 0px;
+    }
+    
+  }
+
+  .search-submit {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+  }
+}

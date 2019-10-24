@@ -46,3 +46,9 @@ export const updateBiz = (biz) => (dispatch) => BizUtil.updateBiz(biz)
     (biz) => dispatch(receiveBiz(biz)),
     (err) => dispatch(receiveBizErrors(err))
   );
+
+export const searchBiz = (query) => (dispatch) => BizUtil.searchBiz(query)
+    .then(
+      (biz) => dispatch(receiveAllBiz(biz)),
+      (err) => dispatch(receiveBizErrors(err))
+    )

@@ -3,8 +3,7 @@ export const fetchBiz = () => (
     method: 'GET',
     url: `/api/businesses`
   })
-)
-
+);
 
 export const createBiz = (biz) => (
   $.ajax({
@@ -26,5 +25,13 @@ export const updateBiz = (biz) => (
     url: `/api/businesses/${biz.id}`,
     method: 'PATCH',
     data: {biz}
+  })
+);
+
+export const searchBiz = (query) => (
+  $.ajax({
+    url: `/api/businesses/search/`,
+    method: 'GET',
+    data: {query}
   })
 );

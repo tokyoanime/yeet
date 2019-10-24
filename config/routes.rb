@@ -10,5 +10,7 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index]
     end
     resources :reviews, only: [:show, :create, :update, :destroy]
+
+    get '/businesses/search/:query', to: 'businesses#search'
   end
 end

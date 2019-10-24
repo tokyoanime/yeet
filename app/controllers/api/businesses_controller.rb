@@ -31,8 +31,16 @@ class Api::BusinessesController < ApplicationController
     end
   end
 
+  def search
+    debugger;
+  end
+
   private
   def biz_params
     params.require(:biz).permit(:biz_name, :biz_address, :biz_city, :biz_state, :biz_zipcode, :biz_lat, :biz_lng, :biz_phone, :biz_url, :biz_price_range, :biz_parking, :biz_delivery, :biz_takeout, :biz_reservations, :biz_first_cat, :biz_first_cat, :biz_second_cat, :biz_third_cat, :biz_mo_hrs, :biz_tu_hrs, :biz_we_hrs, :biz_th_hrs, :biz_fr_hrs, :biz_sa_hrs, :biz_su_hrs)
+  end
+
+  def search_params
+    params.require(:query).permit(:keyword, :near, :filters)
   end
 end
