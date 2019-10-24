@@ -32,10 +32,9 @@ class ReviewEdit extends React.Component {
     if (prevProps.match.params.reviewId !== this.props.match.params.reviewId) {
       this.props.getReview(this.props.match.params.reviewId)
         .then(() => {
-          if (this.state.review_body === "") {
-            this.setState({ review_body: this.props.review.review_body, review_rating: this.props.review.review_rating });
-            this.genStar();
-          }
+          this.props.clearErrors();
+          this.setState({ review_body: this.props.review.review_body, review_rating: this.props.review.review_rating });
+          this.genStar();
         });
     }
   }
@@ -84,6 +83,10 @@ class ReviewEdit extends React.Component {
       return null
     };
 
+    const requireLogin = (
+      <div>Log in to update review.</div>
+    )
+
     const reviewForm = (
       <div className="review-edit-form-container">
         <div className="review-edit-form">
@@ -97,21 +100,18 @@ class ReviewEdit extends React.Component {
               <i className="material-icons" id="star-4" onClick={() => this.updateRating(4)}>star</i>
               <i className="material-icons" id="star-5" onClick={() => this.updateRating(5)}>star</i>
             </div>
-            <textarea placeholder="Write your review here." onChange={this.updateField('review_body')}>{review.review_body}</textarea>
-            <input className="submit-bttn" type="submit" value="Update Review" />
+            <textarea placeholder="Write your review here." onChange={this.updateField('review_body')} defaultValue={review.review_body}></textarea>
+            {((this.props.currentUser) && (this.props.currentUser.id === review.user_id)) ? (
+              <input className="submit-bttn" type="submit" value="Update Review" />) : requireLogin}
           </form>
         </div>
       </div>
     )
 
-    const requireLogin = (
-      <div>Log in to update review.</div>
-    )
-
     return (
       <div>
         <TopNavContainer />
-        {((this.props.currentUser) && (this.props.currentUser.id === review.user_id)) ? reviewForm : requireLogin}
+        {reviewForm}
       </div>
     )
   }

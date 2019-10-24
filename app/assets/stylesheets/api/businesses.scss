@@ -158,6 +158,10 @@
     border: 1px solid #dddddd;
     border-radius: 5px;
 
+    i {
+      cursor: pointer;
+    }
+
     a {
       font-weight: bold;
       transition-delay: .4s;
@@ -183,6 +187,7 @@
         transition-duration: 0.4s;
         background-color: rgb(30, 8, 129);
         color: white;
+        cursor: pointer;
       }
 
       input[type="submit"]:hover {

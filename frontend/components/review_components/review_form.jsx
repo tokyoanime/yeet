@@ -77,7 +77,7 @@ class ReviewForm extends React.Component {
           <i className="material-icons" id="star-4" onClick={() => this.updateRating(4)}>star</i>
           <i className="material-icons" id="star-5" onClick={() => this.updateRating(5)}>star</i>
         </div>
-        <textarea rows="10" placeholder="Write your review here." onChange={this.updateField('review_body')}>{this.state.review_body}</textarea>
+        <textarea rows="10" placeholder="Write your review here." onChange={this.updateField('review_body')} defaultValue={this.state.review_body}></textarea>
         <input type="submit" value="Post Review" />
       </form>
     )

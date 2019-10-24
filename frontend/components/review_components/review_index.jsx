@@ -73,7 +73,9 @@ class Review extends React.Component {
                 {review.user_name}
               </div>
               <div className="biz-comment-edit">
-                <Link to={`/reviews/${review.id}`}>Edit Review</Link>
+                {((this.props.currentUser) && (this.props.currentUser.id === review.user_id)) ? (
+                  <Link to={`/reviews/${review.id}`}>Edit Review</Link>
+                ) : null}
               </div>
             </div>
             <div className="biz-comment-body-container">
