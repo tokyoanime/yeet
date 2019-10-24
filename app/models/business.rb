@@ -39,5 +39,4 @@ class Business < ApplicationRecord
 
   has_many_attached :pics
   has_many :reviews
-  # belongs_to :user
 end

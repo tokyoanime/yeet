@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Review extends React.Component {
   constructor(props) {
@@ -68,20 +69,24 @@ class Review extends React.Component {
         return (
           <div className={`biz-comment-container review-${review.id}`} key={`review-${review.id}`}>
             <div className="biz-comment-user">
-              <div>
+              <div className="biz-comment-name">
                 {review.user_name}
               </div>
-              <div>
-                Edit Review
+              <div className="biz-comment-edit">
+                <Link to={`/reviews/${review.id}`}>Edit Review</Link>
               </div>
             </div>
             <div className="biz-comment-body-container">
-              {this.ratingGen(review.review_rating)}
+              <div className="biz-comment-top">
+                {this.ratingGen(review.review_rating)}
+                <div>{(review.created_at) ? review.created_at.slice(0,7) : null}</div>
+              </div>
+              
               <div className="biz-comment-text">{review.review_body}</div>
               {
                 ((this.props.currentUser) && (this.props.currentUser.id === review.user_id)) ? (
-                  <div className="biz-comment-delete" onClick={() => this.handleDelete(`${review.id}`)}>
-                    <div>Delete</div>
+                  <div className="biz-comment-delete">
+                    <i className="material-icons" onClick={() => this.handleDelete(`${review.id}`)}>delete</i>
                   </div>
                 ) : null
               }

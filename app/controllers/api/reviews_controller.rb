@@ -14,7 +14,13 @@ class Api::ReviewsController < ApplicationController
   end
 
   def show
+    @review = Review.find_by_id(params[:id])
 
+    if @review
+        render :show
+    else
+      render json: ["No review found"], status: 404
+    end
   end
 
   def create
@@ -34,9 +40,9 @@ class Api::ReviewsController < ApplicationController
     @review = Review.find_by(id: params[:id])
 
     if @review.update_attributes(review_params)
-      render :index
+      render :show
     else
-      render json: @review.errors.full_messages, status: 401
+      render json: @review.errors.full_messages, status: 404
     end
   end
 

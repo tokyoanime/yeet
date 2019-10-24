@@ -25,10 +25,9 @@ class ReviewForm extends React.Component {
     }
   }
 
-  updateRating(field) {
-    return (e) => {
-      this.setState({ [field]: e.currentTarget.value })
-    }
+  updateRating(val) {
+    this.genStar(val);
+    this.setState({ review_rating: val });
   }
 
   handlePostReview(e) {
@@ -45,25 +44,38 @@ class ReviewForm extends React.Component {
         this.setState({ review_posted: true});
         this.props.fetchReviews(tempReview.business_id);
       })
+  }
 
+  genStar(rating) {
+    const currentRating = rating || this.state.review_rating;
+
+    for (let i = 1; i <= currentRating; i++) {
+      const tempStar = document.getElementById(`star-${i}`)
+      tempStar.style.color = "#FFA500";
+    }
+
+    for (let j = (currentRating + 1); j <= 5; j++) {
+      const tempStar = document.getElementById(`star-${j}`)
+      tempStar.style.color = "#DDDDDD";
+    }
   }
 
   render() {
 
     const errors = this.props.reviewErr.map((err) => {
       return (
-        <div className="login-error">{err}</div>
+        <div className="review-error">{err}</div>
       )
     });
 
     const reviewForm = (
       <form onSubmit={this.handlePostReview}>
         <div className="star-rating-container">
-          <input type="radio" id="rating-5" name="rating" value="5" onChange={this.updateRating('review_rating')} /><label>5</label>
-          <input type="radio" id="rating-4" name="rating" value="4" onChange={this.updateRating('review_rating')} /><label>4</label>
-          <input type="radio" id="rating-3" name="rating" value="3" onChange={this.updateRating('review_rating')} /><label>3</label>
-          <input type="radio" id="rating-2" name="rating" value="2" onChange={this.updateRating('review_rating')} /><label>2</label>
-          <input type="radio" id="rating-1" name="rating" value="1" onChange={this.updateRating('review_rating')} /><label>1</label>
+          <i className="material-icons" id="star-1" onClick={() => this.updateRating(1)}>star</i>
+          <i className="material-icons" id="star-2" onClick={() => this.updateRating(2)}>star</i>
+          <i className="material-icons" id="star-3" onClick={() => this.updateRating(3)}>star</i>
+          <i className="material-icons" id="star-4" onClick={() => this.updateRating(4)}>star</i>
+          <i className="material-icons" id="star-5" onClick={() => this.updateRating(5)}>star</i>
         </div>
         <textarea rows="10" placeholder="Write your review here." onChange={this.updateField('review_body')}>{this.state.review_body}</textarea>
         <input type="submit" value="Post Review" />
@@ -71,7 +83,7 @@ class ReviewForm extends React.Component {
     )
 
     const requestLogin = (
-      <div>Please <Link to='/login'>login</Link> to post review.</div>
+      <div>Please <Link to='/login'>login</Link> to post/edit review.</div>
     )
     
     if (this.state.review_posted) {

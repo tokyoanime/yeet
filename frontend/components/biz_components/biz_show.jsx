@@ -1,6 +1,5 @@
 import React from 'react';
 import TopNavContainer from '../nav_components/top_nav_container';
-import BizReviewIndex from './biz_review_index';
 import BizReviewFormContainer from '../review_components/review_form_container';
 import BizReviewIndexContainer from '../review_components/review_index_container';
 class BizShow extends React.Component {

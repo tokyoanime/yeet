@@ -13,7 +13,9 @@
 
 class Review < ApplicationRecord
   validates :review_body, :review_rating, :user_id, :business_id, presence: true
+  
 
   belongs_to :user
   belongs_to :business
+
 end
