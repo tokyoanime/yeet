@@ -72,7 +72,7 @@ class Search extends React.Component {
             <div className="search-title">Find</div>
             <input
               type="text"
-              placeholder="ramen, boba, popcorn chicken..."
+              placeholder="ramen, boba ..."
               className="search-keyword"
               onChange={this.updateField("keyword")}
             />
