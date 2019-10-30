@@ -7,8 +7,33 @@ class BizIndex extends React.Component {
     super(props);
   }
 
+  getUrlVars() {
+    let query = {};
+    const parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+      query[key] = value;
+    });
+    return query;
+  }
+
   componentDidMount() {
-    this.props.fetchBiz();
+    this.props.clearErrors();
+
+    let keyword = this.getUrlVars()["keyword"].split("%20").join(" ");
+    let near = this.getUrlVars()["near"].split("%20").join(" ");
+
+    const query = JSON.stringify({keyword, near});
+    this.props.searchBiz(query);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.search !== this.props.location.search) {
+      let keyword = this.getUrlVars()["keyword"].split("%20").join(" ");
+      let near = this.getUrlVars()["near"].split("%20").join(" ");
+
+      const query = JSON.stringify({ keyword, near });
+      this.props.searchBiz(query);
+    }
+
   }
 
   render() {

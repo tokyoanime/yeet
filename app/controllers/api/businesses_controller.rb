@@ -32,7 +32,10 @@ class Api::BusinessesController < ApplicationController
   end
 
   def search
-    debugger;
+    query = JSON.parse(params[:query])
+    
+    @biz = Business.text_search(query)
+    render :index
   end
 
   private

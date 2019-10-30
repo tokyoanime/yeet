@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import SearchContainer from '../search_components/search_container';
 
 class TopNav extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class TopNav extends React.Component {
     return (
       <div className="nav-top-container">
         <div className="nav-top-left logo"><Link to="/">yeet!</Link></div>
-        <div className="nav-top-mid">Search Bar Here</div>
+        <div className="nav-top-mid"><SearchContainer /></div>
         <div className="nav-top-right">{sessionMenu}</div>
       </div>
     ) 

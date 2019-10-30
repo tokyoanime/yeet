@@ -39,4 +39,27 @@ class Business < ApplicationRecord
 
   has_many_attached :pics
   has_many :reviews
+
+  def self.text_search(query)
+    keyword = query["keyword"]
+    near = query["near"]
+    filter = query["filter"]
+    
+    if near.empty?
+      near = "Fremont"
+    end
+
+    # rank = <<-RANK
+    #   ts_rank(to_tsvector(biz_name), plainto_tsquery(#{sanitize(keyword)})) +
+    #   ts_rank(to_tsvector(biz_first_cat), plainto_tsquery(#{sanitize(keyword)})) +
+    #   ts_rank(to_tsvector(biz_second_cat), plainto_tsquery(#{sanitize(keyword)})) +
+    #   ts_rank(to_tsvector(biz_third_cat), plainto_tsquery(#{sanitize(keyword)}))
+    # RANK
+
+    if keyword.empty?
+      return where('biz_city @@ :n', n: near)
+    else
+      return where('biz_name @@ :k or biz_first_cat @@ :k or biz_second_cat @@ :k or biz_third_cat @@ :k and biz_city @@ :n', k: keyword, n: near)
+    end
+  end
 end

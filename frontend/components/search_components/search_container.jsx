@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { searchBiz } from '../../actions/biz_actions';
 import { clearErrors } from '../../actions/user_actions';
 import Search from './search';
@@ -14,4 +15,4 @@ const mdtp = () => (dispatch) => ({
   searchBiz: (query) => dispatch(searchBiz(query))
 });
 
-export default connect(mstp, mdtp)(Search);
+export default withRouter(connect(mstp, mdtp)(Search));

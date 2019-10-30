@@ -30,8 +30,7 @@ export const updateBiz = (biz) => (
 
 export const searchBiz = (query) => (
   $.ajax({
-    url: `/api/businesses/search/`,
+    url: `/api/businesses/search/${query}`,
     method: 'GET',
-    data: {query}
   })
 );

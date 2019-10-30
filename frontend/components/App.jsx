@@ -16,7 +16,7 @@ const App = () => (
       <AuthRoute exact path="/newuser" component={newUserContainer} />
       <AuthRoute exact path="/updateUser" component={updateUserContainer} />
       <AuthRoute exact path="/login" component={newSessionContainer} />
-      <Route exact path="/biz" component={bizIndexContainer} />
+      <Route exact path="/search" component={bizIndexContainer} />
       <Route exact path="/biz/new" component={newBizContainer} />
       <Route exact path="/biz/:bizId" component={bizShowContainer} />
       <Route exact path="/reviews/:reviewId" component={reviewEditContainer} />
