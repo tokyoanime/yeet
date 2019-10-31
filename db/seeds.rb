@@ -6,197 +6,75 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'faker'
-require 'open-uri'
+require "faker"
+require "open-uri"
 
-b1 = Business.create({
-  biz_name: 'A Sack of Potatoes',
-  biz_address: '37100 Fremont Blvd, Ste C',
-  biz_city: 'Fremont',
-  biz_state: 'CA',
-  biz_zipcode: 94536,
-  biz_lat: 37.5603146,
-  biz_lng: -122.0127191,
-  biz_phone: '510-896-8070',
-  biz_url: 'asackofpotatoes.com',
-  biz_price_range: '$',
-  biz_first_cat: 'Pasta Shops',
-  biz_second_cat: 'Cafes',
-  biz_third_cat: 'Coffee & Tea',
-  biz_mo_hrs: 'Closed',
-  biz_tu_hrs: '11:00 am - 9:00 pm',
-  biz_we_hrs: '11:00 am - 9:00 pm',
-  biz_th_hrs: '11:00 am - 9:00 pm',
-  biz_fr_hrs: '11:00 am - 10:00 pm',
-  biz_sa_hrs: '11:00 am - 10:00 pm',
-  biz_su_hrs: '11:00 am - 9:00 pm',
-  biz_parking: 'Garage, Street',
-  biz_delivery: 'No',
-  biz_takeout: 'Yes',
-  biz_reservations: 'No'
-})
+FIRST_CATEGORIES = ["Bubble Tea", "Tea", "Ramen"]
+SECOND_CATEGORIES = ["Coffee & Tea", "Cafes", "Noodles"]
+THIRD_CATEGORIES = ["Boba Tea", "Japanese", "Taiwanese"]
+CITIES = {
+  "Napa": {"zip": [94558, 94559], "lat": [38.318563, 38.708006], "lng": [-122.387235, -122.235753]},
+  "Vallejo": {"zip": [94591, 94590, 94589, 94592, 94534], "lat": [38.083718, 38.141423], "lng": [-122.243259, 122.202346]},
+  "Fairfield": {"zip": [94533, 94534, 94535], "lat": [38.266687, 38.287645], "lng": [-122.075464, -121.990983]},
+  "Concord": {"zip": [94521, 94520, 94518, 94519], "lat": [37.949961, 37.997306], "lng": [-122.045499, -121.973374]},
+  "Richmond": {"zip": [94804, 94801, 94803, 94805], "lat": [37.927156, 37.948504], "lng": [-122.389762, -122.325615]},
+  "Berkeley": {"zip": [94704, 94703, 94702, 94709, 94705, 94707, 94708, 94710], "lat": [37.854915, 37.881715], "lng": [-122.299450, -122.246603]},
+  "Oakland": {"zip": [94601, 94605, 94606, 94603, 94621, 94602, 94611, 94610], "lat": [37.757217, 37.810131], "lng": [-122.214374, -122.182590]},
+  "Hayward": {"zip": [94544, 94545, 94541, 94542], "lat": [37.623292, 37.662484], "lng": [-122.142229, -122.054117]},
+  "Fremont": {"zip": [94536, 94538, 94539, 94555], "lat": [37.492764, 37.564389], "lng": [-121.984474, -121.927045]},
+  "San Jose": {"zip": [95123, 95111, 95122, 95116, 95125, 95148, 95124, 95136, 95132], "lat": [37.235271, 37.351875], "lng": [-121.910085, -121.791788]},
+  "Palo Alto": {"zip": [94306, 94303, 94301, 94304], "lat": [37.413378, 37.450884], "lng": [-122.148876, -122.109038]},
+  "San Mateo": {"zip": [94403, 94401, 94402], "lat": [37.531628, 37.573630], "lng": [-122.318073, -122.293912]},
+  "San Rafael": {"zip": [94901, 94903], "lat": [37.983210, 37.990754], "lng": [-122.528845, -122.467053]},
+  "Novato": {"zip": [94947, 94945, 94949], "lat": [38.047993, 38.112274], "lng": [-122.577720, -122.543485]},
+  "San Francisco": {"zip": [94112, 94110, 94109, 94122, 94116, 94121, 94134, 94117, 94118], "lat": [37.710281, 37.804892], "lng": [-122.479810, -122.396935]}
+ }
+PRICE_RANGE = ["$", "$$", "$$$"]
+PARKING = ["Garage", "Street", "Private Lot"]
 
-b2 = Business.create({
-  biz_name: 'Meet Fresh',
-  biz_address: '43337 Boscell Rd, P9-C',
-  biz_city: 'Fremont',
-  biz_state: 'CA',
-  biz_zipcode: 94538,
-  biz_lat: 37.5032152,
-  biz_lng: -121.9784397,
-  biz_phone: '510-573-0785',
-  biz_url: 'meetfresh.us',
-  biz_price_range: '$',
-  biz_first_cat: 'Desserts',
-  biz_second_cat: 'Bubble Tea',
-  biz_third_cat: 'Shaved Ice',
-  biz_mo_hrs: '11:00 am - 11:00 pm',
-  biz_tu_hrs: '11:00 am - 11:00 pm',
-  biz_we_hrs: '11:00 am - 11:00 pm',
-  biz_th_hrs: '11:00 am - 11:00 pm',
-  biz_fr_hrs: '11:00 am - 12:00 am',
-  biz_sa_hrs: '11:00 am - 12:00 am',
-  biz_su_hrs: '11:00 am - 11:00 pm',
-  biz_parking: 'Private Lot',
-  biz_delivery: 'No',
-  biz_takeout: 'Yes',
-  biz_reservations: 'No'
-})
+1000.times do
+  temp_city = CITIES.keys[rand(0..14)]
+  temp_zip = CITIES[temp_city][:zip][rand(0...CITIES[temp_city][:zip].length)]
+  temp_lat = rand(CITIES[temp_city][:lat][0]..CITIES[temp_city][:lat][1])
+  temp_lng = rand(CITIES[temp_city][:lng][0]..CITIES[temp_city][:lng][1])
+  temp_fcat = FIRST_CATEGORIES[rand(0..2)]
+  temp_scat = ""
+  temp_tcat = ""
 
-b3 = Business.create({
-  biz_name: 'Yokohama Iekei Ramen',
-  biz_address: '39206 Fremont Blvd',
-  biz_city: 'Fremont',
-  biz_state: 'CA',
-  biz_zipcode: 94538,
-  biz_lat: 37.547697,
-  biz_lng: -121.9867686,
-  biz_phone: '510-298-9698',
-  biz_url: 'yokohamaiekei.com',
-  biz_price_range: '$$',
-  biz_first_cat: 'Ramen',
-  biz_second_cat: 'Noodles',
-  biz_third_cat: '',
-  biz_mo_hrs: '11:00 am - 9:00 pm',
-  biz_tu_hrs: '11:00 am - 9:00 pm',
-  biz_we_hrs: '11:00 am - 9:00 pm',
-  biz_th_hrs: '11:00 am - 9:00 pm',
-  biz_fr_hrs: '11:00 am - 9:00 pm',
-  biz_sa_hrs: '11:00 am - 9:00 pm',
-  biz_su_hrs: '11:00 am - 9:00 pm',
-  biz_parking: 'Private Lot',
-  biz_delivery: 'No',
-  biz_takeout: 'Yes',
-  biz_reservations: 'No'
-})
+  if ([true, false].sample)
+    temp_scat = SECOND_CATEGORIES[rand(0..2)]
+    if ([true, false].sample)
+      temp_tcat = THIRD_CATEGORIES[rand(0..2)]
+    end   
+  end    
 
-b4 = Business.create({
-  biz_name: 'Shumi Ramen House',
-  biz_address: '43691 Mission Blvd',
-  biz_city: 'Fremont',
-  biz_state: 'CA',
-  biz_zipcode: 94539,
-  biz_lat: 37.5262985,
-  biz_lng: -121.9204669,
-  biz_phone: '510-413-6050',
-  biz_url: '',
-  biz_price_range: '',
-  biz_first_cat: 'Ramen',
-  biz_second_cat: '',
-  biz_third_cat: '',
-  biz_mo_hrs: '5:00 pm - 9:00 pm',
-  biz_tu_hrs: '5:00 pm - 9:00 pm',
-  biz_we_hrs: '5:00 pm - 9:00 pm',
-  biz_th_hrs: '5:00 pm - 9:00 pm',
-  biz_fr_hrs: '5:00 pm - 9:00 pm',
-  biz_sa_hrs: '5:00 pm - 9:00 pm',
-  biz_su_hrs: '5:00 pm - 9:00 pm',
-  biz_parking: 'Street',
-  biz_delivery: 'No',
-  biz_takeout: 'Yes',
-  biz_reservations: 'No'
-})
-
-b4 = Business.create({
-  biz_name: 'Porco Ramen',
-  biz_address: '1710 Berryessa Rd, Ste 107',
-  biz_city: 'San Jose',
-  biz_state: 'CA',
-  biz_zipcode: 95133,
-  biz_lat: 37.3726606,
-  biz_lng: -121.8753154,
-  biz_phone: '669-284-3926',
-  biz_url: '',
-  biz_price_range: '$$',
-  biz_first_cat: 'Ramen',
-  biz_second_cat: '',
-  biz_third_cat: '',
-  biz_mo_hrs: '11:30 am - 8:30 pm',
-  biz_tu_hrs: '11:30 am - 8:30 pm',
-  biz_we_hrs: '11:30 am - 8:30 pm',
-  biz_th_hrs: '11:30 am - 8:30 pm',
-  biz_fr_hrs: '11:30 am - 8:30 pm',
-  biz_sa_hrs: '11:30 am - 8:30 pm',
-  biz_su_hrs: '11:30 am - 8:30 pm',
-  biz_parking: 'Private Lot',
-  biz_delivery: 'No',
-  biz_takeout: 'Yes',
-  biz_reservations: 'No'
-})
-
-b5 = Business.create({
-  biz_name: 'Seiki House',
-  biz_address: '4035 Evergreen Village Sq, Ste 40',
-  biz_city: 'San Jose',
-  biz_state: 'CA',
-  biz_zipcode: 95135,
-  biz_lat: 37.4028525,
-  biz_lng: -121.9212347,
-  biz_phone: '408-495-1000',
-  biz_url: 'seikiramen.com',
-  biz_price_range: '$$',
-  biz_first_cat: 'Ramen',
-  biz_second_cat: '',
-  biz_third_cat: '',
-  biz_mo_hrs: '12:00 pm - 12:00 am',
-  biz_tu_hrs: '12:00 pm - 12:00 am',
-  biz_we_hrs: '12:00 pm - 12:00 am',
-  biz_th_hrs: '12:00 pm - 12:00 am',
-  biz_fr_hrs: '12:00 pm - 12:00 am',
-  biz_sa_hrs: '12:00 pm - 12:00 am',
-  biz_su_hrs: '12:00 pm - 12:00 am',
-  biz_parking: 'Private Lot, Street',
-  biz_delivery: 'Yes',
-  biz_takeout: 'Yes',
-  biz_reservations: 'Yes'
-})
-
-b6 = Business.create({
-  biz_name: 'Shincha Tea',
-  biz_address: '2487 Alvin Ave',
-  biz_city: 'San Jose',
-  biz_state: 'CA',
-  biz_zipcode: 95121,
-  biz_lat: 37.3191077,
-  biz_lng: -121.8291356,
-  biz_phone: '408-531-9385',
-  biz_url: 'shinchatea.com',
-  biz_price_range: '$',
-  biz_first_cat: 'Coffee & Tea',
-  biz_second_cat: 'Bubble Tea',
-  biz_third_cat: 'Cafes',
-  biz_mo_hrs: '11:00 am - 9:00 pm',
-  biz_tu_hrs: '11:00 am - 9:00 pm',
-  biz_we_hrs: '11:00 am - 9:00 pm',
-  biz_th_hrs: '11:00 am - 9:00 pm',
-  biz_fr_hrs: '11:00 am - 12:00 am',
-  biz_sa_hrs: '11:00 am - 12:00 am',
-  biz_su_hrs: '11:00 am - 12:00 am',
-  biz_parking: 'Private Lot',
-  biz_delivery: 'No',
-  biz_takeout: 'Yes',
-  biz_reservations: 'No'
-})
+  business = Business.create({
+    biz_name: Faker::Restaurant.name,
+    biz_address: Faker::Address.street_address,
+    biz_city: temp_city,
+    biz_state: 'CA',
+    biz_zipcode: temp_zip,
+    biz_lat: temp_lat,
+    biz_lng: temp_lng,
+    biz_phone: Faker::PhoneNumber.phone_number,
+    biz_url: Faker::Internet.domain_name,
+    biz_price_range: PRICE_RANGE[rand(0..2)],
+    biz_first_cat: temp_fcat,
+    biz_second_cat: temp_scat,
+    biz_third_cat: temp_tcat,
+    biz_mo_hrs: "11:00 am - 9:00 pm",
+    biz_tu_hrs: "11:00 am - 9:00 pm",
+    biz_we_hrs: "11:00 am - 9:00 pm",
+    biz_th_hrs: "11:00 am - 9:00 pm",
+    biz_fr_hrs: "11:00 am - 10:00 pm",
+    biz_sa_hrs: "11:00 am - 10:00 pm",
+    biz_su_hrs: "11:00 am - 9:00 pm",
+    biz_parking: PARKING[rand(0..2)],
+    biz_delivery: ["Yes", "No"].sample,
+    biz_takeout: ["Yes", "No"].sample,
+    biz_reservations: ["Yes", "No"].sample
+  })
+end
 
 User.create({username: "demoUser", email: "demo@demouser.com", fname: "Demo User", lname: "Demo", password: "password"});
 
@@ -209,31 +87,19 @@ User.create({username: "demoUser", email: "demo@demouser.com", fname: "Demo User
     lname: Faker::Name.last_name
   })
 
-  Review.create({
-    review_body: Faker::Food.description,
-    review_rating: rand(1..5),
-    user_id: user.id,
-    business_id: b1.id
-  })
-
-  Review.create({
-    review_body: Faker::Food.description,
-    review_rating: rand(1..5),
-    user_id: user.id,
-    business_id: b2.id
-  })
-
-  Review.create({
-    review_body: Faker::Food.description,
-    review_rating: rand(1..5),
-    user_id: user.id,
-    business_id: b3.id
-  })
+  800.times do
+    Review.create({
+      review_body: Faker::Restaurant.review,
+      review_rating: rand(1..5),
+      user_id: user.id,
+      business_id: rand(1..1000)
+    })
+  end
 end
 
-(1..10).each do |x|
-  url = "https://as-yeet-seeds.s3-us-west-1.amazonaws.com/a_sack_of_potatoes/#{x}.jpg"
-  file = open(url)
-  filename = "a_sack_of_potatoes_#{x}.jpg"
-  b1.pics.attach(io: file, filename: filename)
-end
+# (1..10).each do |x|
+#   url = "https://as-yeet-seeds.s3-us-west-1.amazonaws.com/a_sack_of_potatoes/#{x}.jpg"
+#   file = open(url)
+#   filename = "a_sack_of_potatoes_#{x}.jpg"
+#   b1.pics.attach(io: file, filename: filename)
+# end
