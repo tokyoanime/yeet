@@ -70,6 +70,9 @@ class BizIndex extends React.Component {
             <div>
               {el.biz_address}
             </div>
+            <div>
+              {el.biz_city}, {el.biz_state}
+            </div>
           </div>
         </div>
       )

@@ -34,6 +34,9 @@ class YeetHome extends React.Component {
       <div className="nav-home-main">
         <div className="nav-home-top">{display}</div>
         <div className="nav-home-logo">yeet!</div>
+        <div>
+          SEARCH FOR YOUR FAVORITE RAMEN OR BUBBLE TEA PLACE
+        </div>
         <div className="nav-home-search">
           <SearchContainer />
         </div>

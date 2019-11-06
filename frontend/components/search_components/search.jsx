@@ -5,7 +5,7 @@ class Search extends React.Component {
     super(props);
     this.state = {
       keyword: "",
-      near: "",
+      near: "San Francisco",
       filter: ""
     }
 
@@ -46,6 +46,8 @@ class Search extends React.Component {
     if (keyword) {
       searchKey.value = keyword.split("%20").join(" ");
       searchNear.value = near.split("%20").join(" ");
+
+      this.setState({ 'keyword': keyword.split("%20").join(" "), 'near': near.split("%20").join(" ")});
     }
   }
 
@@ -60,6 +62,8 @@ class Search extends React.Component {
       if (keyword) {
         searchKey.value = keyword.split("%20").join(" ");
         searchNear.value = near.split("%20").join(" ");
+
+        this.setState({ 'keyword': keyword.split("%20").join(" "), 'near': near.split("%20").join(" ") });
       }
     }
   }
@@ -80,6 +84,7 @@ class Search extends React.Component {
             <div className="search-title">Near</div>
             <input
               type="text"
+              defaultValue="San Francisco"
               placeholder="San Francisco"
               className="search-near"
               onChange={this.updateField("near")}

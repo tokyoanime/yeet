@@ -1,6 +1,6 @@
 .biz-index-container {
   display: flex;
-  // justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   width: 100%;
@@ -10,18 +10,24 @@
     display: flex;
     max-width: 1000px;
     margin: 10px;
+    align-items: center;
+    justify-content: center;
 
     .biz-pic {
-      width: 30%;
+      width: 200px;
+      height: 150px;
+      display: flex;
+      align-items: center;
 
       img {
         width: 100%;
+        max-height: 150px;
       }
     }
 
     .info-container {
       padding: 20px;
-      width: 70%;
+      width: 350px;
 
       .biz-cat{
         margin-bottom: 5px;
@@ -30,7 +36,7 @@
 
       a {
         // text-decoration: underline;
-        font-size: 30px;
+        font-size: 25px;
       }
     }
   }

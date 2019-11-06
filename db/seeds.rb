@@ -11,7 +11,7 @@ require "open-uri"
 
 FIRST_CATEGORIES = ["Bubble Tea", "Tea", "Ramen"]
 SECOND_CATEGORIES = ["Coffee & Tea", "Cafes", "Noodles"]
-THIRD_CATEGORIES = ["Boba Tea", "Japanese", "Taiwanese"]
+THIRD_CATEGORIES = ["Boba Tea", "Taiwanese"]
 CITIES = {
   "Napa": {"zip": [94558, 94559], "lat": [38.318563, 38.708006], "lng": [-122.387235, -122.235753]},
   "Vallejo": {"zip": [94591, 94590, 94589, 94592, 94534], "lat": [38.083718, 38.141423], "lng": [-122.243259, 122.202346]},
@@ -32,7 +32,7 @@ CITIES = {
 PRICE_RANGE = ["$", "$$", "$$$"]
 PARKING = ["Garage", "Street", "Private Lot"]
 
-1000.times do
+100.times do
   temp_city = CITIES.keys[rand(0..14)]
   temp_zip = CITIES[temp_city][:zip][rand(0...CITIES[temp_city][:zip].length)]
   temp_lat = rand(CITIES[temp_city][:lat][0]..CITIES[temp_city][:lat][1])
@@ -40,11 +40,21 @@ PARKING = ["Garage", "Street", "Private Lot"]
   temp_fcat = FIRST_CATEGORIES[rand(0..2)]
   temp_scat = ""
   temp_tcat = ""
+  temp_pic = [1,2,3,4,5,6,7,8,9,10,11,12,13,14].shuffle
 
   if ([true, false].sample)
-    temp_scat = SECOND_CATEGORIES[rand(0..2)]
+    if (temp_fcat == "Ramen")
+      temp_scat = "Noodles"
+    else
+      temp_scat = ["Coffee & Tea", "Cafes"].sample
+    end
+
     if ([true, false].sample)
-      temp_tcat = THIRD_CATEGORIES[rand(0..2)]
+      if (temp_fcat == "Ramen")
+        temp_tcat = "Japanese"
+      else
+        temp_tcat = ["Boba Tea", "Taiwanese"].sample
+      end
     end   
   end    
 
@@ -74,11 +84,27 @@ PARKING = ["Garage", "Street", "Private Lot"]
     biz_takeout: ["Yes", "No"].sample,
     biz_reservations: ["Yes", "No"].sample
   })
+
+  if (temp_fcat == "Ramen")
+    (1..7).each do |x|
+      url = "https://as-yeet-seeds.s3-us-west-1.amazonaws.com/ramen/#{temp_pic[x]}.jpg"
+      file = open(url)
+      filename = "ramen_#{business.id}_#{x}.jpg"
+      business.pics.attach(io: file, filename: filename)
+    end
+  else
+    (1..7).each do |x|
+      url = "https://as-yeet-seeds.s3-us-west-1.amazonaws.com/boba/#{temp_pic[x]}.jpg"
+      file = open(url)
+      filename = "boba_#{business.id}_#{x}.jpg"
+      business.pics.attach(io: file, filename: filename)
+    end
+  end
 end
 
 User.create({username: "demoUser", email: "demo@demouser.com", fname: "Demo User", lname: "Demo", password: "password"});
 
-10.times do
+20.times do
   user = User.create({
     username: Faker::Internet.username,
     email: Faker::Internet.free_email,
@@ -87,12 +113,12 @@ User.create({username: "demoUser", email: "demo@demouser.com", fname: "Demo User
     lname: Faker::Name.last_name
   })
 
-  800.times do
+  30.times do
     Review.create({
       review_body: Faker::Restaurant.review,
       review_rating: rand(1..5),
       user_id: user.id,
-      business_id: rand(1..1000)
+      business_id: rand(1..100)
     })
   end
 end

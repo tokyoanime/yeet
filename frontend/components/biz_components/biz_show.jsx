@@ -2,6 +2,8 @@ import React from 'react';
 import TopNavContainer from '../nav_components/top_nav_container';
 import BizReviewFormContainer from '../review_components/review_form_container';
 import BizReviewIndexContainer from '../review_components/review_index_container';
+import GoogleMapReact from 'google-map-react';
+
 class BizShow extends React.Component {
   constructor(props) {
     super(props);
@@ -80,10 +82,6 @@ class BizShow extends React.Component {
 
       <div>
         <TopNavContainer />
-        {/* <div className="nav-bar-menu">
-
-        </div> */}
-
         <div className="biz-carousel-container">
           <i id="prevBtn" className="material-icons" onClick={this.handlePrev}>keyboard_arrow_left</i>
           <i id="nextBtn" className="material-icons" onClick={this.handleNext}>keyboard_arrow_right</i>
@@ -134,7 +132,13 @@ class BizShow extends React.Component {
             <div className="biz-loc-hrs-container">           
               <div className="biz-loc-container">
                 <div className="biz-map" id="googleMap">
-
+                  <div style={{ height: '100%', width: '100%' }}>
+                    <GoogleMapReact
+                      bootstrapURLKeys={{ key: "AIzaSyD9Ef-amJ3Cvg1T8w5yb15HPz8MMF47b6Q" }}
+                      defaultCenter={{lat: biz.biz_lat, lng: biz.biz_lng}}
+                      defaultZoom={12}
+                    ></GoogleMapReact>
+                  </div>
                 </div>
                 <div className="biz-address">
                   <div>{biz.biz_address}</div>
