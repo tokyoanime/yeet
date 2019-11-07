@@ -13,7 +13,7 @@ Yeet is a full-stack web application similar to Yelp.com. Yeet allows user to se
 
 [Live Link](https://yeet-fullstack.herokuapp.com/#/)
 
-![Image of Business Show Page](./app/assets/images/yeet_show_page.jpg)
+![Image of Business Show Page](/app/assets/images/yeet_show_page.jpg)
 
 # Documentaion
 
