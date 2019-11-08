@@ -3,13 +3,13 @@ class Api::ReviewsController < ApplicationController
 
   def index
     review = Review.find_by_business_id(params[:business_id])
-    biz = review.business
-    @reviews = biz.reviews
 
-    if @reviews
+    if review
+      biz = review.business
+      @reviews = biz.reviews
       render :index
     else
-      render json: ["Invalid Review"], status: 404
+      render json: ["No Review Available"]
     end
   end
 

@@ -15,6 +15,7 @@ class BizShow extends React.Component {
     }
     this.handleNext = this.handleNext.bind(this);
     this.handlePrev = this.handlePrev.bind(this);
+    this.scrollPage = this.scrollPage.bind(this);
   }
 
   componentDidMount() {
@@ -52,6 +53,51 @@ class BizShow extends React.Component {
     carouselSlide.prepend(lastImg);
   }
 
+  scrollPage() {
+    document.getElementById('startReviewSection').scrollIntoView()
+  }
+
+  ratingGen(rating) {
+    const checkedStars = [];
+    const uncheckStars = [];
+
+    if (rating === 0) {
+      for (let i = 0; i < 5; i++) {
+        const noStar = (<i className="material-icons" key={`nostar-${i}`}>star</i>)
+        uncheckStars.push(noStar);
+      }
+    } else if (rating % 1 !== 0) {
+      for (let i = 0; i < rating - 1; i++) {
+        const star = (<i className="material-icons checked" key={`star-${i}`}>star</i>);
+        checkedStars.push(star);
+      }
+
+      checkedStars.push(<i className="material-icons half checked" key={`star-half`}>star_half</i>)
+
+      for (let i = 0; i < 4 - rating; i++) {
+        const noStar = (<i className="material-icons" key={`nostar-${i}`}>star</i>)
+        uncheckStars.push(noStar);
+      }
+    } else {
+      for (let i = 0; i < rating; i++) {
+        const star = (<i className="material-icons checked" key={`star-${i}`}>star</i>);
+        checkedStars.push(star);
+      }
+
+      for (let i = 0; i < 5 - rating; i++) {
+        const noStar = (<i className="material-icons" key={`nostar-${i}`}>star</i>)
+        uncheckStars.push(noStar);
+      }
+    }
+
+    return (
+      <div className="review-avg-star-rating">
+        {checkedStars}
+        {uncheckStars}
+      </div>
+    )
+  }
+
   render() {
     const { biz } = this.props;
     if (!biz) {
@@ -78,6 +124,13 @@ class BizShow extends React.Component {
       return (<img src={url} key={`pic${i}`} />)
     })
 
+    let reviewRating = 0;
+    let reviewCounter = 0;
+    biz.reviews.map( review => {
+      reviewRating += review.review_rating;
+      reviewCounter += 1;
+    })
+
     return(
 
       <div>
@@ -95,21 +148,23 @@ class BizShow extends React.Component {
             <div className="biz-quick-info">
               <div className="biz-name">{biz.biz_name}</div>
               <div className="biz-rating-container">
-                <div className="biz-star-rating">Review Star Rating Here</div>
-                <div className="biz-num-review"># of reviews here</div>
+                {reviewCounter === 0 ? this.ratingGen(0) : this.ratingGen(reviewRating / reviewCounter)}
+                <div className="biz-num-review">
+                  {reviewCounter === 0 ? "No Review" : `${reviewCounter} reviews`}
+                </div>
               </div>
               <div className="biz-general-info">
                 <div className="biz-price">{biz.biz_price_range}</div>
                 <div className="biz-first-cat">{bizCat}</div>
-                <div className="biz-edit-button"><button className="btn-biz-show">Edit</button></div>
+                {/* <div className="biz-edit-button"><button className="btn-biz-show">Edit</button></div> */}
               </div>
               <div className="biz-social-bar">
                 <div className="btn-write-review">
-                  <button className="btn-biz-show">
+                  <button className="btn-biz-show" onClick={this.scrollPage}>
                     <i className="material-icons">star</i>Write a Review
                   </button>
                 </div>
-                <div className="btn-add-photo">
+                {/* <div className="btn-add-photo">
                   <button className="btn-biz-show">
                     <i className="material-icons">add_a_photo</i>Add Photo
                   </button>
@@ -123,7 +178,7 @@ class BizShow extends React.Component {
                   <button className="btn-biz-show">
                     <i className="material-icons">bookmark</i>Save
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
             
@@ -178,7 +233,7 @@ class BizShow extends React.Component {
               </div>
             </div>
 
-            <div className="startReviewSection">
+            <div className="startReviewSection" id="startReviewSection">
               Reviews
             </div>
                    

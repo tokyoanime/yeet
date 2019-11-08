@@ -25,6 +25,37 @@
       }
     }
 
+    .biz-rating-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .review-avg-star-rating {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    i {
+      margin: 0px;
+      padding: 0px;
+      font-size: 20px;
+      color: #dddddd;
+    }
+
+    .checked {
+      color: orange;
+    }
+
+    .half {
+      font-size: 21px;
+    }
+
+    .biz-num-review {
+      padding-left: 10px;
+      font-size: 14px;
+    }
+  }
+
     .info-container {
       padding: 20px;
       width: 350px;

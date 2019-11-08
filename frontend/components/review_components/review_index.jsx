@@ -62,7 +62,7 @@ class Review extends React.Component {
       </div>
     );
     
-    if (reviews.length === 0) {
+    if (reviews.length === 1 && reviews[0] === "No Review Available") {
       return noReview;
     } else {
       const renderReview = reviews.reverse().map((review, i) => {

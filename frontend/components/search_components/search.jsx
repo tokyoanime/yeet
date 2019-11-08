@@ -5,7 +5,7 @@ class Search extends React.Component {
     super(props);
     this.state = {
       keyword: "",
-      near: "San Francisco",
+      near: "",
       filter: ""
     }
 
