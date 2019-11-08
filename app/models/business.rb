@@ -52,7 +52,7 @@ class Business < ApplicationRecord
     if keyword.empty?
       return where('biz_city @@ :n', n: near)
     else
-      return where('biz_name @@ :k or biz_first_cat @@ :k or biz_second_cat @@ :k or biz_third_cat @@ :k', k: keyword).select{|biz| biz.biz_city == near};
+      return where('biz_name @@ :k or biz_first_cat @@ :k or biz_second_cat @@ :k or biz_third_cat @@ :k', k: keyword).where('biz_city @@ :n', n: near);
     end
   end
 end

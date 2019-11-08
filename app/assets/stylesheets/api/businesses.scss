@@ -58,9 +58,30 @@
   .biz-rating-container {
     display: flex;
     flex-direction: row;
+    align-items: center;
 
-    .biz-star-rating {
-      margin-right: 5px;
+    .review-avg-star-rating {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    i {
+      margin: 0px;
+      padding: 0px;
+      font-size: 24px;
+      color: #dddddd;
+    }
+
+    .checked {
+      color: orange;
+    }
+
+    .half {
+      font-size: 25px;
+    }
+
+    .biz-num-review {
+      padding-left: 10px;
     }
   }
   

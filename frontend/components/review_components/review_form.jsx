@@ -61,12 +61,15 @@ class ReviewForm extends React.Component {
   }
 
   render() {
-
-    const errors = this.props.reviewErr.map((err) => {
-      return (
-        <div className="review-error">{err}</div>
-      )
-    });
+    let errors = null;
+    if (this.props.reviewErr) {
+      errors = this.props.reviewErr.map((err, i) => {
+        return (
+          <div className="review-error" key={`err-${i}`}>{err}</div>
+        )
+      });
+    }
+    
 
     const reviewForm = (
       <form onSubmit={this.handlePostReview}>
