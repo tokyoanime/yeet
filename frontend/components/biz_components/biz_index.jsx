@@ -151,12 +151,17 @@ class BizIndex extends React.Component {
       )
     })
 
+    const noResult = (
+      <div>
+        {`Sorry, no result for ${this.state.keyword}.`}
+      </div>
+    )
 
     return(
       <div>
         <TopNav />
         <div className="biz-index-container">
-          {biz}
+          {(biz.length === 0) ? noResult : biz}
         </div>
       </div>
     )
