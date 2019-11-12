@@ -152,8 +152,12 @@ class BizIndex extends React.Component {
     })
 
     const noResult = (
-      <div>
-        {`Sorry, no result for ${this.state.keyword}.`}
+      <div className="no-result">
+        <p>
+          <span>Sorry, no result for </span>
+          <span className="no-result-key">{this.state.keyword}</span>
+        </p>
+        <p>Try searching for ramen or tea instead.</p>
       </div>
     )
 

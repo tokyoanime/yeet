@@ -17,18 +17,11 @@ a:visted {
   width: 100%;
   min-width: 600px;
   height: 100vh;
-  padding-top: 30px;
   background-image: image-url('boba_tea.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50%;
   background-color: rgb(18, 83, 62);
-
-  .nav-home-top {
-    width: 100;
-    padding-right: 15px;
-    color: white;
-  }
 }
 
 .nav-home-logo {
@@ -42,6 +35,11 @@ a:visted {
   font-family: 'Kaushan Script', cursive;
   transform: rotate(-10deg);
   text-shadow: 3px 3px rgb(167, 147, 147);
+}
+
+.nav-home-top {
+  width: 100%;
+  margin-top: 30px;
 }
 
 .nav-home-search {
