@@ -4,6 +4,8 @@ import BizReviewFormContainer from '../review_components/review_form_container';
 import BizReviewIndexContainer from '../review_components/review_index_container';
 import GoogleMapReact from 'google-map-react';
 
+const GoogleMapMarker = ({ text }) => <div>{text}</div>;
+
 class BizShow extends React.Component {
   constructor(props) {
     super(props);
@@ -190,9 +192,15 @@ class BizShow extends React.Component {
                   <div style={{ height: '100%', width: '100%' }}>
                     <GoogleMapReact
                       bootstrapURLKeys={{ key: "AIzaSyD9Ef-amJ3Cvg1T8w5yb15HPz8MMF47b6Q" }}
-                      defaultCenter={{lat: biz.biz_lat, lng: biz.biz_lng}}
-                      defaultZoom={12}
-                    ></GoogleMapReact>
+                      defaultCenter={{ lat: biz.biz_lat, lng: biz.biz_lng}}
+                      defaultZoom={15}
+                    >
+                      <GoogleMapMarker
+                        lat={biz.biz_lat}
+                        lng={biz.biz_lng}
+                        text={<i className="material-icons" id="googleMapMarker">star</i>}
+                      />
+                    </GoogleMapReact>
                   </div>
                 </div>
                 <div className="biz-address">
