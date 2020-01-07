@@ -29,6 +29,8 @@ class BizShow extends React.Component {
     if (prevProps.match.params.bizId != this.props.match.params.bizId) {
       this.props.getBiz(this.props.match.params.bizId);
     }
+
+    window.scrollTo(0, 0)
   }
 
   updateField(field) {
@@ -56,7 +58,8 @@ class BizShow extends React.Component {
   }
 
   scrollPage() {
-    document.getElementById('startReviewSection').scrollIntoView()
+    // document.getElementById('startReviewSection').scrollIntoView({behavior: "smooth"});
+    window.scrollTo(0, 700);
   }
 
   ratingGen(rating) {
