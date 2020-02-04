@@ -20,6 +20,8 @@ class Search extends React.Component {
   updateField(field) {
     return e => {
       this.setState({ [field]: e.currentTarget.value });
+      const query = JSON.stringify(this.state);
+      this.props.liveSearch(query);
     };
   }
 
@@ -85,6 +87,9 @@ class Search extends React.Component {
   }
 
   render() {
+    const searchRes = this.props.searchRes;
+    console.log(searchRes);
+
     return (
       <div>
         <form className='search-form-container' onSubmit={this.handleSubmit}>
@@ -100,7 +105,6 @@ class Search extends React.Component {
             <div className='search-title'>Near</div>
             <input
               type='text'
-              // defaultValue='San Francisco'
               value={this.state.near}
               placeholder='San Francisco'
               className='search-near'
