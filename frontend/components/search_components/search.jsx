@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchResultItem from './search_result_item';
 
 class Search extends React.Component {
   constructor(props) {
@@ -20,8 +21,11 @@ class Search extends React.Component {
   updateField(field) {
     return e => {
       this.setState({ [field]: e.currentTarget.value });
-      const query = JSON.stringify(this.state);
-      this.props.liveSearch(query);
+      if (this.state.keyword.length >= 2) {
+        const query = JSON.stringify(this.state);
+        this.props.liveSearch(query);
+        console.log(this.state.keyword);
+      }
     };
   }
 
@@ -87,8 +91,9 @@ class Search extends React.Component {
   }
 
   render() {
-    const searchRes = this.props.searchRes;
-    console.log(searchRes);
+    let searchRes = this.props.searchRes.map(result => {
+      return <SearchResultItem result={result} key={result.id} />;
+    });
 
     return (
       <div>
@@ -101,6 +106,7 @@ class Search extends React.Component {
               className='search-keyword'
               onChange={this.updateField('keyword')}
             />
+            <div className='search-result-container'>{searchRes}</div>
             <div className='search-holder'></div>
             <div className='search-title'>Near</div>
             <input

@@ -9,7 +9,7 @@ const mstp = state => ({
   currentUser: state.entities.users[state.session.currentUserId],
   err: state.errors.bizErrors,
   biz: state.entities.biz,
-  searchRes: state.entities.searchRes
+  searchRes: Object.values(state.entities.searchRes)
 });
 
 const mdtp = () => dispatch => ({
