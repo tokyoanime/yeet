@@ -10,7 +10,7 @@ class Search extends React.Component {
     this.state = {
       keyword: keyword || '',
       near: near || 'San Francisco',
-      filter: ''
+      filter: '',
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,7 +18,14 @@ class Search extends React.Component {
   }
 
   updateField(field) {
-    return e => {
+    return (e) => {
+      if (e.currentTarget.value.length >= 2 && field === 'keyword') {
+        const query = JSON.stringify({
+          keyword: e.currentTarget.value,
+          near: this.state.near,
+        });
+        this.props.liveSearch(query).then((res) => console.log(res));
+      }
       this.setState({ [field]: e.currentTarget.value });
     };
   }
@@ -39,7 +46,7 @@ class Search extends React.Component {
     let query = {};
     const parts = window.location.href.replace(
       /[?&]+([^=&]+)=([^&]*)/gi,
-      function(m, key, value) {
+      function (m, key, value) {
         query[key] = value;
       }
     );
@@ -59,7 +66,7 @@ class Search extends React.Component {
 
       this.setState({
         keyword: keyword.split('%20').join(' '),
-        near: near.split('%20').join(' ')
+        near: near.split('%20').join(' '),
       });
     }
   }
@@ -78,7 +85,7 @@ class Search extends React.Component {
 
         this.setState({
           keyword: keyword.split('%20').join(' '),
-          near: near.split('%20').join(' ')
+          near: near.split('%20').join(' '),
         });
       }
     }

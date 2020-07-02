@@ -33,15 +33,16 @@ class Api::BusinessesController < ApplicationController
 
   def search
     query = JSON.parse(params[:query])
-    
     @biz = Business.text_search(query)
     render :index
   end
 
   def live_search
     query = JSON.parse(params[:query])
-    
-    @biz = Business.text_search(query)
+
+    keyword = query["keyword"]
+    near = query["near"]
+    @biz = Business.where('lower(biz_name) LIKE ? OR lower(biz_first_cat) LIKE ? OR lower(biz_second_cat) LIKE ? OR lower(biz_third_cat) LIKE ?', "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%").where('biz_city LIKE ?', "%#{near}%")
     @biz = @biz[0..4]
     render :index
   end
