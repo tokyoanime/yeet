@@ -12,6 +12,8 @@
 #
 
 class Review < ApplicationRecord
+  default_scope { order(created_at: :desc) }
+  
   validates :review_body, :review_rating, :user_id, :business_id, presence: true
   
 

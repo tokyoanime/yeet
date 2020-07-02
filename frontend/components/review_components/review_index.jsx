@@ -20,11 +20,11 @@ class Review extends React.Component {
   }
 
   handleDelete(id) {
-    this.props.deleteReview(id)
-      .then( () => {
-        const msg = document.getElementsByClassName(`review-${id}`);
-        msg[0].innerHTML = "<div class='deleted-msg'>Your review has been deleted.</div>"
-      });
+    this.props.deleteReview(id).then(() => {
+      const msg = document.getElementsByClassName(`review-${id}`);
+      msg[0].innerHTML =
+        "<div class='deleted-msg'>Your review has been deleted.</div>";
+    });
   }
 
   ratingGen(rating) {
@@ -32,74 +32,89 @@ class Review extends React.Component {
     const uncheckStars = [];
 
     for (let i = 0; i < rating; i++) {
-      const star = (<i className="material-icons checked" key={`star-${i}`}>star</i>);
+      const star = (
+        <i className='material-icons checked' key={`star-${i}`}>
+          star
+        </i>
+      );
       checkedStars.push(star);
     }
 
     for (let i = 0; i < 5 - rating; i++) {
-      const noStar = (<i className="material-icons" key={`nostar-${i}`}>star</i>)
+      const noStar = (
+        <i className='material-icons' key={`nostar-${i}`}>
+          star
+        </i>
+      );
       uncheckStars.push(noStar);
     }
 
     return (
-      <div className="review-star-rating">
+      <div className='review-star-rating'>
         {checkedStars}
         {uncheckStars}
       </div>
-    )
+    );
   }
 
   render() {
-
     const { reviews } = this.props;
     if (!reviews) {
-      return null
-    };
+      return null;
+    }
 
     const noReview = (
-      <div className="biz-comment-container">
-        There is currently no review available for this business. Be the first one to review this business.
+      <div className='biz-comment-container'>
+        There is currently no review available for this business. Be the first
+        one to review this business.
       </div>
     );
-    
-    if (reviews.length === 1 && reviews[0] === "No Review Available") {
+
+    if (reviews.length === 1 && reviews[0] === 'No Review Available') {
       return noReview;
     } else {
       const renderReview = reviews.reverse().map((review, i) => {
         return (
-          <div className={`biz-comment-container review-${review.id}`} key={`review-${review.id}`}>
-            <div className="biz-comment-user">
-              <div className="biz-comment-name">
-                {review.user_name}
-              </div>
-              <div className="biz-comment-edit">
-                {((this.props.currentUser) && (this.props.currentUser.id === review.user_id)) ? (
+          <div
+            className={`biz-comment-container review-${review.id}`}
+            key={`review-${review.id}`}
+          >
+            <div className='biz-comment-user'>
+              <div className='biz-comment-name'>{review.user_name}</div>
+              <div className='biz-comment-edit'>
+                {this.props.currentUser &&
+                this.props.currentUser.id === review.user_id ? (
                   <Link to={`/reviews/${review.id}`}>Edit Review</Link>
                 ) : null}
               </div>
             </div>
-            <div className="biz-comment-body-container">
-              <div className="biz-comment-top">
+            <div className='biz-comment-body-container'>
+              <div className='biz-comment-top'>
                 {this.ratingGen(review.review_rating)}
-                <div>{(review.created_at) ? review.created_at.slice(0,7) : null}</div>
+                <div>
+                  {review.created_at ? review.created_at.slice(0, 7) : null}
+                </div>
               </div>
-              
-              <div className="biz-comment-text">{review.review_body}</div>
-              {
-                ((this.props.currentUser) && (this.props.currentUser.id === review.user_id)) ? (
-                  <div className="biz-comment-delete">
-                    <i className="material-icons" onClick={() => this.handleDelete(`${review.id}`)}>delete</i>
-                  </div>
-                ) : null
-              }
+
+              <div className='biz-comment-text'>{review.review_body}</div>
+              {this.props.currentUser &&
+              this.props.currentUser.id === review.user_id ? (
+                <div className='biz-comment-delete'>
+                  <i
+                    className='material-icons'
+                    onClick={() => this.handleDelete(`${review.id}`)}
+                  >
+                    delete
+                  </i>
+                </div>
+              ) : null}
             </div>
           </div>
-        )
+        );
       });
 
       return renderReview;
     }
-    
   }
 }
 

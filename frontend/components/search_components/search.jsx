@@ -1,4 +1,5 @@
 import React from 'react';
+import LiveSearchResult from './live_search_item';
 
 class Search extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class Search extends React.Component {
       keyword: keyword || '',
       near: near || 'San Francisco',
       filter: '',
+      results: null,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,7 +26,11 @@ class Search extends React.Component {
           keyword: e.currentTarget.value,
           near: this.state.near,
         });
-        this.props.liveSearch(query).then((res) => console.log(res));
+        this.props.liveSearch(query).then((res) => {
+          this.setState({ results: Object.values(res.res) });
+        });
+      } else if (e.currentTarget.value.length < 2 && field === 'keyword') {
+        this.setState({ results: null });
       }
       this.setState({ [field]: e.currentTarget.value });
     };
@@ -32,7 +38,10 @@ class Search extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const query = JSON.stringify(this.state);
+    const query = JSON.stringify({
+      keyword: this.state.keyword,
+      near: this.state.near,
+    });
     const keyword = this.state.keyword.split(' ').join('%20');
     const near = this.state.near.split(' ').join('%20');
     this.props
@@ -94,7 +103,11 @@ class Search extends React.Component {
   render() {
     return (
       <div>
-        <form className='search-form-container' onSubmit={this.handleSubmit}>
+        <form
+          className='search-form-container'
+          autoComplete='off'
+          onSubmit={this.handleSubmit}
+        >
           <div className='search-fields'>
             <div className='search-title'>Find</div>
             <input
@@ -103,6 +116,12 @@ class Search extends React.Component {
               className='search-keyword'
               onChange={this.updateField('keyword')}
             />
+            <div className='live-result'>
+              <LiveSearchResult
+                results={this.state.results}
+                keyword={this.state.keyword}
+              />
+            </div>
             <div className='search-holder'></div>
             <div className='search-title'>Near</div>
             <input
@@ -114,7 +133,7 @@ class Search extends React.Component {
               onChange={this.updateField('near')}
             />
           </div>
-          <div className='search-submit' onClick={this.handleSubmit}>
+          <div className='search-submit' onClick={(e) => this.handleSubmit(e)}>
             <input type='submit' defaultValue='Search' />
             <i className='material-icons'>search</i>
           </div>
