@@ -5,8 +5,15 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    let keyword = this.getUrlVars()['keyword'].split('%20').join(' ');
-    let near = this.getUrlVars()['near'].split('%20').join(' ');
+    let keyword = this.getUrlVars()['keyword'];
+    let near = this.getUrlVars()['near'];
+
+    if (keyword) {
+      keyword = keyword.split('%20').join(' ');
+    }
+    if (near) {
+      near = near.split('%20').join(' ');
+    }
 
     this.state = {
       keyword: keyword || '',
@@ -42,12 +49,12 @@ class Search extends React.Component {
       keyword: this.state.keyword,
       near: this.state.near,
     });
-    const keyword = this.state.keyword.split(' ').join('%20');
-    const near = this.state.near.split(' ').join('%20');
     this.props
       .searchBiz(query)
       .then(() =>
-        this.props.history.push(`/search?keyword=${keyword}&near=${near}`)
+        this.props.history.push(
+          `/search?keyword=${this.state.keyword}&near=${this.state.near}`
+        )
       );
   }
 
@@ -70,8 +77,8 @@ class Search extends React.Component {
     let searchNear = document.getElementsByClassName('search-near')[0];
 
     if (keyword) {
-      searchKey.value = keyword.split('%20').join(' ');
-      searchNear.value = near.split('%20').join(' ');
+      // searchKey.value = keyword.split('%20').join(' ');
+      // searchNear.value = near.split('%20').join(' ');
 
       this.setState({
         keyword: keyword.split('%20').join(' '),
@@ -89,8 +96,8 @@ class Search extends React.Component {
       let searchNear = document.getElementsByClassName('search-near')[0];
 
       if (keyword) {
-        searchKey.value = keyword.split('%20').join(' ');
-        searchNear.value = near.split('%20').join(' ');
+        // searchKey.value = keyword.split('%20').join(' ');
+        // searchNear.value = near.split('%20').join(' ');
 
         this.setState({
           keyword: keyword.split('%20').join(' '),
