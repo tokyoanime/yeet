@@ -8,7 +8,6 @@ const LiveSearchResult = ({ results, keyword }) => {
     liveResult[0].style.display = 'inline-block';
 
     document.addEventListener('click', (e) => {
-      console.log(e.target.className);
       if (e.target.className !== 'search-keyword') {
         liveResult[0].style.display = 'none';
       }
