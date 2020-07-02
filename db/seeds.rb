@@ -145,10 +145,3 @@ User.create({username: "demoUser", email: "demo@demouser.com", fname: "Demo User
     })
   end
 end
-
-# (1..10).each do |x|
-#   url = "https://as-yeet-seeds.s3-us-west-1.amazonaws.com/a_sack_of_potatoes/#{x}.jpg"
-#   file = open(url)
-#   filename = "a_sack_of_potatoes_#{x}.jpg"
-#   b1.pics.attach(io: file, filename: filename)
-# end
