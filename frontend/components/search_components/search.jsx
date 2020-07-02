@@ -39,6 +39,17 @@ class Search extends React.Component {
       } else if (e.currentTarget.value.length < 2 && field === 'keyword') {
         this.setState({ results: null });
       }
+      if (field === 'near') {
+        const query = JSON.stringify({
+          keyword: this.state.keyword,
+          near: e.currentTarget.value,
+        });
+        this.props.liveSearch(query).then((res) => {
+          this.setState({ results: Object.values(res.res) });
+        });
+      } else if (e.currentTarget.value.length < 2 && field === 'near') {
+        this.setState({ results: null });
+      }
       this.setState({ [field]: e.currentTarget.value });
     };
   }
@@ -127,6 +138,7 @@ class Search extends React.Component {
               <LiveSearchResult
                 results={this.state.results}
                 keyword={this.state.keyword}
+                near={this.state.near}
               />
             </div>
             <div className='search-holder'></div>

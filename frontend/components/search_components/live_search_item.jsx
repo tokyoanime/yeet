@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-const LiveSearchResult = ({ results, keyword }) => {
+const LiveSearchResult = ({ results, keyword, near }) => {
   let liveResult = document.getElementsByClassName('live-result');
 
   if (results && results.length > 0 && keyword.length >= 2) {
@@ -27,7 +27,11 @@ const LiveSearchResult = ({ results, keyword }) => {
     });
   } else {
     if (keyword.length >= 2) {
-      return <div>No search result for {keyword}</div>;
+      return (
+        <div>
+          No search result for {keyword} near {near}
+        </div>
+      );
     } else {
       if (liveResult[0]) {
         liveResult[0].style.display = 'none';
