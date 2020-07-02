@@ -52,3 +52,8 @@ export const searchBiz = (query) => (dispatch) => BizUtil.searchBiz(query)
       (biz) => dispatch(receiveAllBiz(biz)),
       (err) => dispatch(receiveBizErrors(err))
     )
+
+export const liveSearch = (query) => (dispatch) => BizUtil.liveSearch(query)
+  .then(
+    (biz) => dispatch(receiveAllBiz(biz)),
+    (err) => dispatch(receiveBizErrors(err))
