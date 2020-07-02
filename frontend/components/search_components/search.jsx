@@ -5,8 +5,8 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    let keyword = this.getUrlVars()['keyword'];
-    let near = this.getUrlVars()['near'];
+    let keyword = this.getUrlVars()['keyword'].split('%20').join(' ');
+    let near = this.getUrlVars()['near'].split('%20').join(' ');
 
     this.state = {
       keyword: keyword || '',
