@@ -81,7 +81,9 @@ class UpdateProfile extends React.Component {
           <div className='login-form-subcontainer'>
             <div className='update-form-header'>Update Your Profile</div>
             <form onSubmit={this.handleSubmit}>
+              <br />
               <label>
+                First Name:
                 <input
                   type='text'
                   className='fname'
