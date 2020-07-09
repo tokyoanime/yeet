@@ -155,25 +155,11 @@ class Search extends React.Component {
               name='near'
               className='search-near'
               onChange={this.updateField('near')}
+              defaultValue={this.state.near}
             >
-              <option
-                value='San Francisco'
-                selected={this.state.near === 'San Francisco' ? true : false}
-              >
-                San Francisco
-              </option>
-              <option
-                value='San Jose'
-                selected={this.state.near === 'San Jose' ? true : false}
-              >
-                San Jose
-              </option>
-              <option
-                value='Oakland'
-                selected={this.state.near === 'Oakland' ? true : false}
-              >
-                Oakland
-              </option>
+              <option value='San Francisco'>San Francisco</option>
+              <option value='San Jose'>San Jose</option>
+              <option value='Oakland'>Oakland</option>
             </select>
           </div>
           <div className='search-submit' onClick={(e) => this.handleSubmit(e)}>
