@@ -11,7 +11,11 @@ export default class Profile extends Component {
     this.toggleTable = this.toggleTable.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    if (this.props.user) {
+      this.props.getUser(this.props.user.id);
+    }
+  }
 
   editReview(id) {
     this.props.history.push(`/reviews/${id}`);
