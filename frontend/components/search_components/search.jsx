@@ -143,14 +143,38 @@ class Search extends React.Component {
             </div>
             <div className='search-holder'></div>
             <div className='search-title'>Near</div>
-            <input
+            {/* <input
               type='text'
               // defaultValue='San Francisco'
               value={this.state.near}
               placeholder='San Francisco'
               className='search-near'
               onChange={this.updateField('near')}
-            />
+            /> */}
+            <select
+              name='near'
+              className='search-near'
+              onChange={this.updateField('near')}
+            >
+              <option
+                value='San Francisco'
+                selected={this.state.near === 'San Francisco' ? true : false}
+              >
+                San Francisco
+              </option>
+              <option
+                value='San Jose'
+                selected={this.state.near === 'San Jose' ? true : false}
+              >
+                San Jose
+              </option>
+              <option
+                value='Oakland'
+                selected={this.state.near === 'Oakland' ? true : false}
+              >
+                Oakland
+              </option>
+            </select>
           </div>
           <div className='search-submit' onClick={(e) => this.handleSubmit(e)}>
             <input type='submit' defaultValue='Search' />
