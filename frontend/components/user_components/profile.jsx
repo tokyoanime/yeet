@@ -6,18 +6,46 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.renderReviews = this.renderReviews.bind(this);
+    this.editReview = this.editReview.bind(this);
+    this.deleteReview = this.deleteReview.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getUser(this.props.user.id);
+  }
+
+  editReview(id) {
+    this.props.history.push(`/reviews/${id}`);
+  }
+
+  deleteReview(id) {
+    this.props.deleteReview(id).then(() => {
+      const review = document.getElementsByClassName(`review-${id}`);
+      console.log(review);
+      review[0].innerHTML =
+        '<td colspan="3" className="row-deleted" style="text-align: center; color: #d43434;">Review has been deleted.</td>';
+    });
   }
 
   renderReviews(reviews) {
     return reviews.map((review) => {
       return (
-        <tr key={review.id}>
+        <tr key={review.id} className={`review-${review.id}`}>
           <td>
             <Link to={`/biz/${review.business_id}`}>{review.biz_name}</Link>
           </td>
           <td>{review.review_body}</td>
           <td>
-            <Link to={`/reviews/${review.id}`}>Edit Review</Link>
+            {/* <Link to={`/reviews/${review.id}`}>Edit Review</Link> */}
+            <button onClick={() => this.editReview(review.id)}>
+              Edit Review
+            </button>
+            <button
+              className='btn-delete'
+              onClick={() => this.deleteReview(review.id)}
+            >
+              Delete Review
+            </button>
           </td>
         </tr>
       );
@@ -53,7 +81,7 @@ export default class Profile extends Component {
                   </tr>
                 </tbody>
               </table>
-              <Link to='/'>Edit Profile</Link>
+              <Link to='/profile/edit'>Edit Profile</Link>
             </div>
             <br />
             <div>

@@ -45,4 +45,24 @@
   a:hover {
     text-decoration: underline;
   }
+
+  button {
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    transition-duration: 0.6s;
+  }
+
+  .btn-delete:hover {
+    background-color: #d43434;
+    border-color: #d43434;
+  }
+
+  button:hover {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    color: white;
+  }
 }
