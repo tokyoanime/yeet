@@ -14,6 +14,7 @@ class UpdateProfile extends React.Component {
       lname: lname,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateField = this.updateField.bind(this);
   }
 
   componentDidMount() {
@@ -23,12 +24,13 @@ class UpdateProfile extends React.Component {
   updateField(field) {
     let that = this.state;
     return (e) => {
-      let temp = that[field];
+      let temp = this.state[field];
+      console.log(temp);
       if (field === 'fname' || field === 'lname') {
-        if (temp.length > 0) {
+        if (e.target.value.length > 0) {
           temp = e.target.value[0].toUpperCase() + e.target.value.slice(1);
         } else {
-          temp = e.target.value.toUpperCase();
+          temp = e.target.value;
         }
       } else {
         temp = e.target.value;
@@ -92,6 +94,7 @@ class UpdateProfile extends React.Component {
               <br />
 
               <label>
+                Last Name:
                 <input
                   type='text'
                   className='lname'
@@ -104,6 +107,7 @@ class UpdateProfile extends React.Component {
               <br />
 
               <label>
+                Username:
                 <input
                   type='text'
                   className='username'
@@ -121,6 +125,7 @@ class UpdateProfile extends React.Component {
               )}
 
               <label>
+                Email:
                 <input
                   type='email'
                   className='email'
