@@ -27,12 +27,6 @@ const searchResults = (res) => ({
   res,
 });
 
-export const fetchBiz = () => (dispatch) =>
-  BizUtil.fetchBiz().then(
-    (biz) => dispatch(receiveAllBiz(biz)),
-    (err) => dispatch(receiveBizErrors(err))
-  );
-
 export const createBiz = (biz) => (dispatch) =>
   BizUtil.createBiz(biz).then(
     (biz) => dispatch(receiveBiz(biz)),

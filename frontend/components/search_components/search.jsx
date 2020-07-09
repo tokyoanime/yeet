@@ -19,7 +19,7 @@ class Search extends React.Component {
       keyword: keyword || '',
       near: near || 'San Francisco',
       filter: '',
-      results: this.props.liveResult || {},
+      results: this.props.results || {},
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -136,9 +136,10 @@ class Search extends React.Component {
       }
 
       const query = JSON.stringify({
-        keyword: this.state.keyword,
-        near: this.state.near,
+        keyword,
+        near,
       });
+
       this.props.liveSearch(query).then((res) => {
         this.setState({ results: Object.values(res.res) });
 
