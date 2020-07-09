@@ -106,12 +106,12 @@ class Search extends React.Component {
     });
     this.props.liveSearch(query).then((res) => {
       this.setState({ results: Object.values(res.res) });
-    });
 
-    let liveResult = document.getElementsByClassName('live-result')[0];
-    if (liveResult) {
-      liveResult.style.display = 'none';
-    }
+      let liveResult = document.getElementsByClassName('live-result')[0];
+      if (liveResult) {
+        liveResult.style.display = 'none';
+      }
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -141,12 +141,12 @@ class Search extends React.Component {
       });
       this.props.liveSearch(query).then((res) => {
         this.setState({ results: Object.values(res.res) });
-      });
 
-      let liveResult = document.getElementsByClassName('live-result')[0];
-      if (liveResult) {
-        liveResult.style.display = 'none';
-      }
+        let liveResult = document.getElementsByClassName('live-result')[0];
+        if (liveResult) {
+          liveResult.style.display = 'none';
+        }
+      });
     }
   }
 
