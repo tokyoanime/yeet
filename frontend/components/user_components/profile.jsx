@@ -19,7 +19,6 @@ export default class Profile extends Component {
   deleteReview(id) {
     this.props.deleteReview(id).then(() => {
       const review = document.getElementsByClassName(`review-${id}`);
-      console.log(review);
       review[0].innerHTML =
         '<td colspan="3" className="row-deleted" style="text-align: center; color: #d43434;">Review has been deleted.</td>';
     });

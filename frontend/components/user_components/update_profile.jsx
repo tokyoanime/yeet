@@ -25,7 +25,6 @@ class UpdateProfile extends React.Component {
     let that = this.state;
     return (e) => {
       let temp = this.state[field];
-      console.log(temp);
       if (field === 'fname' || field === 'lname') {
         if (e.target.value.length > 0) {
           temp = e.target.value[0].toUpperCase() + e.target.value.slice(1);
