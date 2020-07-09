@@ -4,7 +4,7 @@ import { deleteReview } from '../../actions/review_actions';
 import Profile from './profile';
 
 const mstp = ({ session, entities }) => ({
-  user: entities.users[session.currentUserId],
+  user: entities.users[session.currentUserId] || '',
 });
 
 const mdtp = ({ session }) => (dispatch) => ({

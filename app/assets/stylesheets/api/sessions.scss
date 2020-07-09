@@ -37,6 +37,15 @@
   font-size: 20px;
 }
 
+.update-form-header {
+  width: 100%;
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .login-form-subheader {
   width: 100%;
   display: flex;
@@ -45,7 +54,7 @@
   font-size: 15px;
 }
 
-#btn-session-login{
+#btn-session-login {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,7 +75,7 @@
   color: white;
 }
 
-#btn-demo-login{
+#btn-demo-login {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,7 +136,8 @@
   margin: 0 auto;
 }
 
-#username, #password {
+#username,
+#password {
   width: 278px;
   height: 20px;
   padding: 5px 9px;

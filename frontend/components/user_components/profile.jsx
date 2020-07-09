@@ -10,9 +10,7 @@ export default class Profile extends Component {
     this.deleteReview = this.deleteReview.bind(this);
   }
 
-  componentDidMount() {
-    this.props.getUser(this.props.user.id);
-  }
+  componentDidMount() {}
 
   editReview(id) {
     this.props.history.push(`/reviews/${id}`);
@@ -53,58 +51,57 @@ export default class Profile extends Component {
   }
 
   render() {
-    if (this.props.user) {
-      const { id, username, email, fname, lname, reviews } = this.props.user;
-      return (
-        <Fragment>
-          <TopNavContainer />
-          <div className='profile-container'>
-            <div>
-              <h2>Profile Overview:</h2>
+    if (!this.props.user) {
+      return null;
+    }
+
+    const { id, username, email, fname, lname, reviews } = this.props.user;
+    return (
+      <Fragment>
+        <TopNavContainer />
+        <div className='profile-container'>
+          <div>
+            <h2>Profile Overview:</h2>
+            <table>
+              <tbody>
+                <tr>
+                  <td>Username:</td>
+                  <td>{username}</td>
+                </tr>
+                <tr>
+                  <td>Email:</td>
+                  <td>{email}</td>
+                </tr>
+                <tr>
+                  <td>First Name:</td>
+                  <td>{fname}</td>
+                </tr>
+                <tr>
+                  <td>Last Name:</td>
+                  <td>{lname}</td>
+                </tr>
+              </tbody>
+            </table>
+            <Link to='/profile/edit'>Edit Profile</Link>
+          </div>
+          <br />
+          <div>
+            <h4>You have a total of: {reviews.length} reviews</h4>
+            {reviews.length > 0 ? (
               <table>
                 <tbody>
                   <tr>
-                    <td>Username:</td>
-                    <td>{username}</td>
+                    <th>Business Name</th>
+                    <th>Your Review</th>
+                    <th></th>
                   </tr>
-                  <tr>
-                    <td>Email:</td>
-                    <td>{email}</td>
-                  </tr>
-                  <tr>
-                    <td>First Name:</td>
-                    <td>{fname}</td>
-                  </tr>
-                  <tr>
-                    <td>Last Name:</td>
-                    <td>{lname}</td>
-                  </tr>
+                  {this.renderReviews(reviews)}
                 </tbody>
               </table>
-              <Link to='/profile/edit'>Edit Profile</Link>
-            </div>
-            <br />
-            <div>
-              <h4>You have a total of: {reviews.length} reviews</h4>
-              {reviews.length > 0 ? (
-                <table>
-                  <tbody>
-                    <tr>
-                      <th>Business Name</th>
-                      <th>Your Review</th>
-                      <th></th>
-                    </tr>
-                    {this.renderReviews(reviews)}
-                  </tbody>
-                </table>
-              ) : null}
-            </div>
+            ) : null}
           </div>
-        </Fragment>
-      );
-    } else {
-      this.props.history.push('/login');
-      return <Fragment></Fragment>;
-    }
+        </div>
+      </Fragment>
+    );
   }
 }
