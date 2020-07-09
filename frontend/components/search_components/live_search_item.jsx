@@ -18,11 +18,9 @@ const LiveSearchResult = ({ results, keyword, near }) => {
 
     return Object.values(results).map((res, idx) => {
       return (
-        <Fragment>
-          <div key={res.id}>
-            <Link to={`/biz/${res.id}`}>{`${idx + 1}. ${res.biz_name}`}</Link>
-          </div>
-        </Fragment>
+        <div key={`liveSearch-${res.id}`}>
+          <Link to={`/biz/${res.id}`}>{`${idx + 1}. ${res.biz_name}`}</Link>
+        </div>
       );
     });
   } else {
