@@ -143,6 +143,9 @@ class UpdateProfile extends React.Component {
                 ''
               )}
               <button id='btn-session-login'>Update Profile</button>
+              <div>
+                <Link to='/profile'>Back To Profile Page</Link>
+              </div>
             </form>
           </div>
         </div>

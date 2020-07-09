@@ -8,6 +8,7 @@ export default class Profile extends Component {
     this.renderReviews = this.renderReviews.bind(this);
     this.editReview = this.editReview.bind(this);
     this.deleteReview = this.deleteReview.bind(this);
+    this.toggleTable = this.toggleTable.bind(this);
   }
 
   componentDidMount() {}
@@ -24,16 +25,36 @@ export default class Profile extends Component {
     });
   }
 
+  toggleTable() {
+    const table = document.getElementsByClassName(`review-table`);
+    const numberOfRows = table[0].childNodes[1].childElementCount;
+    const body = table[0].childNodes[1];
+    const toggleText = document.getElementsByClassName(`table-toggle`);
+
+    for (let i = 5; i < numberOfRows; i++) {
+      if (body.childNodes[i].hidden) {
+        body.childNodes[i].hidden = false;
+        toggleText[0].innerHTML = 'Show Only Recent Reviews';
+      } else {
+        body.childNodes[i].hidden = true;
+        toggleText[0].innerHTML = 'Show All Reviews';
+      }
+    }
+  }
+
   renderReviews(reviews) {
-    return reviews.map((review) => {
+    return reviews.map((review, idx) => {
       return (
-        <tr key={review.id} className={`review-${review.id}`}>
-          <td>
+        <tr
+          key={review.id}
+          className={`review-${review.id}`}
+          hidden={idx > 4 ? true : false}
+        >
+          <td className='review-business-name'>
             <Link to={`/biz/${review.business_id}`}>{review.biz_name}</Link>
           </td>
-          <td>{review.review_body}</td>
-          <td>
-            {/* <Link to={`/reviews/${review.id}`}>Edit Review</Link> */}
+          <td className='review-body'>{review.review_body}</td>
+          <td className='btns'>
             <button onClick={() => this.editReview(review.id)}>
               Edit Review
             </button>
@@ -87,15 +108,23 @@ export default class Profile extends Component {
           <div>
             <h4>You have a total of: {reviews.length} reviews</h4>
             {reviews.length > 0 ? (
-              <table>
-                <tbody>
+              <table className='review-table'>
+                <thead>
+                  <tr hidden={reviews.length > 5 ? false : true}>
+                    <td
+                      colSpan='3'
+                      className='table-toggle'
+                      onClick={this.toggleTable}
+                    >
+                      Show All Reviews
+                    </td>
+                  </tr>
                   <tr>
                     <th>Business Name</th>
-                    <th>Your Review</th>
-                    <th></th>
+                    <th colSpan='2'>Your Review</th>
                   </tr>
-                  {this.renderReviews(reviews)}
-                </tbody>
+                </thead>
+                <tbody>{this.renderReviews(reviews)}</tbody>
               </table>
             ) : null}
           </div>
