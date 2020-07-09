@@ -45,6 +45,7 @@ class YeetHome extends React.Component {
           </div>
           <div className='session-menu-login'>
             <div className='nav-top-greeting'>Hello, {currentUser.fname}</div>
+            <div>|</div>
             <div>
               <Link to='/profile'>View Profile</Link>
             </div>

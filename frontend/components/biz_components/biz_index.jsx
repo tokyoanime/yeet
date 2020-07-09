@@ -11,7 +11,7 @@ class BizIndex extends React.Component {
 
     this.state = {
       keyword: keyword || '',
-      near: near || ''
+      near: near || '',
     };
   }
 
@@ -19,7 +19,7 @@ class BizIndex extends React.Component {
     let query = {};
     const parts = window.location.href.replace(
       /[?&]+([^=&]+)=([^&]*)/gi,
-      function(m, key, value) {
+      function (m, key, value) {
         query[key] = value;
       }
     );
@@ -37,11 +37,14 @@ class BizIndex extends React.Component {
 
     if (keyword) {
       searchKey.value = keyword.split('%20').join(' ');
-      searchNear.value = near.split('%20').join(' ');
+      searchNear.value = near
+        .split('%20')
+        .join(' ')
+        .replace(/(^\w{1})|(\s+\w{1})/g, (match) => match.toUpperCase());
 
       this.setState({
         keyword: keyword.split('%20').join(' '),
-        near: near.split('%20').join(' ')
+        near: near.split('%20').join(' '),
       });
 
       const query = JSON.stringify(this.state);
@@ -54,15 +57,30 @@ class BizIndex extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.location.search !== this.props.location.search) {
-      let keyword = this.getUrlVars()
-        ['keyword'].split('%20')
-        .join(' ');
-      let near = this.getUrlVars()
-        ['near'].split('%20')
-        .join(' ');
+      let keyword = this.getUrlVars()['keyword'];
+      let near = this.getUrlVars()['near'];
 
-      const query = JSON.stringify({ keyword, near });
-      this.props.searchBiz(query);
+      let searchKey = document.getElementsByClassName('search-keyword')[0];
+      let searchNear = document.getElementsByClassName('search-near')[0];
+
+      if (keyword) {
+        searchKey.value = keyword.split('%20').join(' ');
+        searchNear.value = near
+          .split('%20')
+          .join(' ')
+          .replace(/(^\w{1})|(\s+\w{1})/g, (match) => match.toUpperCase());
+
+        this.setState({
+          keyword: keyword.split('%20').join(' '),
+          near: near.split('%20').join(' '),
+        });
+
+        const query = JSON.stringify(this.state);
+        this.props.searchBiz(query);
+      } else {
+        const query = JSON.stringify(this.state);
+        this.props.searchBiz(query);
+      }
     }
   }
 
@@ -147,7 +165,7 @@ class BizIndex extends React.Component {
 
       let reviewRating = 0;
       let reviewCounter = 0;
-      el.reviews.map(review => {
+      el.reviews.map((review) => {
         reviewRating += review.review_rating;
         reviewCounter += 1;
       });

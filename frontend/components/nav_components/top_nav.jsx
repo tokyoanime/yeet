@@ -15,6 +15,7 @@ class TopNav extends React.Component {
       currentUser !== undefined ? (
         <div className='session-menu-container'>
           <div className='nav-top-greeting'>Hello, {currentUser.fname}</div>
+          <div>|</div>
           <div>
             <Link to='/profile'>View Profile</Link>
           </div>
