@@ -19,7 +19,7 @@ class Search extends React.Component {
       keyword: keyword || '',
       near: near || 'San Francisco',
       filter: '',
-      results: null,
+      results: this.props.liveResult || {},
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,7 +37,7 @@ class Search extends React.Component {
           this.setState({ results: Object.values(res.res) });
         });
       } else if (e.currentTarget.value.length < 2 && field === 'keyword') {
-        this.setState({ results: null });
+        this.setState({ results: {} });
       }
       if (field === 'near') {
         const query = JSON.stringify({
@@ -48,7 +48,7 @@ class Search extends React.Component {
           this.setState({ results: Object.values(res.res) });
         });
       } else if (e.currentTarget.value.length < 2 && field === 'near') {
-        this.setState({ results: null });
+        this.setState({ results: {} });
       }
       this.setState({ [field]: e.currentTarget.value });
     };
@@ -88,13 +88,29 @@ class Search extends React.Component {
     let searchNear = document.getElementsByClassName('search-near')[0];
 
     if (keyword) {
-      // searchKey.value = keyword.split('%20').join(' ');
-      // searchNear.value = near.split('%20').join(' ');
+      searchKey.value = keyword.split('%20').join(' ');
+      searchNear.value = near
+        .split('%20')
+        .join(' ')
+        .replace(/(^\w{1})|(\s+\w{1})/g, (match) => match.toUpperCase());
 
       this.setState({
         keyword: keyword.split('%20').join(' '),
         near: near.split('%20').join(' '),
       });
+    }
+
+    const query = JSON.stringify({
+      keyword: this.state.keyword,
+      near: this.state.near,
+    });
+    this.props.liveSearch(query).then((res) => {
+      this.setState({ results: Object.values(res.res) });
+    });
+
+    let liveResult = document.getElementsByClassName('live-result')[0];
+    if (liveResult) {
+      liveResult.style.display = 'none';
     }
   }
 
@@ -107,13 +123,29 @@ class Search extends React.Component {
       let searchNear = document.getElementsByClassName('search-near')[0];
 
       if (keyword) {
-        // searchKey.value = keyword.split('%20').join(' ');
-        // searchNear.value = near.split('%20').join(' ');
+        searchKey.value = keyword.split('%20').join(' ');
+        searchNear.value = near
+          .split('%20')
+          .join(' ')
+          .replace(/(^\w{1})|(\s+\w{1})/g, (match) => match.toUpperCase());
 
         this.setState({
           keyword: keyword.split('%20').join(' '),
           near: near.split('%20').join(' '),
         });
+      }
+
+      const query = JSON.stringify({
+        keyword: this.state.keyword,
+        near: this.state.near,
+      });
+      this.props.liveSearch(query).then((res) => {
+        this.setState({ results: Object.values(res.res) });
+      });
+
+      let liveResult = document.getElementsByClassName('live-result')[0];
+      if (liveResult) {
+        liveResult.style.display = 'none';
       }
     }
   }

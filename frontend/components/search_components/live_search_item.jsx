@@ -2,19 +2,16 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 const LiveSearchResult = ({ results, keyword, near }) => {
-  let liveResult = document.getElementsByClassName('live-result');
+  let liveResult = document.getElementsByClassName('live-result')[0];
 
-  if (results && results.length > 0 && keyword.length >= 2) {
-    liveResult[0].style.display = 'inline-block';
+  document.addEventListener('click', (e) => {
+    if (e.target.className !== 'search-keyword' && liveResult) {
+      liveResult.style.display = 'none';
+    }
+  });
 
-    document.addEventListener('click', (e) => {
-      if (e.target.className !== 'search-keyword') {
-        liveResult[0].style.display = 'none';
-      }
-      if (!results) {
-        liveResult[0].style.display = 'none';
-      }
-    });
+  if (!jQuery.isEmptyObject(results) && keyword.length >= 2) {
+    liveResult.style.display = 'inline-block';
 
     return Object.values(results).map((res, idx) => {
       return (
@@ -25,19 +22,21 @@ const LiveSearchResult = ({ results, keyword, near }) => {
         </Fragment>
       );
     });
-  } else {
-    if (keyword.length >= 2) {
-      return (
-        <div>
-          No search result for {keyword} near {near}
-        </div>
-      );
-    } else {
-      if (liveResult[0]) {
-        liveResult[0].style.display = 'none';
-      }
-      return <div></div>;
+  } else if (keyword.length >= 2 && jQuery.isEmptyObject(results)) {
+    if (liveResult) {
+      liveResult.style.display = 'inline-block';
     }
+    return (
+      <div>
+        No search result for <span className='no-result-key'>{keyword}</span>{' '}
+        near {near}
+      </div>
+    );
+  } else {
+    if (liveResult) {
+      liveResult.style.display = 'none';
+    }
+    return <div></div>;
   }
 };
 
