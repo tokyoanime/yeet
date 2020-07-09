@@ -14,7 +14,7 @@ class BizShow extends React.Component {
       review_body: '',
       review_rating: '',
       user_id: '',
-      business_id: ''
+      business_id: '',
     };
     this.handleNext = this.handleNext.bind(this);
     this.handlePrev = this.handlePrev.bind(this);
@@ -35,7 +35,7 @@ class BizShow extends React.Component {
   }
 
   updateField(field) {
-    return e => {
+    return (e) => {
       this.setState({ [field]: e.currentTarget.value });
     };
   }
@@ -165,7 +165,7 @@ class BizShow extends React.Component {
 
     let reviewRating = 0;
     let reviewCounter = 0;
-    biz.reviews.map(review => {
+    biz.reviews.map((review) => {
       reviewRating += review.review_rating;
       reviewCounter += 1;
     });
@@ -234,7 +234,7 @@ class BizShow extends React.Component {
                   <div style={{ height: '100%', width: '100%' }}>
                     <GoogleMapReact
                       bootstrapURLKeys={{
-                        key: 'AIzaSyD9Ef-amJ3Cvg1T8w5yb15HPz8MMF47b6Q'
+                        key: 'AIzaSyD9Ef-amJ3Cvg1T8w5yb15HPz8MMF47b6Q',
                       }}
                       defaultCenter={{ lat: biz.biz_lat, lng: biz.biz_lng }}
                       defaultZoom={15}
@@ -300,7 +300,7 @@ class BizShow extends React.Component {
 
           <div className='biz-sub-right'>
             <div className='biz-static-info-container'>
-              {bizUrl}
+              {/* {bizUrl} */}
 
               <div className='biz-phone-container'>
                 <div>
