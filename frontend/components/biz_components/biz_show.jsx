@@ -24,14 +24,14 @@ class BizShow extends React.Component {
   componentDidMount() {
     this.props.getBiz(this.props.match.params.bizId);
     this.props.clearErrors();
+
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.bizId != this.props.match.params.bizId) {
       this.props.getBiz(this.props.match.params.bizId);
     }
-
-    window.scrollTo(0, 0);
   }
 
   updateField(field) {
@@ -59,7 +59,9 @@ class BizShow extends React.Component {
   }
 
   scrollPage() {
-    // document.getElementById('startReviewSection').scrollIntoView({behavior: "smooth"});
+    // document
+    //   .getElementById('startReviewSection')
+    //   .scrollIntoView({ behavior: 'smooth' });
     window.scrollTo(0, 700);
   }
 
