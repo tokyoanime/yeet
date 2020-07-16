@@ -34,8 +34,6 @@ class BizIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.clearErrors();
-
     let keyword = this.getUrlVars()['keyword'];
     let near = this.getUrlVars()['near'];
 
@@ -53,6 +51,14 @@ class BizIndex extends React.Component {
         keyword: keyword.split('%20').join(' '),
         near: near.split('%20').join(' '),
       });
+<<<<<<< HEAD
+=======
+    }
+
+    let liveResult = document.getElementsByClassName('live-result');
+    if (liveResult) {
+      liveResult[0].style.display = 'none';
+>>>>>>> 4f097902ac7a5217e8df7bfb4c5fbfa7668b9568
     }
     const query = JSON.stringify(this.state);
     this.props.searchBiz(query);
@@ -78,8 +84,16 @@ class BizIndex extends React.Component {
           near: near.split('%20').join(' '),
         });
       }
+<<<<<<< HEAD
       const query = JSON.stringify({ keyword, near });
       this.props.searchBiz(query);
+=======
+
+      let liveResult = document.getElementsByClassName('live-result');
+      if (liveResult) {
+        liveResult[0].style.display = 'none';
+      }
+>>>>>>> 4f097902ac7a5217e8df7bfb4c5fbfa7668b9568
     }
   }
 

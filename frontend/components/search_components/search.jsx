@@ -24,6 +24,7 @@ class Search extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateField = this.updateField.bind(this);
+    this.getUrlVars = this.getUrlVars.bind(this);
   }
 
   updateField(field) {
@@ -34,6 +35,7 @@ class Search extends React.Component {
           near: this.state.near,
         });
         this.props.liveSearch(query).then((res) => {
+          // console.log(jQuery.isEmptyObject(res.res));
           this.setState({ results: Object.values(res.res) });
         });
       } else if (e.currentTarget.value.length < 2 && field === 'keyword') {
@@ -100,6 +102,7 @@ class Search extends React.Component {
       });
     }
 
+<<<<<<< HEAD
     const query = JSON.stringify({
       keyword: this.state.keyword,
       near: this.state.near,
@@ -112,6 +115,12 @@ class Search extends React.Component {
         liveResult.style.display = 'none';
       }
     });
+=======
+    let liveResult = document.getElementsByClassName('live-result');
+    if (liveResult) {
+      liveResult[0].style.display = 'none';
+    }
+>>>>>>> 4f097902ac7a5217e8df7bfb4c5fbfa7668b9568
   }
 
   componentDidUpdate(prevProps) {
@@ -135,6 +144,7 @@ class Search extends React.Component {
         });
       }
 
+<<<<<<< HEAD
       const query = JSON.stringify({
         keyword,
         near,
@@ -148,6 +158,12 @@ class Search extends React.Component {
           liveResult.style.display = 'none';
         }
       });
+=======
+      let liveResult = document.getElementsByClassName('live-result');
+      if (liveResult) {
+        liveResult[0].style.display = 'none';
+      }
+>>>>>>> 4f097902ac7a5217e8df7bfb4c5fbfa7668b9568
     }
   }
 
@@ -176,17 +192,10 @@ class Search extends React.Component {
             </div>
             <div className='search-holder'></div>
             <div className='search-title'>Near</div>
-            {/* <input
-              type='text'
-              // defaultValue='San Francisco'
-              value={this.state.near}
-              placeholder='San Francisco'
-              className='search-near'
-              onChange={this.updateField('near')}
-            /> */}
             <select
               name='near'
               className='search-near'
+              defaultValue={this.state.near}
               onChange={this.updateField('near')}
               defaultValue={this.state.near}
             >
