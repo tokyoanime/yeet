@@ -102,7 +102,6 @@ class Search extends React.Component {
       });
     }
 
-<<<<<<< HEAD
     const query = JSON.stringify({
       keyword: this.state.keyword,
       near: this.state.near,
@@ -115,12 +114,6 @@ class Search extends React.Component {
         liveResult.style.display = 'none';
       }
     });
-=======
-    let liveResult = document.getElementsByClassName('live-result');
-    if (liveResult) {
-      liveResult[0].style.display = 'none';
-    }
->>>>>>> 4f097902ac7a5217e8df7bfb4c5fbfa7668b9568
   }
 
   componentDidUpdate(prevProps) {
@@ -144,7 +137,6 @@ class Search extends React.Component {
         });
       }
 
-<<<<<<< HEAD
       const query = JSON.stringify({
         keyword,
         near,
@@ -158,12 +150,6 @@ class Search extends React.Component {
           liveResult.style.display = 'none';
         }
       });
-=======
-      let liveResult = document.getElementsByClassName('live-result');
-      if (liveResult) {
-        liveResult[0].style.display = 'none';
-      }
->>>>>>> 4f097902ac7a5217e8df7bfb4c5fbfa7668b9568
     }
   }
 
