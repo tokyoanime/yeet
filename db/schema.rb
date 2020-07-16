@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_18_224411) do
+ActiveRecord::Schema.define(version: 2020_07_16_053241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,15 @@ ActiveRecord::Schema.define(version: 2019_09_18_224411) do
     t.index ["biz_lng"], name: "index_businesses_on_biz_lng"
     t.index ["biz_name", "biz_address", "biz_zipcode"], name: "index_businesses_on_biz_name_and_biz_address_and_biz_zipcode", unique: true
     t.index ["biz_price_range"], name: "index_businesses_on_biz_price_range"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "business_id", null: false
+    t.boolean "fav", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "business_id"], name: "index_favorites_on_user_id_and_business_id", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|

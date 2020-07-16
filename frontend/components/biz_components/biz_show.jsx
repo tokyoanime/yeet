@@ -19,10 +19,14 @@ class BizShow extends React.Component {
     this.handleNext = this.handleNext.bind(this);
     this.handlePrev = this.handlePrev.bind(this);
     this.scrollPage = this.scrollPage.bind(this);
+    this.handleFav = this.handleFav.bind(this);
   }
 
   componentDidMount() {
     this.props.getBiz(this.props.match.params.bizId);
+    this.props
+      .fetchFav(this.props.match.params.bizId)
+      .then((res) => console.log(res));
     this.props.clearErrors();
 
     window.scrollTo(0, 0);
@@ -38,6 +42,13 @@ class BizShow extends React.Component {
     return (e) => {
       this.setState({ [field]: e.currentTarget.value });
     };
+  }
+
+  handleFav() {
+    this.props.createFav({
+      business_id: this.props.match.params.bizId,
+      fav: true,
+    });
   }
 
   handleNext() {
@@ -210,21 +221,6 @@ class BizShow extends React.Component {
                     <i className='material-icons'>star</i>Write a Review
                   </button>
                 </div>
-                {/* <div className="btn-add-photo">
-                  <button className="btn-biz-show">
-                    <i className="material-icons">add_a_photo</i>Add Photo
-                  </button>
-                </div>
-                <div className="btn-share">
-                  <button className="btn-biz-show">
-                    <i className="material-icons">share</i>Share
-                  </button>
-                </div>
-                <div className="btn-save">
-                  <button className="btn-biz-show">
-                    <i className="material-icons">bookmark</i>Save
-                  </button>
-                </div> */}
               </div>
             </div>
 

@@ -4,3 +4,4 @@ json.extract! biz, :biz_first_cat, :biz_second_cat, :biz_third_cat
 json.extract! biz, :biz_mo_hrs, :biz_tu_hrs, :biz_we_hrs, :biz_th_hrs, :biz_fr_hrs, :biz_sa_hrs, :biz_su_hrs
 json.picUrls biz.pics.map { |file| url_for(file) }
 json.reviews biz.reviews.reverse().map {|el| el}
+json.favorites biz.favorites.map {|el| el}

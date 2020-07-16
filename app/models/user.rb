@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_many :reviews
-  # has_many :businesses
+  has_many :favorites
   
   def self.find_user(username, password)
     user = User.find_by(username: username)

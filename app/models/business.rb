@@ -39,6 +39,7 @@ class Business < ApplicationRecord
 
   has_many_attached :pics
   has_many :reviews
+  has_many :favorites
 
   def self.text_search(query)
     keyword = query["keyword"]
