@@ -54,7 +54,7 @@
     font-size: 30px;
     font-weight: bold;
   }
-  
+
   .biz-rating-container {
     display: flex;
     flex-direction: row;
@@ -73,7 +73,7 @@
     }
 
     .checked {
-      color: orange;
+      color: #d43434;
     }
 
     .half {
@@ -84,7 +84,7 @@
       padding-left: 10px;
     }
   }
-  
+
   .biz-general-info {
     display: flex;
     flex-direction: row;
@@ -126,7 +126,7 @@
     .biz-map {
       width: auto;
       height: 150px;
-      background-color: green; 
+      background-color: green;
     }
 
     .biz-address {
@@ -156,14 +156,12 @@
 }
 
 .biz-comments-container {
-
   .current-user-reviews {
-
     button {
       border: 1px solid #dddddd;
       border-radius: 5px;
       padding: 5px;
-      transition-duration: .4s;
+      transition-duration: 0.4s;
     }
 
     button:hover {
@@ -185,7 +183,7 @@
 
     a {
       font-weight: bold;
-      transition-delay: .4s;
+      transition-delay: 0.4s;
       cursor: pointer;
       text-decoration: none;
     }
@@ -200,35 +198,33 @@
       flex-direction: column;
       justify-content: center;
 
-      input[type="submit"] {
+      input[type='submit'] {
         margin-top: 5px;
         padding: 5px;
         border: 1px solid #dddddd;
         border-radius: 5px;
         transition-duration: 0.4s;
-        background-color: rgb(30, 8, 129);
+        background-color: #d43434;
         color: white;
         cursor: pointer;
       }
 
-      input[type="submit"]:hover {
-        background-color: #3023eb;
+      input[type='submit']:hover {
+        background-color: #9c1111;
       }
 
       input:focus {
         box-shadow: 0px 0px;
       }
-
     }
 
     textarea {
       resize: none;
       width: 95%;
       padding: 10px;
-      border: .5px solid #dddddd;
+      border: 0.5px solid #dddddd;
       border-radius: 5px;
     }
-
   }
 
   .biz-comment-container {
@@ -250,28 +246,25 @@
       display: flex;
       flex-direction: column;
 
-        div {
-          margin: 6px 0px 6px 10px;
-        }
+      div {
+        margin: 6px 0px 6px 10px;
+      }
 
-        .review-star-rating {
-          align-items: flex-start;
-          margin: 0px;
+      .review-star-rating {
+        align-items: flex-start;
+        margin: 0px;
 
-          i {
+        i {
           margin: 0px;
           padding: 0px;
           font-size: 18px;
           color: #dddddd;
-          }
-
-          .checked {
-            color: orange;
-          }
         }
 
-        
-
+        .checked {
+          color: #d43434;
+        }
+      }
     }
   }
 }
@@ -299,7 +292,7 @@
   div {
     display: flex;
     align-items: center;
-    
+
     div {
       display: flex;
       align-items: flex-start;
@@ -311,7 +304,10 @@
     flex-direction: column;
   }
 
-  .biz-url-container, .biz-phone-container, .biz-address-container, .biz-known-for-container {
+  .biz-url-container,
+  .biz-phone-container,
+  .biz-address-container,
+  .biz-known-for-container {
     border-bottom: 1px solid #dddddd;
     padding: 14px 11px 11px 11px;
   }
@@ -343,7 +339,7 @@
   font-size: 12px;
   transition-duration: 0.4s;
   cursor: pointer;
-  
+
   i {
     width: 18px;
     height: 18px;
