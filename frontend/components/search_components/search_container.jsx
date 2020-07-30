@@ -8,7 +8,6 @@ const mstp = (state) => ({
   currentUser: state.entities.users[state.session.currentUserId],
   err: state.errors.bizErrors,
   biz: state.entities.biz,
-  results: state.entities.searchResult,
 });
 
 const mdtp = () => (dispatch) => ({

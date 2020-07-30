@@ -19,7 +19,7 @@ class Search extends React.Component {
       keyword: keyword || '',
       near: near || 'San Francisco',
       filter: '',
-      results: this.props.results || {},
+      results: {},
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,6 +49,7 @@ class Search extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
     const query = JSON.stringify({
       keyword: this.state.keyword,
       near: this.state.near,
@@ -80,6 +81,9 @@ class Search extends React.Component {
     let searchKey = document.getElementsByClassName('search-keyword')[0];
     let searchNear = document.getElementsByClassName('search-near')[0];
 
+    let liveResult = document.getElementsByClassName('live-result')[0];
+    liveResult.style.display = 'none';
+
     if (keyword) {
       searchKey.value = keyword.split('%20').join(' ');
       searchNear.value = near
@@ -92,19 +96,6 @@ class Search extends React.Component {
         near: near.split('%20').join(' '),
       });
     }
-
-    const query = JSON.stringify({
-      keyword: this.state.keyword,
-      near: this.state.near,
-    });
-    this.props.liveSearch(query).then((res) => {
-      this.setState({ results: Object.values(res.res) });
-
-      let liveResult = document.getElementsByClassName('live-result')[0];
-      if (liveResult) {
-        liveResult.style.display = 'none';
-      }
-    });
   }
 
   componentDidUpdate(prevProps) {
@@ -114,6 +105,9 @@ class Search extends React.Component {
 
       let searchKey = document.getElementsByClassName('search-keyword')[0];
       let searchNear = document.getElementsByClassName('search-near')[0];
+
+      let liveResult = document.getElementsByClassName('live-result')[0];
+      liveResult.style.display = 'none';
 
       if (keyword) {
         searchKey.value = keyword.split('%20').join(' ');
@@ -127,20 +121,6 @@ class Search extends React.Component {
           near: near.split('%20').join(' '),
         });
       }
-
-      const query = JSON.stringify({
-        keyword,
-        near,
-      });
-
-      this.props.liveSearch(query).then((res) => {
-        this.setState({ results: Object.values(res.res) });
-
-        let liveResult = document.getElementsByClassName('live-result')[0];
-        if (liveResult) {
-          liveResult.style.display = 'none';
-        }
-      });
     }
   }
 

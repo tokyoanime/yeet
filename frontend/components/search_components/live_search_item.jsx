@@ -23,9 +23,6 @@ const LiveSearchResult = ({ results, keyword, near }) => {
       );
     });
   } else if (keyword.length >= 2 && jQuery.isEmptyObject(results)) {
-    if (liveResult) {
-      liveResult.style.display = 'inline-block';
-    }
     return (
       <div>
         No search result for <span className='no-result-key'>{keyword}</span>{' '}
