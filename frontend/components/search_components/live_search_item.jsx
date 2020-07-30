@@ -16,7 +16,7 @@ const LiveSearchResult = ({ results, keyword, near }) => {
     return Object.values(results).map((res, idx) => {
       return (
         <Fragment key={`liveSearch-${res.id}`}>
-          <Link to={`/biz/${res.id}`}>
+          <Link to={`/biz/${res.id}?keyword=&near=${near}`}>
             <div>{`${idx + 1}. ${res.biz_name}`}</div>
           </Link>
         </Fragment>
